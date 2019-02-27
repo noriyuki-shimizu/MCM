@@ -1,0 +1,29 @@
+# Idea
+.idea
+*.iml
+*.iws
+*.ipr
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+
+# Build
+out
+build
+bin
+
+# Other
+*.log
+*.swp
+*.bak
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# OS
+Thumbs.db
+.DS_Store
