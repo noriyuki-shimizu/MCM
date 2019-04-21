@@ -1,7 +1,7 @@
 -- 服情報テーブル
-DROP TABLE IF EXISTS clothes;
+DROP TABLE IF EXISTS m_clothes;
 
-CREATE TABLE clothes (
+CREATE TABLE m_clothes (
     clothes_id bigserial PRIMARY KEY,
     image_id integer,
     genre_id integer NOT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE clothes (
 );
 
 -- ジャンル情報テーブル
-DROP TABLE IF EXISTS genre;
+DROP TABLE IF EXISTS m_genre;
 
-CREATE TABLE genre (
+CREATE TABLE m_genre (
     genre_id serial PRIMARY KEY,
     genre_name varchar(60) NOT NULL,
     delete_flag boolean NOT NULL,
@@ -23,9 +23,9 @@ CREATE TABLE genre (
 );
 
 -- 画像情報テーブル
-DROP TABLE IF EXISTS image;
+DROP TABLE IF EXISTS m_image;
 
-CREATE TABLE image (
+CREATE TABLE m_image (
     image_id serial PRIMARY KEY,
     image_name varchar(60) NOT NULL,
     image_path varchar(100) NOT NULL,
@@ -33,9 +33,9 @@ CREATE TABLE image (
 );
 
 -- ブランド情報テーブル
-DROP TABLE IF EXISTS brand;
+DROP TABLE IF EXISTS m_brand;
 
-CREATE TABLE brand (
+CREATE TABLE m_brand (
     brand_id serial PRIMARY KEY,
     brand_name varchar(60) NOT NULL,
     link varchar(100),
@@ -45,9 +45,9 @@ CREATE TABLE brand (
 );
 
 -- 店情報テーブル
-DROP TABLE IF EXISTS shop;
+DROP TABLE IF EXISTS m_shop;
 
-CREATE TABLE shop (
+CREATE TABLE m_shop (
     shop_id serial PRIMARY KEY,
     shop_name varchar(60) NOT NULL,
     link varchar(100),
