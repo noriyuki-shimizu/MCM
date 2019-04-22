@@ -1,4 +1,4 @@
-package source.entity;
+package source.domain.entity;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ public class MImage {
     @Id
     @Column(name = "image_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "image_name")
     private String name;
