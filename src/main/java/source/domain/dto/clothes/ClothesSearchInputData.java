@@ -1,13 +1,15 @@
 package source.domain.dto.clothes;
 
-import lombok.Value;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Date;
 
 /**
  * 服の検索フォームのデータ.
  */
-@Value(staticConstructor = "of")
+@Builder
+@Getter
 public class ClothesSearchInputData {
 
     /** ブランドID */
