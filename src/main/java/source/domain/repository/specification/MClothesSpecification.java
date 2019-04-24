@@ -1,7 +1,6 @@
 package source.domain.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.util.StringUtils;
 import source.domain.entity.MClothes;
 
 import java.util.Date;

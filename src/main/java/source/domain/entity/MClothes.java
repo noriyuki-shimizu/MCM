@@ -3,7 +3,7 @@ package source.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "m_clothes")
@@ -30,6 +30,7 @@ public class MClothes {
     @Column(name = "price")
     private Integer price;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "buy_date")
     private Date buyDate;
 
