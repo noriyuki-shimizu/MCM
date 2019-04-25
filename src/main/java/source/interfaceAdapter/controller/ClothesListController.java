@@ -1,5 +1,7 @@
 package source.interfaceAdapter.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,11 @@ public class ClothesListController {
     @Autowired
     private IClothesSearchUsecase usecase;
 
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search() {
+        // TODO: とりあえず、テンプレートとしてオブジェクトを宣言
         ClothesSearchInputData inputData = ClothesSearchInputData.builder()
                 .brandId(0)
                 .genreId(0)
@@ -30,6 +35,12 @@ public class ClothesListController {
                 .deleteFlag(false)
                 .build();
 
-        return this.usecase.search(inputData);
+        try {
+            return MAPPER.writeValueAsString(this.usecase.search(inputData));
+        } catch(JsonProcessingException jpe) {
+            jpe.printStackTrace();
+
+            return null;
+        }
     }
 }
