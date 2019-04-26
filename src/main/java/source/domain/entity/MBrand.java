@@ -21,6 +21,7 @@ public class MBrand {
     private String link;
 
     @OneToOne
+    @JoinColumn(name = "image_id")
     private MImage mImage;
 
     @Column(name = "country")

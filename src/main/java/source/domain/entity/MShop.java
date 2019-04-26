@@ -24,6 +24,7 @@ public class MShop {
     private String stationName;
 
     @OneToOne
+    @JoinColumn(name = "image_id")
     private MImage mImage;
 
     @Column(name = "address")

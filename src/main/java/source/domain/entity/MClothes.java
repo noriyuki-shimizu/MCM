@@ -16,15 +16,19 @@ public class MClothes {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "image_id")
     private MImage mImage;
 
     @OneToOne
+    @JoinColumn(name = "genre_id")
     private MGenre mGenre;
 
     @OneToOne
+    @JoinColumn(name = "brand_id")
     private MBrand mBrand;
 
     @OneToOne
+    @JoinColumn(name = "shop_id")
     private MShop mShop;
 
     @Column(name = "price")
