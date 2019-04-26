@@ -39,6 +39,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
 
     // PostgreSQL Dependencies
     compile group: 'org.postgresql', name: 'postgresql'
