@@ -8,4 +8,4 @@ spring:
 #    data: classpath:/database/data.sql
     sql-script-encoding: UTF-8
 server:
-  context-path: /myClothes
+  context-path: /mcm
