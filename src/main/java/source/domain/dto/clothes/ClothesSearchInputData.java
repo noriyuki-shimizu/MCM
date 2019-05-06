@@ -1,7 +1,10 @@
 package source.domain.dto.clothes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -10,6 +13,8 @@ import java.util.Date;
  */
 @Builder
 @Getter
+@AllArgsConstructor(onConstructor = @__(@JsonIgnore))
+@NoArgsConstructor
 public class ClothesSearchInputData {
 
     /** ブランドID */
