@@ -3,6 +3,7 @@ package source.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "m_brand")
@@ -15,6 +16,7 @@ public class MBrand {
     private Integer id;
 
     @Column(name = "brand_name")
+    @NotNull
     private String name;
 
     @Column(name = "link")
@@ -22,12 +24,15 @@ public class MBrand {
 
     @OneToOne
     @JoinColumn(name = "image_id")
+    @NotNull
     private MImage mImage;
 
     @Column(name = "country")
+    @NotNull
     private String country;
 
     @Column(name = "delete_flag")
+    @NotNull
     private boolean deleteFlag;
 
 }

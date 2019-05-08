@@ -3,6 +3,7 @@ package source.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "m_genre")
@@ -14,9 +15,11 @@ public class MGenre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "genre_name")
+    @Column(name = "genre_name", unique = true)
+    @NotNull
     private String name;
 
     @Column(name = "delete_flag")
+    @NotNull
     private boolean deleteFlag;
 }
