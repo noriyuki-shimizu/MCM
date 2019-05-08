@@ -10,6 +10,9 @@ import java.util.Date;
 @Builder
 public class ClothesSearchOutputData {
 
+    /** id */
+    private Long id;
+
     /** 画像パス */
     private String imagePath;
 

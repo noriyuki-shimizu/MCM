@@ -16,6 +16,7 @@ public class MClothesList {
         return this.values.stream().map(value -> {
 
             return ClothesSearchOutputData.builder()
+                    .id(value.getId())
                     .imagePath(value.getMImage().getPath())
                     .genreName(value.getMGenre().getName())
                     .brandName(value.getMBrand().getName())
