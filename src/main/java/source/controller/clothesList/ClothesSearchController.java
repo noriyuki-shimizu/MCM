@@ -1,20 +1,22 @@
-package source.controller;
+package source.controller.clothesList;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import source.controller.clothesList.ClothesListController;
 import source.domain.dto.clothes.ClothesSearchInputData;
 import source.usecases.IClothesSearchUsecase;
 
 import java.io.IOException;
-import java.util.Date;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/clothesList")
-public class ClothesListController {
+public class ClothesSearchController extends ClothesListController {
 
     @Autowired
     private IClothesSearchUsecase usecase;
@@ -40,4 +42,5 @@ public class ClothesListController {
         }
 
     }
+
 }
