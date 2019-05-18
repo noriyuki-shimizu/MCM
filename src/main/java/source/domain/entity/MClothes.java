@@ -12,28 +12,28 @@ import java.util.Date;
 public class MClothes {
 
     @Id
-    @Column(name = "clothes_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "image_id")
-    private MImage mImage;
+    @JoinColumn(name = "id", referencedColumnName = "image_id")
+    private MImage image;
 
     @OneToOne
-    @JoinColumn(name = "genre_id")
+    @JoinColumn(name = "id", referencedColumnName = "genre_id")
     @NotNull
-    private MGenre mGenre;
+    private MGenre genre;
 
     @OneToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "id", referencedColumnName = "brand_id")
     @NotNull
-    private MBrand mBrand;
+    private MBrand brand;
 
     @OneToOne
-    @JoinColumn(name = "shop_id")
+    @JoinColumn(name = "id", referencedColumnName = "shop_id")
     @NotNull
-    private MShop mShop;
+    private MShop shop;
 
     @Column(name = "price")
     @NotNull

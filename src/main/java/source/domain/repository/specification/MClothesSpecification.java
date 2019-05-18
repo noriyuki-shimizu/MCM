@@ -3,25 +3,26 @@ package source.domain.repository.specification;
 import org.springframework.data.jpa.domain.Specification;
 import source.domain.entity.MClothes;
 
+import javax.persistence.criteria.JoinType;
 import java.util.Date;
 
 public class MClothesSpecification {
 
     public static Specification<MClothes> brandIdContains(final Integer brandId) {
         return brandId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("brandId"), brandId);
+            return cb.equal(root.join("m_brand", JoinType.LEFT).get("id"), brandId);
         };
     }
 
     public static Specification<MClothes> genreIdEqual(final Integer genreId) {
         return genreId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("genreId"), genreId);
+            return cb.equal(root.join("m_genre", JoinType.LEFT).get("id"), genreId);
         };
     }
 
     public static Specification<MClothes> shopIdEqual(final Integer shopId) {
         return shopId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("shopId"), shopId);
+            return cb.equal(root.join("m_shop", JoinType.LEFT).get("id"), shopId);
         };
     }
 
