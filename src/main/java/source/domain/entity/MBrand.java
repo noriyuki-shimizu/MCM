@@ -1,6 +1,7 @@
 package source.domain.entity;
 
 import lombok.Data;
+import lombok.extern.java.Log;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,11 +12,11 @@ import javax.validation.constraints.NotNull;
 public class MBrand {
 
     @Id
-    @Column(name = "brand_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "brand_name")
+    @Column(name = "name")
     @NotNull
     private String name;
 

@@ -5,7 +5,7 @@ import lombok.Value;
 @Value(staticConstructor = "of")
 public class ShopOutputData {
 
-    private Integer id;
+    private Long id;
 
     private String name;
 

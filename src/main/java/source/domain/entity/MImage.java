@@ -11,15 +11,15 @@ import javax.validation.constraints.NotNull;
 public class MImage {
 
     @Id
-    @Column(name = "image_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "image_name")
+    @Column(name = "name")
     @NotNull
     private String name;
 
-    @Column(name = "image_path")
+    @Column(name = "path")
     @NotNull
     private String path;
 

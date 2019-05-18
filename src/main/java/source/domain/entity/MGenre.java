@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 public class MGenre {
 
     @Id
-    @Column(name = "genre_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "genre_name", unique = true)
+    @Column(name = "name", unique = true)
     @NotNull
     private String name;
 

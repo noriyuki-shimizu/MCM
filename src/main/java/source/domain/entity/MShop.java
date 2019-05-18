@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 public class MShop {
 
     @Id
-    @Column(name = "shop_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "shop_name")
+    @Column(name = "name")
     @NotNull
     private String name;
 
