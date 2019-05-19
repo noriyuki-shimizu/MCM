@@ -1,10 +1,10 @@
 package source.usecases;
 
 import source.domain.dto.clothes.ClothesSearchInputData;
-import source.domain.dto.clothes.ClothesSearchOutputData;
+import source.domain.entity.MClothes;
 
 import java.util.List;
 
 public interface IClothesSearchUsecase {
-    public List<ClothesSearchOutputData> search(ClothesSearchInputData inputData);
+    public List<MClothes> search(ClothesSearchInputData inputData);
 }
