@@ -26,7 +26,7 @@ public class MBrand {
     @OneToOne
     @JoinColumn(name = "image_id")
     @NotNull
-    private MImage mImage;
+    private MImage image;
 
     @Column(name = "country")
     @NotNull

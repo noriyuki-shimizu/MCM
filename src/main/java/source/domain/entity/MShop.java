@@ -29,7 +29,7 @@ public class MShop {
     @OneToOne
     @JoinColumn(name = "image_id")
     @NotNull
-    private MImage mImage;
+    private MImage image;
 
     @Column(name = "address")
     @NotNull
