@@ -10,19 +10,19 @@ public class MClothesSpecification {
 
     public static Specification<MClothes> brandIdContains(final Integer brandId) {
         return brandId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("m_brand", JoinType.LEFT).get("id"), brandId);
+            return cb.equal(root.join("brand", JoinType.LEFT).get("id"), brandId);
         };
     }
 
     public static Specification<MClothes> genreIdEqual(final Integer genreId) {
         return genreId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("m_genre", JoinType.LEFT).get("id"), genreId);
+            return cb.equal(root.join("genre", JoinType.LEFT).get("id"), genreId);
         };
     }
 
     public static Specification<MClothes> shopIdEqual(final Integer shopId) {
         return shopId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("m_shop", JoinType.LEFT).get("id"), shopId);
+            return cb.equal(root.join("shop", JoinType.LEFT).get("id"), shopId);
         };
     }
 
