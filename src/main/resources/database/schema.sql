@@ -1,3 +1,17 @@
+-- ユーザ
+DROP TABLE IF EXISTS b_user;
+
+CREATE TABLE b_user (
+    id bigserial PRIMARY KEY,
+    name varchar(60) NOT NULL,
+    e_mail varchar(100) NOT NULL,
+    password varchar(100) NOT NULL,
+    delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
+);
+
 -- 服情報テーブル
 DROP TABLE IF EXISTS m_clothes;
 
@@ -9,7 +23,10 @@ CREATE TABLE m_clothes (
     shop_id integer NOT NULL,
     price integer NOT NULL,
     buy_date date NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false
+    delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
 );
 
 -- ジャンル情報テーブル
@@ -19,6 +36,9 @@ CREATE TABLE m_genre (
     id serial PRIMARY KEY,
     name varchar(60) NOT NULL,
     delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp,
     UNIQUE (name)
 );
 
@@ -29,7 +49,10 @@ CREATE TABLE m_image (
     id serial PRIMARY KEY,
     name varchar(60) NOT NULL,
     path varchar(100) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false
+    delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
 );
 
 -- ブランド情報テーブル
@@ -41,7 +64,10 @@ CREATE TABLE m_brand (
     link varchar(100),
     image_id integer NOT NULL,
     country varchar(15) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false
+    delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
 );
 
 -- 店情報テーブル
@@ -56,5 +82,8 @@ CREATE TABLE m_shop (
     address varchar(100) NOT NULL,
     business_hours varchar(30) NOT NULL,
     tel varchar(15) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false
+    delete_flag boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
 );
