@@ -1,7 +1,7 @@
 package source.domain.entity;
 
 import lombok.Data;
-import lombok.extern.java.Log;
+import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "m_brand")
 @Data
-public class MBrand {
+public class MBrand extends TimestampEntity {
 
     @Id
     @Column(name = "id")
@@ -31,9 +31,5 @@ public class MBrand {
     @Column(name = "country")
     @NotNull
     private String country;
-
-    @Column(name = "delete_flag")
-    @NotNull
-    private boolean deleteFlag;
 
 }

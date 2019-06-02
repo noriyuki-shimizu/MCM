@@ -1,6 +1,7 @@
 package source.domain.entity;
 
 import lombok.Data;
+import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "m_clothes")
 @Data
-public class MClothes {
+public class MClothes extends TimestampEntity {
 
     @Id
     @Column(name = "id")
@@ -43,9 +44,5 @@ public class MClothes {
     @Column(name = "buy_date")
     @NotNull
     private Date buyDate;
-
-    @Column(name = "delete_flag")
-    @NotNull
-    private boolean deleteFlag;
 
 }
