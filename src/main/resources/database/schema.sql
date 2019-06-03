@@ -9,7 +9,8 @@ CREATE TABLE b_user (
     delete_flag boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    delete_date_time timestamp
+    delete_date_time timestamp,
+    UNIQUE (e_mail)
 );
 
 -- 服情報テーブル
