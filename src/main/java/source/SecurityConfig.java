@@ -22,7 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) {
         try {
-            httpSecurity.cors().configurationSource(this.corsConfigurationSource());
+            httpSecurity
+                    .cors()
+                        .configurationSource(this.corsConfigurationSource())
+                    .and()
+                    .csrf()
+                        .disable();
         } catch (Exception e) {
             e.printStackTrace();
         }
