@@ -54,7 +54,12 @@ dependencies {
 
     // Jackson Dependencies
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.4'
-    
-    // JWT
-    compile group: 'com.auth0', name: 'java-jwt', version: '3.3.0'
+
+    // retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+    // firebase
+    implementation 'com.google.firebase:firebase-admin:6.8.0'
 }

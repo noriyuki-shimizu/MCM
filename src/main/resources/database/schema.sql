@@ -3,9 +3,10 @@ DROP TABLE IF EXISTS b_user;
 
 CREATE TABLE b_user (
     id bigserial PRIMARY KEY,
+    uid varchar(100) NOT NULL,
     name varchar(60) NOT NULL,
     e_mail varchar(100) NOT NULL,
-    password varchar(100) NOT NULL,
+    password varchar(100),
     delete_flag boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

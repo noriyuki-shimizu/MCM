@@ -1,4 +1,4 @@
-package source.domain.repository;
+package source.domain.repository.db;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

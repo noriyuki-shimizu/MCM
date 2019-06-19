@@ -5,13 +5,15 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
 import source.domain.dto.clothes.ClothesSearchInputData;
 import source.domain.entity.MClothes;
-import source.domain.repository.MClothesRepository;
-import source.domain.repository.specification.MClothesSpecification;
+import source.domain.repository.db.MClothesRepository;
+import source.domain.repository.db.specification.MClothesSpecification;
 import source.usecases.IClothesSearchUsecase;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
+@Transactional
 public class ClothesSearchInteractor implements IClothesSearchUsecase {
 
     @Autowired

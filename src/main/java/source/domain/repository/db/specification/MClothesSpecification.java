@@ -1,4 +1,4 @@
-package source.domain.repository.specification;
+package source.domain.repository.db.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import source.domain.entity.MClothes;

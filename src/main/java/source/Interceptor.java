@@ -1,27 +1,41 @@
 package source;
 
-import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.web.method.HandlerMethod;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseToken;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
 
 public class Interceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod hm = (HandlerMethod) handler;
-        Method method = hm.getMethod();
-        NonAuth annotation = AnnotationUtils.findAnnotation(method, NonAuth.class);
-        if (annotation != null) {
-            return true;
+        String token = getToken(request);
+
+        if (token == null) {
+            return false;
         }
 
-        // true であれば通す
+        // idToken comes from the client app (shown above)
+        FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
+        String uid = decodedToken.getUid();
+
         return true;
+    }
+
+    /**
+     * リクエストヘッダからトークンを取得します.
+     * @param request
+     * @return token
+     */
+    private String getToken(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (token == null || !token.startsWith("Bearer ")) {
+            return null;
+        }
+        return token.replace("Bearer ", "");
     }
 
     @Override

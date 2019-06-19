@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import source.controller.clothesList.ClothesListController;
 import source.domain.dto.clothes.ClothesSearchInputData;
 import source.usecases.IClothesSearchUsecase;
@@ -23,7 +20,7 @@ public class ClothesSearchController extends ClothesListController {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @GetMapping("/search")
     public String search(@RequestParam("inputDataJson") String inputDataJson) {
         try {
             ClothesSearchInputData inputData = MAPPER.readValue(inputDataJson, ClothesSearchInputData.class);

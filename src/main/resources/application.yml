@@ -9,7 +9,3 @@ spring:
     sql-script-encoding: UTF-8
 server:
   context-path: /mcm
-auth:
-  security:
-    secret: mcm-secret-key
-    expiration-time: 600000

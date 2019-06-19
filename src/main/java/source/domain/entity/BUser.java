@@ -15,6 +15,10 @@ public class BUser extends TimestampEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "uid")
+    @NotNull
+    private String uid;
+
     @Column(name = "name")
     @NotNull
     private String name;
@@ -24,6 +28,5 @@ public class BUser extends TimestampEntity {
     private String eMail;
 
     @Column(name = "password")
-    @NotNull
     private String password;
 }
