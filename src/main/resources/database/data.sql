@@ -1,5 +1,5 @@
-insert into b_user (name, e_mail, password)
-values ('shiminori', 'shiminori@gmail.com', '$2a$10$fqrpacph6c8/plvdMQjoJ.RjeT2zBHXsExBPyHVsRJKyf2MEPkfU.');
+insert into b_user (name, uid, e_mail)
+values ('shiminori', 'sof9kKJFi0jsu_KJH9JhfL', 'shiminori@gmail.com');
 
 -- ジャンルマスタの初期値を設定
 insert into m_genre (name)

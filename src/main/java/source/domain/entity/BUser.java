@@ -1,5 +1,6 @@
 package source.domain.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import source.domain.entity.common.TimestampEntity;
 
@@ -9,24 +10,21 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "b_user")
 @Data
+@Builder
 public class BUser extends TimestampEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id = 0l;
 
     @Column(name = "uid")
     @NotNull
-    private String uid;
+    private String uid = "";
 
     @Column(name = "name")
-    @NotNull
-    private String name;
+    private String name = "";
 
     @Column(name = "e_mail")
     @NotNull
-    private String eMail;
-
-    @Column(name = "password")
-    private String password;
+    private String eMail = "";
 }

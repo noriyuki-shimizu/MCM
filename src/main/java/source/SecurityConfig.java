@@ -15,12 +15,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) {
         try {
             httpSecurity
-                    .authorizeRequests()
-                        .mvcMatchers("/preLogin")
-                            .permitAll()
-                        .anyRequest()
-                            .authenticated()
-                    .and()
                     .cors()
                         .configurationSource(this.corsConfigurationSource())
                     .and()
