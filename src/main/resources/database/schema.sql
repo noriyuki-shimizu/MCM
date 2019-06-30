@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS genres;
 
 CREATE TABLE genres (
     id bigserial PRIMARY KEY,
-    user_id bigint REFERENCES users(id),
+    user_id bigint NOT NULL REFERENCES users(id),
     name varchar(60) NOT NULL,
     delete_flag boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS brands;
 
 CREATE TABLE brands (
     id bigserial PRIMARY KEY,
-    user_id bigint REFERENCES users (id),
+    user_id bigint NOT NULL REFERENCES users (id),
     name varchar(60) NOT NULL,
     link varchar(100),
     image_id bigint NOT NULL REFERENCES images(id),
@@ -62,7 +62,7 @@ DROP TABLE IF EXISTS shops;
 
 CREATE TABLE shops (
     id bigserial PRIMARY KEY,
-    user_id bigint REFERENCES users(id),
+    user_id bigint NOT NULL REFERENCES users(id),
     name varchar(60) NOT NULL,
     link varchar(100),
     station_name varchar(15) NOT NULL,
@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS clothes;
 
 CREATE TABLE clothes (
     id bigserial PRIMARY KEY,
-    user_id bigint REFERENCES users(id),
+    user_id bigint NOT NULL REFERENCES users(id),
     image_id bigint REFERENCES images(id),
     genre_id bigint NOT NULL REFERENCES genres(id),
     brand_id bigint NOT NULL REFERENCES brands(id),
