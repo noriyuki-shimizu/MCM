@@ -1,4 +1,4 @@
-package source.domain.dto.assist;
+package source.domain.dto.output.assist;
 
 import lombok.Value;
 

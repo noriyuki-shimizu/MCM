@@ -3,7 +3,7 @@ package source.usecases.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
-import source.domain.dto.clothes.ClothesSearchInputData;
+import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.domain.entity.MClothes;
 import source.domain.repository.db.MClothesRepository;
 import source.domain.repository.db.specification.MClothesSpecification;

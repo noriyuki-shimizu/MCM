@@ -1,7 +1,7 @@
 package source.presenter.assist.interactor;
 
 import org.springframework.stereotype.Component;
-import source.domain.dto.assist.BrandOutputData;
+import source.domain.dto.output.assist.BrandOutputData;
 import source.domain.entity.MBrand;
 import source.presenter.assist.IAssistBrandSearchPresenter;
 

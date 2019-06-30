@@ -1,10 +1,11 @@
-package source.domain.dto.clothes;
+package source.domain.dto.input.clothes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import source.domain.dto.input.InputBase;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ClothesSearchInputData {
+public class ClothesSearchInputData extends InputBase {
 
     /** ブランドID */
     private Integer brandId;

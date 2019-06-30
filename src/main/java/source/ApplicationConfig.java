@@ -4,9 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.MappedInterceptor;
+import source.domain.external.firebase.Firebase;
 
 @Configuration
-public class ApplicationConfig extends WebMvcConfigurerAdapter {
+public class ApplicationConfig {
     @Bean
     public Interceptor getInstanceInterceptor() {
         return new Interceptor();
@@ -15,5 +16,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MappedInterceptor interceptor() {
         return new MappedInterceptor(new String[]{"/**"}, getInstanceInterceptor());
+    }
+
+    @Bean
+    public Firebase firebase() {
+        return new Firebase();
     }
 }

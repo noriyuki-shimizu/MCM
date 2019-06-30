@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.util.FirebaseEnv;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 
 @Component
@@ -18,19 +20,21 @@ public class Firebase {
     @Autowired
     private FirebaseEnv env;
 
-    private FirebaseApp firebaseApp;
+    private FirebaseApp app;
 
     /**
      * Firebase API の初期処理を行います.
      */
-    public void initializeApp() {
+    @PostConstruct
+    private void initializeApp() {
+        System.out.println("kokokiyayo!!!!!!");
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(this.env.getServiceAccount()))
                     .setDatabaseUrl(this.env.getDatabaseUrl())
                     .build();
 
-            this.firebaseApp = FirebaseApp.initializeApp(options, this.env.getApiName());
+            this.app = FirebaseApp.initializeApp(options, this.env.getApiName());
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -39,8 +43,9 @@ public class Firebase {
     /**
      * インスタンスを削除します.
      */
-    public void deleteApp() {
-        this.firebaseApp.delete();
+    @PreDestroy
+    private void deleteApp() {
+        this.app.delete();
     }
 
     /**
@@ -48,14 +53,9 @@ public class Firebase {
      *
      * @return
      */
-    public FirebaseToken getDecodedToken(String token) {
-        try {
-            // idToken comes from the client app (shown above)
-            return FirebaseAuth.getInstance(this.firebaseApp).verifyIdToken(token);
-        } catch (FirebaseAuthException fae) {
-            fae.printStackTrace();
-        }
-        return null;
+    public FirebaseToken getDecodedToken(String token) throws FirebaseAuthException {
+        // idToken comes from the client app (shown above)
+        return FirebaseAuth.getInstance(this.app).verifyIdToken(token);
     }
 
 }

@@ -1,6 +1,6 @@
 package source.presenter.assist;
 
-import source.domain.dto.assist.BrandOutputData;
+import source.domain.dto.output.assist.BrandOutputData;
 import source.domain.entity.MBrand;
 
 import java.util.List;

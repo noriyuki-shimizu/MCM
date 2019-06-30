@@ -2,7 +2,7 @@ package source.usecases.assist.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.domain.dto.assist.ShopOutputData;
+import source.domain.dto.output.assist.ShopOutputData;
 import source.domain.entity.MShop;
 import source.domain.repository.db.MShopRepository;
 import source.presenter.assist.IAssistShopSearchPresenter;

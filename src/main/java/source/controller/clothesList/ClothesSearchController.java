@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import source.controller.clothesList.ClothesListController;
-import source.domain.dto.clothes.ClothesSearchInputData;
+import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.usecases.IClothesSearchUsecase;
 
 import java.io.IOException;

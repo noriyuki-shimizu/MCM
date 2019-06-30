@@ -2,6 +2,7 @@ package source.domain.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
@@ -12,6 +13,10 @@ import javax.validation.constraints.NotNull;
 @Data
 @Builder
 public class BUser extends TimestampEntity {
+
+    @Tolerate
+    public BUser() {}
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package source.usecases.assist;
 
-import source.domain.dto.assist.ShopOutputData;
+import source.domain.dto.output.assist.ShopOutputData;
 
 import java.util.List;
 
