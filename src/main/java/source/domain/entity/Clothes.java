@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "m_clothes")
+@Table(name = "clothes")
 @Data
-public class MClothes extends TimestampEntity {
+public class Clothes extends TimestampEntity {
 
     @Id
     @Column(name = "id")
@@ -19,22 +19,22 @@ public class MClothes extends TimestampEntity {
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "image_id")
-    private MImage image;
+    private Images image;
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "genre_id")
     @NotNull
-    private MGenre genre;
+    private Genres genre;
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "brand_id")
     @NotNull
-    private MBrand brand;
+    private Brands brand;
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "shop_id")
     @NotNull
-    private MShop shop;
+    private Shops shop;
 
     @Column(name = "price")
     @NotNull

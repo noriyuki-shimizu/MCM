@@ -2,8 +2,8 @@ package source.usecases.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.domain.entity.MClothes;
-import source.domain.repository.db.MClothesRepository;
+import source.domain.entity.Clothes;
+import source.domain.repository.db.ClothesRepository;
 import source.usecases.IClothesBulkInputUsecase;
 
 import javax.transaction.Transactional;
@@ -14,8 +14,8 @@ import java.util.List;
 public class ClothesBulkInputInteractor implements IClothesBulkInputUsecase {
 
     @Autowired
-    private MClothesRepository repository;
+    private ClothesRepository repository;
 
-    public void bulkInput(List<MClothes> mClothesList) {
+    public void bulkInput(List<Clothes> clothesList) {
     }
 }

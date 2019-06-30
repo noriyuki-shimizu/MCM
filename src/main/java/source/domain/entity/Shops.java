@@ -7,9 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "m_brand")
+@Table(name = "shops")
 @Data
-public class MBrand extends TimestampEntity {
+public class Shops extends TimestampEntity {
 
     @Id
     @Column(name = "id")
@@ -23,13 +23,25 @@ public class MBrand extends TimestampEntity {
     @Column(name = "link")
     private String link;
 
+    @Column(name = "station_name")
+    @NotNull
+    private String stationName;
+
     @OneToOne
     @JoinColumn(name = "image_id")
     @NotNull
-    private MImage image;
+    private Images image;
 
-    @Column(name = "country")
+    @Column(name = "address")
     @NotNull
-    private String country;
+    private String address;
+
+    @Column(name = "business_hours")
+    @NotNull
+    private String businessHours;
+
+    @Column(name = "tel")
+    @NotNull
+    private String tel;
 
 }

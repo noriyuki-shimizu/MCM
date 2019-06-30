@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
 import source.domain.dto.input.clothes.ClothesSearchInputData;
-import source.domain.entity.MClothes;
-import source.domain.repository.db.MClothesRepository;
-import source.domain.repository.db.specification.MClothesSpecification;
+import source.domain.entity.Clothes;
+import source.domain.repository.db.ClothesRepository;
+import source.domain.repository.db.specification.ClothesSpecification;
 import source.usecases.IClothesSearchUsecase;
 
 import javax.transaction.Transactional;
@@ -17,21 +17,21 @@ import java.util.List;
 public class ClothesSearchInteractor implements IClothesSearchUsecase {
 
     @Autowired
-    private MClothesRepository repository;
+    private ClothesRepository repository;
 
-    public List<MClothes> search(ClothesSearchInputData inputData) {
+    public List<Clothes> search(ClothesSearchInputData inputData) {
 
-        List<MClothes> mClothesList = this.repository.findAll(
+        List<Clothes> clothesList = this.repository.findAll(
                 Specifications
-                        .where(MClothesSpecification.brandIdContains(inputData.getBrandId()))
-                        .and(MClothesSpecification.shopIdEqual(inputData.getShopId()))
-                        .and(MClothesSpecification.genreIdEqual(inputData.getGenreId()))
-                        .and(MClothesSpecification.priceLessEqual(inputData.getLessPrice()))
-                        .and(MClothesSpecification.priceGreaterEqual(inputData.getMorePrice()))
-                        .and(MClothesSpecification.buyDateEqual(inputData.getBuyDate()))
-                        .and(MClothesSpecification.deleteFlagEqual(inputData.isDeleteFlag()))
+                        .where(ClothesSpecification.brandIdContains(inputData.getBrandId()))
+                        .and(ClothesSpecification.shopIdEqual(inputData.getShopId()))
+                        .and(ClothesSpecification.genreIdEqual(inputData.getGenreId()))
+                        .and(ClothesSpecification.priceLessEqual(inputData.getLessPrice()))
+                        .and(ClothesSpecification.priceGreaterEqual(inputData.getMorePrice()))
+                        .and(ClothesSpecification.buyDateEqual(inputData.getBuyDate()))
+                        .and(ClothesSpecification.deleteFlagEqual(inputData.isDeleteFlag()))
         );
 
-        return mClothesList;
+        return clothesList;
     }
 }

@@ -9,13 +9,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "b_user")
+@Table(name = "users")
 @Data
 @Builder
-public class BUser extends TimestampEntity {
+public class Users extends TimestampEntity {
 
     @Tolerate
-    public BUser() {}
+    public Users() {}
 
     @Id
     @Column(name = "id")

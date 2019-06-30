@@ -7,17 +7,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "m_genre")
+@Table(name = "images")
 @Data
-public class MGenre extends TimestampEntity {
+public class Images extends TimestampEntity {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     @NotNull
     private String name;
+
+    @Column(name = "path")
+    @NotNull
+    private String path;
 
 }

@@ -4,17 +4,15 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
 import source.domain.auth.RequestToken;
-import source.domain.entity.BUser;
+import source.domain.entity.Users;
 import source.domain.external.firebase.Firebase;
-import source.domain.repository.db.BUserRepository;
-import source.util.FirebaseEnv;
+import source.domain.repository.db.UsersRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +24,7 @@ public class Interceptor implements HandlerInterceptor {
     private Firebase firebase;
 
     @Autowired
-    private BUserRepository bUserRepository;
+    private UsersRepository usersRepository;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -49,8 +47,8 @@ public class Interceptor implements HandlerInterceptor {
 
         try {
             FirebaseToken decodedToken = this.firebase.getDecodedToken(token);
-            BUser bUser = this.bUserRepository.findByUidEquals(decodedToken.getUid());
-            if (bUser == null) {
+            Users users = this.usersRepository.findByUidEquals(decodedToken.getUid());
+            if (users == null) {
                 return false;
             }
         } catch(FirebaseAuthException fae) {
