@@ -1,6 +1,11 @@
--- ユーザ
+DROP TABLE IF EXISTS clothes;
+DROP TABLE IF EXISTS shops;
+DROP TABLE IF EXISTS brands;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS users;
 
+-- ユーザ
 CREATE TABLE users (
     id bigserial PRIMARY KEY,
     uid varchar(100) NOT NULL,
@@ -13,8 +18,6 @@ CREATE TABLE users (
 );
 
 -- 画像情報テーブル
-DROP TABLE IF EXISTS images;
-
 CREATE TABLE images (
     id bigserial PRIMARY KEY,
     name varchar(60) NOT NULL,
@@ -27,8 +30,6 @@ CREATE TABLE images (
 
 
 -- ジャンル情報テーブル
-DROP TABLE IF EXISTS genres;
-
 CREATE TABLE genres (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
@@ -42,8 +43,6 @@ CREATE TABLE genres (
 
 
 -- ブランド情報テーブル
-DROP TABLE IF EXISTS brands;
-
 CREATE TABLE brands (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users (id),
@@ -58,8 +57,6 @@ CREATE TABLE brands (
 );
 
 -- 店情報テーブル
-DROP TABLE IF EXISTS shops;
-
 CREATE TABLE shops (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
@@ -77,8 +74,6 @@ CREATE TABLE shops (
 );
 
 -- 服情報テーブル
-DROP TABLE IF EXISTS clothes;
-
 CREATE TABLE clothes (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
