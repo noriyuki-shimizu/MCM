@@ -1,4 +1,4 @@
-package source.usecases.interactor;
+package source.usecases.clothes.interactor;
 
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;

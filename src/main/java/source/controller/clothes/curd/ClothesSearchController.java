@@ -1,4 +1,4 @@
-package source.controller.clothesList;
+package source.controller.clothes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.domain.dto.input.clothes.ClothesSearchInputData;
-import source.usecases.IClothesSearchUsecase;
+import source.usecases.clothes.IClothesSearchUsecase;
 
 import java.io.IOException;
 

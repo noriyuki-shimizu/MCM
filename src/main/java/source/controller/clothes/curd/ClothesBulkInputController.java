@@ -1,4 +1,4 @@
-package source.controller.clothesBulkInput;
+package source.controller.clothes;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
