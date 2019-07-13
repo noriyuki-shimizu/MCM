@@ -1,6 +1,8 @@
 buildscript {
     ext {
         springBootVersion = '1.5.9.RELEASE'
+        gradleAptPluginVersion = '0.15'
+        sonarqubeVersion = '2.5'
     }
     repositories {
         mavenCentral()
@@ -8,13 +10,15 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "net.ltgt.gradle:gradle-apt-plugin:0.15"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:${gradleAptPluginVersion}"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqubeVersion}"
     }
 }
 
 plugins {
     id 'org.springframework.boot' version '1.5.9.RELEASE'
     id 'java'
+    id "org.sonarqube" version "2.7"
 }
 
 jar {
@@ -22,9 +26,19 @@ jar {
     version =  '0.0.1-SNAPSHOT'
 }
 
+sonarqube {
+    properties {
+        property "sonar.projectName","mcm-api"
+        property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
+        property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
+}
+
 sourceCompatibility = 1.8
 
 apply plugin: 'net.ltgt.apt'
+apply plugin: 'org.sonarqube'
 
 repositories {
     mavenCentral()
