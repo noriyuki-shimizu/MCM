@@ -3,25 +3,29 @@ package source.controller.brands.crud;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
-import source.usecases.brands.IBrandDeleteUsecase;
+import source.domain.dto.input.brands.BrandUpdateInputData;
+import source.usecases.brands.IBrandUpdateUsecase;
 
 import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-public class DeleteController extends BrandsController {
+public class BrandsUpdateController extends BrandsController {
 
     @Autowired
-    private IBrandDeleteUsecase usecase;
+    private IBrandUpdateUsecase usecase;
 
-    @DeleteMapping(value = "/{id}")
-    public String deleteHandler(@PathVariable("id") Long id) {
+    @PutMapping(value = "/")
+    public String updateHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            return super.MAPPER.writeValueAsString(this.usecase.delete(id));
+            BrandUpdateInputData inputData = super.MAPPER.readValue(inputDataJson, BrandUpdateInputData.class);
+
+            return super.MAPPER.writeValueAsString(this.usecase.update(userId, inputData));
         } catch (JsonProcessingException jpe) {
             jpe.printStackTrace();
 

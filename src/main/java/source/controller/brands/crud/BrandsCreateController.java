@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-public class CreateController extends BrandsController {
+public class BrandsCreateController extends BrandsController {
 
     @Autowired
     private IBrandCreateUsecase usecase;
