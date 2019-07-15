@@ -11,7 +11,7 @@ CREATE TABLE users (
     uid varchar(100) NOT NULL,
     name varchar(60),
     e_mail varchar(100) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp
@@ -22,7 +22,7 @@ CREATE TABLE images (
     id bigserial PRIMARY KEY,
     name varchar(60) NOT NULL,
     path varchar(100) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp
@@ -34,7 +34,7 @@ CREATE TABLE genres (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
     name varchar(60) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp,
@@ -50,7 +50,7 @@ CREATE TABLE brands (
     link varchar(100),
     image_id bigint NOT NULL REFERENCES images(id),
     country varchar(15) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp
@@ -67,7 +67,7 @@ CREATE TABLE shops (
     address varchar(100) NOT NULL,
     business_hours varchar(30) NOT NULL,
     tel varchar(15) NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp
@@ -83,7 +83,7 @@ CREATE TABLE clothes (
     shop_id bigint NOT NULL REFERENCES shops(id),
     price integer NOT NULL,
     buy_date date NOT NULL,
-    delete_flag boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp

@@ -1,16 +1,16 @@
-package source.usecases.interactor;
+package source.usecases.clothes.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
 import source.domain.repository.db.ClothesRepository;
-import source.usecases.IClothesBulkInputUsecase;
+import source.usecases.clothes.IClothesBulkInputUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Component
 @Transactional
+@Component
 public class ClothesBulkInputInteractor implements IClothesBulkInputUsecase {
 
     @Autowired

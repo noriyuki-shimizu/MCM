@@ -1,4 +1,4 @@
-package source.controller.clothesList;
+package source.controller.clothes;
 
 import org.springframework.web.bind.annotation.*;
 

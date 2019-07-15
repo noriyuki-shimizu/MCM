@@ -27,7 +27,6 @@ public class Firebase {
      */
     @PostConstruct
     private void initializeApp() {
-        System.out.println("kokokiyayo!!!!!!");
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(this.env.getServiceAccount()))

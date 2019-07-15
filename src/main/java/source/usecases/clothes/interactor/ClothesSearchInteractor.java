@@ -1,4 +1,4 @@
-package source.usecases.interactor;
+package source.usecases.clothes.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
@@ -7,13 +7,12 @@ import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.domain.entity.Clothes;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.usecases.IClothesSearchUsecase;
+import source.usecases.clothes.IClothesSearchUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-@Transactional
 public class ClothesSearchInteractor implements IClothesSearchUsecase {
 
     @Autowired

@@ -1,10 +1,11 @@
-package source.controller.clothes;
+package source.controller.clothes.curd;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import source.controller.clothes.ClothesListController;
 import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.usecases.clothes.IClothesSearchUsecase;
 
@@ -36,7 +37,6 @@ public class ClothesSearchController extends ClothesListController {
 
             return null;
         }
-
     }
 
 }

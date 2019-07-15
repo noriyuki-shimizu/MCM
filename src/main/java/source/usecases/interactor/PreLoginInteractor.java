@@ -1,4 +1,4 @@
-package source.usecases.clothes.interactor;
+package source.usecases.interactor;
 
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ import source.usecases.IPreLoginUsecase;
 
 import javax.transaction.Transactional;
 
-@Component
 @Transactional
+@Component
 public class PreLoginInteractor implements IPreLoginUsecase {
 
     @Autowired

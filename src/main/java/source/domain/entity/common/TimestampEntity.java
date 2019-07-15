@@ -23,9 +23,9 @@ public abstract class TimestampEntity {
     @Column(name = "delete_date_time", updatable=false)
     public Timestamp deleteDateTime;
 
-    @Column(name = "delete_flag")
+    @Column(name = "is_deleted")
     @NotNull
-    private boolean deleteFlag;
+    private boolean isDeleted;
 
     @PrePersist
     public void prePersist() {
@@ -39,7 +39,7 @@ public abstract class TimestampEntity {
         Timestamp ts = new Timestamp((new Date()).getTime());
         this.updateDateTime = ts;
 
-        if (this.deleteFlag) {
+        if (this.isDeleted) {
             this.deleteDateTime = ts;
         }
     }

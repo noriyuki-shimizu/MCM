@@ -1,4 +1,4 @@
-package source.usecases;
+package source.usecases.clothes;
 
 import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.domain.entity.Clothes;
