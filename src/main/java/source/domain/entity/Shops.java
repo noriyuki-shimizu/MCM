@@ -1,5 +1,6 @@
 package source.domain.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import source.domain.entity.common.TimestampEntity;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "shops")
 @Data
+@Builder
 public class Shops extends TimestampEntity {
 
     @Id
