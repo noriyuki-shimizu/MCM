@@ -44,9 +44,9 @@ public class ClothesSpecification {
         };
     }
 
-    public static Specification<Clothes> deleteFlagEqual(final boolean deleteFlag) {
+    public static Specification<Clothes> deleteFlagEqual(final boolean isDeleted) {
         return (root, query, cb) -> {
-            return cb.equal(root.get("deleteFlag"), deleteFlag);
+            return cb.equal(root.get("is_deleted"), isDeleted);
         };
     }
 }
