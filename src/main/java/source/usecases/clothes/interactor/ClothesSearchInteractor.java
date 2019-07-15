@@ -19,8 +19,7 @@ public class ClothesSearchInteractor implements IClothesSearchUsecase {
     private ClothesRepository repository;
 
     public List<Clothes> search(ClothesSearchInputData inputData) {
-
-        List<Clothes> clothesList = this.repository.findAll(
+        return this.repository.findAll(
                 Specifications
                         .where(ClothesSpecification.brandIdContains(inputData.getBrandId()))
                         .and(ClothesSpecification.shopIdEqual(inputData.getShopId()))
@@ -30,7 +29,5 @@ public class ClothesSearchInteractor implements IClothesSearchUsecase {
                         .and(ClothesSpecification.buyDateEqual(inputData.getBuyDate()))
                         .and(ClothesSpecification.deleteFlagEqual(inputData.isDeleteFlag()))
         );
-
-        return clothesList;
     }
 }

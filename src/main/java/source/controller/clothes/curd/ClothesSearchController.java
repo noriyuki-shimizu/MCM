@@ -18,14 +18,12 @@ public class ClothesSearchController extends ClothesListController {
     @Autowired
     private IClothesSearchUsecase usecase;
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
-    @GetMapping("/search")
+    @GetMapping("/")
     public String search(@RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ClothesSearchInputData inputData = MAPPER.readValue(inputDataJson, ClothesSearchInputData.class);
+            ClothesSearchInputData inputData = super.MAPPER.readValue(inputDataJson, ClothesSearchInputData.class);
 
-            return MAPPER.writeValueAsString(this.usecase.search(inputData));
+            return super.MAPPER.writeValueAsString(this.usecase.search(inputData));
 
         } catch (JsonProcessingException jpe) {
             jpe.printStackTrace();
