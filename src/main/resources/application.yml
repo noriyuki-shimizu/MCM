@@ -4,8 +4,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/mcm
     username: postgres
     password: postgres
-    schema: classpath:/database/schema.sql
-    data: classpath:/database/data.sql
     sql-script-encoding: UTF-8
 server:
   context-path: /mcm

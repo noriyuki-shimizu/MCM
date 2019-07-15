@@ -76,4 +76,7 @@ dependencies {
 
     // firebase
     implementation 'com.google.firebase:firebase-admin:6.8.0'
+
+    // flyway
+    compile group: 'org.flywaydb', name: 'flyway-core'
 }
