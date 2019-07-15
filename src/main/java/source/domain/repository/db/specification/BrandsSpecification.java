@@ -3,7 +3,7 @@ package source.domain.repository.db.specification;
 import org.springframework.data.jpa.domain.Specification;
 import source.domain.entity.Brands;
 
-public class BrandSpecification {
+public class BrandsSpecification {
     public static Specification<Brands> userIdEqual(final Long userId) {
         return userId == null ? null : (root, query, cb) -> {
             return cb.equal(root.get("userId"), userId);
