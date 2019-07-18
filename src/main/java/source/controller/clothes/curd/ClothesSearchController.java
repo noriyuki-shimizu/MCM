@@ -1,12 +1,11 @@
 package source.controller.clothes.curd;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import source.controller.clothes.ClothesListController;
+import source.controller.clothes.ClothesController;
 import source.domain.dto.input.clothes.ClothesSearchInputData;
 import source.usecases.clothes.IClothesSearchUsecase;
 
@@ -15,17 +14,17 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class ClothesSearchController extends ClothesListController {
+public class ClothesSearchController extends ClothesController {
 
     @Autowired
     private IClothesSearchUsecase usecase;
 
     @GetMapping("/")
-    public String search(@RequestParam("inputDataJson") String inputDataJson) {
+    public String search(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
             ClothesSearchInputData inputData = super.MAPPER.readValue(inputDataJson, ClothesSearchInputData.class);
 
-            return super.MAPPER.writeValueAsString(this.usecase.search(inputData));
+            return super.MAPPER.writeValueAsString(this.usecase.search(userId, inputData));
 
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);

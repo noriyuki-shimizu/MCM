@@ -18,10 +18,11 @@ public class ClothesSearchInteractor implements IClothesSearchUsecase {
     @Autowired
     private ClothesRepository repository;
 
-    public List<Clothes> search(ClothesSearchInputData inputData) {
+    public List<Clothes> search(Long userId, ClothesSearchInputData inputData) {
         return this.repository.findAll(
                 Specifications
-                        .where(ClothesSpecification.brandIdContains(inputData.getBrandId()))
+                        .where(ClothesSpecification.userIdEqual(userId))
+                        .and(ClothesSpecification.brandIdContains(inputData.getBrandId()))
                         .and(ClothesSpecification.shopIdEqual(inputData.getShopId()))
                         .and(ClothesSpecification.genreIdEqual(inputData.getGenreId()))
                         .and(ClothesSpecification.priceLessEqual(inputData.getLessPrice()))

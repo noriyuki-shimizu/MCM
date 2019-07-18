@@ -6,5 +6,5 @@ import source.domain.entity.Clothes;
 import java.util.List;
 
 public interface IClothesSearchUsecase {
-    public List<Clothes> search(ClothesSearchInputData inputData);
+    public List<Clothes> search(Long userId, ClothesSearchInputData inputData);
 }

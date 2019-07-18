@@ -1,12 +1,19 @@
 package source.domain.repository.db.specification;
 
 import org.springframework.data.jpa.domain.Specification;
+import source.domain.entity.Brands;
 import source.domain.entity.Clothes;
 
 import javax.persistence.criteria.JoinType;
 import java.util.Date;
 
 public class ClothesSpecification {
+
+    public static Specification<Clothes> userIdEqual(final Long userId) {
+        return userId == null ? null : (root, query, cb) -> {
+            return cb.equal(root.get("userId"), userId);
+        };
+    }
 
     public static Specification<Clothes> brandIdContains(final Integer brandId) {
         return brandId == null ? null : (root, query, cb) -> {
