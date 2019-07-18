@@ -3,6 +3,7 @@ package source.controller.clothes.curd;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.clothes.ClothesListController;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class ClothesSearchController extends ClothesListController {
 
     @Autowired
@@ -26,12 +28,11 @@ public class ClothesSearchController extends ClothesListController {
             return super.MAPPER.writeValueAsString(this.usecase.search(inputData));
 
         } catch (JsonProcessingException jpe) {
-            jpe.printStackTrace();
+            log.error("JSON の変換エラー", jpe);
 
             return null;
         } catch (IOException ioe) {
-            // TODO: ログへの書き出し処理を追加すること
-            ioe.printStackTrace();
+            log.error("JSON の読み込みエラー", ioe);
 
             return null;
         }
