@@ -1,5 +1,6 @@
 package source.domain.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import source.domain.entity.common.TimestampEntity;
 
@@ -10,12 +11,17 @@ import java.util.Date;
 @Entity
 @Table(name = "clothes")
 @Data
+@Builder
 public class Clothes extends TimestampEntity {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id")
+    @NotNull
+    private Long userId;
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "image_id")
