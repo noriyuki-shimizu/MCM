@@ -2,6 +2,7 @@ package source.controller.brands.crud;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class BrandsUpdateController extends BrandsController {
 
     @Autowired
@@ -27,11 +29,11 @@ public class BrandsUpdateController extends BrandsController {
 
             return super.MAPPER.writeValueAsString(this.usecase.update(userId, inputData));
         } catch (JsonProcessingException jpe) {
-            jpe.printStackTrace();
+            log.error("JSON の変換エラー", jpe);
 
             return null;
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            log.error("JSON の読み込みエラー", ioe);
 
             return null;
         }
