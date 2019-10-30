@@ -19,13 +19,12 @@ public class BrandSearchInteractor implements IBrandSearchUsecase {
 
     @Override
     public List<Brands> search(Long userId, BrandSearchInputData inputData) {
-        System.out.println(inputData.isDeleted());
         return this.repository.findAll(
                 Specifications
                         .where(BrandsSpecification.userIdEqual(userId))
                         .and(BrandsSpecification.nameLike(inputData.getName()))
                         .and(BrandsSpecification.countryEqual(inputData.getCountry()))
-                        .and(BrandsSpecification.isDeletedEqual(inputData.isDeleted()))
+                        .and(BrandsSpecification.isDeletedEqual(inputData.getIsDeleted()))
         );
     }
 }

@@ -27,7 +27,7 @@ public class ShopSearchUsecase implements IShopSearchUsecase {
                         .and(ShopsSpecification.nameLike(inputData.getName()))
                         .and(ShopsSpecification.stationNameLike(inputData.getStationName()))
                         .and(ShopsSpecification.addressLike(inputData.getAddress()))
-                        .and(ShopsSpecification.isDeletedEqual(inputData.isDeleted()))
+                        .and(ShopsSpecification.isDeletedEqual(inputData.getIsDeleted()))
         );
     }
 }

@@ -28,7 +28,7 @@ public class ClothesSearchInteractor implements IClothesSearchUsecase {
                         .and(ClothesSpecification.priceLessEqual(inputData.getLessPrice()))
                         .and(ClothesSpecification.priceGreaterEqual(inputData.getMorePrice()))
                         .and(ClothesSpecification.buyDateEqual(inputData.getBuyDate()))
-                        .and(ClothesSpecification.deleteFlagEqual(inputData.isDeleteFlag()))
+                        .and(ClothesSpecification.deleteFlagEqual(inputData.getIsDeleted()))
         );
     }
 }
