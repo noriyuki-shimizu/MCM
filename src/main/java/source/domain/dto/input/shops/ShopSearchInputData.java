@@ -17,5 +17,5 @@ public class ShopSearchInputData {
 
     private String address;
 
-    private boolean isDeleted;
+    private Boolean isDeleted;
 }

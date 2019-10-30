@@ -37,6 +37,6 @@ public class ClothesSearchInputData extends InputBase {
     private Date buyDate;
 
     /** 削除フラグ */
-    private boolean deleteFlag;
+    private Boolean isDeleted;
 
 }

@@ -21,5 +21,5 @@ public class BrandSearchInputData {
     private String country;
 
     /** 削除フラグ */
-    private boolean isDeleted;
+    private Boolean isDeleted;
 }
