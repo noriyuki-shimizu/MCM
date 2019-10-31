@@ -16,9 +16,9 @@ public class BrandsSpecification {
         };
     }
 
-    public static Specification<Brands> countryEqual(final String country) {
+    public static Specification<Brands> countryLike(final String country) {
         return country == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("country"), country);
+            return cb.like(root.get("country"), "%" + country + "%");
         };
     }
 

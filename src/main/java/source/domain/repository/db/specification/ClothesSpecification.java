@@ -17,19 +17,19 @@ public class ClothesSpecification {
 
     public static Specification<Clothes> brandIdContains(final Integer brandId) {
         return brandId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("brand", JoinType.LEFT).get("id"), brandId);
+            return cb.equal(root.join("brand", JoinType.INNER).get("id"), brandId);
         };
     }
 
     public static Specification<Clothes> genreIdEqual(final Integer genreId) {
         return genreId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("genre", JoinType.LEFT).get("id"), genreId);
+            return cb.equal(root.join("genre", JoinType.INNER).get("id"), genreId);
         };
     }
 
     public static Specification<Clothes> shopIdEqual(final Integer shopId) {
         return shopId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("shop", JoinType.LEFT).get("id"), shopId);
+            return cb.equal(root.join("shop", JoinType.INNER).get("id"), shopId);
         };
     }
 

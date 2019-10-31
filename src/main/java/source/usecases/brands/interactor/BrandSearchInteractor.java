@@ -23,7 +23,7 @@ public class BrandSearchInteractor implements IBrandSearchUsecase {
                 Specifications
                         .where(BrandsSpecification.userIdEqual(userId))
                         .and(BrandsSpecification.nameLike(inputData.getName()))
-                        .and(BrandsSpecification.countryEqual(inputData.getCountry()))
+                        .and(BrandsSpecification.countryLike(inputData.getCountry()))
                         .and(BrandsSpecification.isDeletedEqual(inputData.getIsDeleted()))
         );
     }
