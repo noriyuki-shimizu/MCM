@@ -1,7 +1,9 @@
 package source.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Tolerate;
 import source.domain.entity.common.TimestampEntity;
 
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 @Data
 @Builder
+@AllArgsConstructor
 public class Users extends TimestampEntity {
 
     @Tolerate

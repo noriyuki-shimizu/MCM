@@ -1,7 +1,9 @@
 package source.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "brands")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Brands extends TimestampEntity {
 
     @Id
