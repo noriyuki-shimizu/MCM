@@ -11,7 +11,7 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
 import source.domain.auth.RequestToken;
 import source.domain.entity.Users;
-import source.domain.external.firebase.Firebase;
+import source.infrastructure.firebase.Firebase;
 import source.domain.repository.db.UsersRepository;
 
 import javax.servlet.http.HttpServletRequest;

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.domain.dto.input.shops.ShopSearchInputData;
-import source.usecases.shops.IShopSearchUsecase;
+import source.usecases.dto.input.shops.ShopSearchInputData;
+import source.usecases.app.shops.IShopSearchUsecase;
 
 import java.io.IOException;
 

@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
-import source.domain.dto.input.brands.BrandCreateInputData;
-import source.usecases.brands.IBrandCreateUsecase;
+import source.usecases.dto.input.brands.BrandCreateInputData;
+import source.usecases.app.brands.IBrandCreateUsecase;
 
 import java.io.IOException;
 

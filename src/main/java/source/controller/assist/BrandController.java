@@ -7,10 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import source.domain.dto.output.assist.BrandOutputData;
-import source.usecases.assist.IAssistBrandSearchUsecase;
+import source.usecases.dto.output.assist.BrandOutputData;
+import source.usecases.app.assist.IAssistBrandSearchUsecase;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController

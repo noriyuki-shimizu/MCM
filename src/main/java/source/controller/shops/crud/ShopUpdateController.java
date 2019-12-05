@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.domain.dto.input.shops.ShopUpdateInputData;
-import source.usecases.shops.IShopUpdateUsecase;
+import source.usecases.dto.input.shops.ShopUpdateInputData;
+import source.usecases.app.shops.IShopUpdateUsecase;
 
 import java.io.IOException;
 

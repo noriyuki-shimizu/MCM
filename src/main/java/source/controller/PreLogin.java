@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.annotation.NonAuth;
-import source.domain.external.firebase.Firebase;
-import source.usecases.IPreLoginUsecase;
+import source.infrastructure.firebase.Firebase;
+import source.usecases.app.IPreLoginUsecase;
 
 @RestController
 @RequiredArgsConstructor

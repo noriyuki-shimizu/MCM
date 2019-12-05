@@ -1,7 +1,7 @@
 package source.presenter.assist.interactor;
 
 import org.springframework.stereotype.Component;
-import source.domain.dto.output.assist.ShopOutputData;
+import source.usecases.dto.output.assist.ShopOutputData;
 import source.domain.entity.Shops;
 import source.presenter.assist.IAssistShopSearchPresenter;
 

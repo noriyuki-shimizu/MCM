@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.shops.IShopDeleteUsecase;
+import source.usecases.app.shops.IShopDeleteUsecase;
 
 import java.io.IOException;
 

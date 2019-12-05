@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
-import source.domain.dto.input.brands.BrandSearchInputData;
-import source.usecases.brands.IBrandSearchUsecase;
+import source.usecases.dto.input.brands.BrandSearchInputData;
+import source.usecases.app.brands.IBrandSearchUsecase;
 
 import java.io.IOException;
 

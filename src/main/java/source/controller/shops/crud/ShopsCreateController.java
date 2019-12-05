@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.domain.dto.input.shops.ShopCreateInputData;
-import source.usecases.shops.IShopCreateUsecase;
+import source.usecases.dto.input.shops.ShopCreateInputData;
+import source.usecases.app.shops.IShopCreateUsecase;
 
 import java.io.IOException;
 

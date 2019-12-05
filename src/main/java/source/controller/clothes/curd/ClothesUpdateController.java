@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.clothes.ClothesController;
-import source.domain.dto.input.clothes.ClothesUpdateInputData;
-import source.usecases.clothes.IClothesUpdateUsecase;
+import source.usecases.dto.input.clothes.ClothesUpdateInputData;
+import source.usecases.app.clothes.IClothesUpdateUsecase;
 
 import java.io.IOException;
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
-import source.usecases.brands.IBrandDeleteUsecase;
+import source.usecases.app.brands.IBrandDeleteUsecase;
 
 import java.io.IOException;
 

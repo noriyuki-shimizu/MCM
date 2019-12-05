@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.clothes.ClothesController;
-import source.domain.dto.input.clothes.ClothesCreateInputData;
-import source.usecases.clothes.IClothesCreateUsecase;
+import source.usecases.dto.input.clothes.ClothesCreateInputData;
+import source.usecases.app.clothes.IClothesCreateUsecase;
 
 import java.io.IOException;
 

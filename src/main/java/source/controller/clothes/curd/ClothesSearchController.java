@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.clothes.ClothesController;
-import source.domain.dto.input.clothes.ClothesSearchInputData;
-import source.usecases.clothes.IClothesSearchUsecase;
+import source.usecases.dto.input.clothes.ClothesSearchInputData;
+import source.usecases.app.clothes.IClothesSearchUsecase;
 
 import java.io.IOException;
 

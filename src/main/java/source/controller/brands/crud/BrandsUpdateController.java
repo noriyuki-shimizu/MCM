@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
-import source.domain.dto.input.brands.BrandUpdateInputData;
-import source.usecases.brands.IBrandUpdateUsecase;
+import source.usecases.dto.input.brands.BrandUpdateInputData;
+import source.usecases.app.brands.IBrandUpdateUsecase;
 
 import java.io.IOException;
 
