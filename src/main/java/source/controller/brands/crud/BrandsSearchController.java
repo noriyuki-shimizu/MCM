@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
+import source.domain.entity.Brands;
 import source.usecases.dto.input.brands.BrandSearchInputData;
 import source.usecases.app.brands.IBrandSearchUsecase;
+import source.usecases.dto.output.brands.BrandSearchResponseViewModel;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,7 +31,22 @@ public class BrandsSearchController extends BrandsController {
         try {
             BrandSearchInputData inputData = super.MAPPER.readValue(inputDataJson, BrandSearchInputData.class);
 
-            return super.MAPPER.writeValueAsString(this.usecase.search(userId, inputData));
+            List<Brands> brands = this.usecase.search(userId, inputData);
+
+            List<BrandSearchResponseViewModel> result = brands.stream()
+                    .map(brand -> {
+                        return BrandSearchResponseViewModel.of(
+                                brand.getId(),
+                                brand.getUserId(),
+                                brand.getName(),
+                                brand.getLink(),
+                                brand.getImage(),
+                                brand.getCountry(),
+                                brand.isDeleted()
+                        );
+                    })
+                    .collect(Collectors.toList());
+            return super.MAPPER.writeValueAsString(result);
 
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);
