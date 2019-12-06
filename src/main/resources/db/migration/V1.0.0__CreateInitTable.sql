@@ -21,7 +21,7 @@ CREATE TABLE users (
 CREATE TABLE images (
     id bigserial PRIMARY KEY,
     name varchar(60) NOT NULL,
-    path varchar(100) NOT NULL,
+    path varchar(255) NOT NULL,
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
