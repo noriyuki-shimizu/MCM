@@ -25,7 +25,7 @@ public abstract class TimestampEntity {
 
     @Column(name = "is_deleted")
     @NotNull
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 
     @PrePersist
     public void prePersist() {
