@@ -27,6 +27,8 @@ public class BrandUpdateInputData {
 
     private String country;
 
+    private Boolean isDeleted;
+
     public Brands toEntity(Long userId) {
         Images image = Images.builder()
                 .id(this.imageId)
@@ -34,7 +36,7 @@ public class BrandUpdateInputData {
                 .path(this.imagePath)
                 .build();
 
-        return Brands.builder()
+        Brands brand = Brands.builder()
                 .id(this.id)
                 .userId(userId)
                 .name(this.name)
@@ -42,5 +44,9 @@ public class BrandUpdateInputData {
                 .image(image)
                 .country(this.country)
                 .build();
+        // TODO: ぶち殺したくなる実装
+        brand.setDeleted(this.isDeleted);
+
+        return brand;
     }
 }
