@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import source.domain.entity.Brands;
-import source.domain.entity.Images;
+import source.usecases.dto.input.images.ImageUpdateInputData;
 
 @Builder
 @Getter
@@ -19,33 +19,23 @@ public class BrandUpdateInputData {
 
     private String link;
 
-    private Long imageId;
-
-    private String imageName;
-
-    private String imagePath;
+    private ImageUpdateInputData image;
 
     private String country;
 
-    private Boolean isDeleted;
-
     public Brands toEntity(Long userId) {
-        Images image = Images.builder()
-                .id(this.imageId)
-                .name(this.imageName)
-                .path(this.imagePath)
-                .build();
-
         Brands brand = Brands.builder()
                 .id(this.id)
                 .userId(userId)
                 .name(this.name)
                 .link(this.link)
-                .image(image)
+                .image(
+                        this.image != null
+                            ? this.image.toEntity()
+                            : null
+                )
                 .country(this.country)
                 .build();
-        // TODO: ぶち殺したくなる実装
-        brand.setDeleted(this.isDeleted);
 
         return brand;
     }
