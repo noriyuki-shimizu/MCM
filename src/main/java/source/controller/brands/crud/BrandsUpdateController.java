@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
+import source.domain.entity.Brands;
 import source.usecases.dto.input.brands.BrandUpdateInputData;
 import source.usecases.app.brands.IBrandUpdateUsecase;
+import source.usecases.dto.output.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 
@@ -27,7 +29,19 @@ public class BrandsUpdateController extends BrandsController {
         try {
             BrandUpdateInputData inputData = super.MAPPER.readValue(inputDataJson, BrandUpdateInputData.class);
 
-            return super.MAPPER.writeValueAsString(this.usecase.update(userId, inputData));
+            Brands brand = this.usecase.update(userId, inputData);
+
+            BrandResponseViewModel response = BrandResponseViewModel.of(
+                    brand.getId(),
+                    brand.getUserId(),
+                    brand.getName(),
+                    brand.getLink(),
+                    brand.getImage(),
+                    brand.getCountry(),
+                    brand.isDeleted()
+            );
+
+            return super.MAPPER.writeValueAsString(response);
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);
 

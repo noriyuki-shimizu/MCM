@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
+import source.domain.entity.Brands;
 import source.usecases.dto.input.brands.BrandCreateInputData;
 import source.usecases.app.brands.IBrandCreateUsecase;
+import source.usecases.dto.output.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 
@@ -24,7 +26,19 @@ public class BrandsCreateController extends BrandsController {
         try {
             BrandCreateInputData inputData = super.MAPPER.readValue(inputDataJson, BrandCreateInputData.class);
 
-            return super.MAPPER.writeValueAsString(this.usecase.create(userId, inputData));
+            Brands brand = this.usecase.create(userId, inputData);
+
+            BrandResponseViewModel response = BrandResponseViewModel.of(
+                    brand.getId(),
+                    brand.getUserId(),
+                    brand.getName(),
+                    brand.getLink(),
+                    brand.getImage(),
+                    brand.getCountry(),
+                    brand.isDeleted()
+            );
+
+            return super.MAPPER.writeValueAsString(response);
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);
 
