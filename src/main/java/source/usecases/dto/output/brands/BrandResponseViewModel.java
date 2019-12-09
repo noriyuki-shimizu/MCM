@@ -7,7 +7,7 @@ import source.domain.entity.Images;
 
 @Value(staticConstructor = "of")
 @Data
-public class BrandSearchResponseViewModel {
+public class BrandResponseViewModel {
     private Long id;
 
     private Long userId;

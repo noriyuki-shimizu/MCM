@@ -12,7 +12,7 @@ import source.controller.brands.BrandsController;
 import source.domain.entity.Brands;
 import source.usecases.dto.input.brands.BrandSearchInputData;
 import source.usecases.app.brands.IBrandSearchUsecase;
-import source.usecases.dto.output.brands.BrandSearchResponseViewModel;
+import source.usecases.dto.output.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,9 +33,9 @@ public class BrandsSearchController extends BrandsController {
 
             List<Brands> brands = this.usecase.search(userId, inputData);
 
-            List<BrandSearchResponseViewModel> result = brands.stream()
+            List<BrandResponseViewModel> result = brands.stream()
                     .map(brand -> {
-                        return BrandSearchResponseViewModel.of(
+                        return BrandResponseViewModel.of(
                                 brand.getId(),
                                 brand.getUserId(),
                                 brand.getName(),
