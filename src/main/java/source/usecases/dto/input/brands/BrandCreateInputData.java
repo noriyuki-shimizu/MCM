@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import source.domain.entity.Brands;
-import source.domain.entity.Images;
+import source.usecases.dto.input.images.ImageCreateInputData;
 
 @Builder
 @Getter
@@ -17,23 +17,20 @@ public class BrandCreateInputData {
 
     private String link;
 
-    private String imageName;
-
-    private String imagePath;
+    private ImageCreateInputData image;
 
     private String country;
 
     public Brands toEntity(Long userId) {
-        Images image = Images.builder()
-                .name(this.imageName)
-                .path(this.imagePath)
-                .build();
-
         return Brands.builder()
                 .userId(userId)
                 .name(this.name)
                 .link(this.link)
-                .image(image)
+                .image(
+                        this.image != null
+                            ? this.image.toEntity()
+                            : null
+                )
                 .country(this.country)
                 .build();
     }
