@@ -18,13 +18,13 @@ public class BrandCreateInteractor implements IBrandCreateUsecase {
     private BrandsRepository repository;
 
     @Autowired
-    private IImageSaveUsecase imageCreateUsecase;
+    private IImageSaveUsecase imageSaveUsecase;
 
     @Override
     public Brands create(Long userId, BrandCreateInputData inputData) {
         Brands brand = inputData.toEntity(userId);
 
-        brand.setImage(this.imageCreateUsecase.save(brand.getImage()));
+        brand.setImage(this.imageSaveUsecase.save(brand.getImage()));
 
         return this.repository.save(brand);
     }
