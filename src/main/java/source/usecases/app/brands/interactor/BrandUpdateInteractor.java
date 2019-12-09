@@ -24,7 +24,7 @@ public class BrandUpdateInteractor implements IBrandUpdateUsecase {
     public Brands update(Long userId, BrandUpdateInputData inputData) {
         Brands brand =  inputData.toEntity(userId);
 
-        this.imageSaveUsecase.save(brand.getImage());
+        brand.setImage(this.imageSaveUsecase.save(brand.getImage()));
 
         return this.repository.save(brand);
     }
