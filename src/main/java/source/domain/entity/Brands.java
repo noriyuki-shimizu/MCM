@@ -35,7 +35,6 @@ public class Brands extends TimestampEntity {
 
     @OneToOne
     @JoinColumn(name = "image_id")
-    @NotNull
     private Images image;
 
     @Column(name = "country")
