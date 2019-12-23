@@ -14,18 +14,14 @@ values
     (1, 'Shoes & Boots'),
     (1, 'All Items');
 
-insert into images (name, path)
+insert into brands (user_id, name, link, country)
 values
-    ('bukht.jpg', '@/images/brand/icon/bukht_icon.jpg');
+    (1, 'bukht', 'http://bukht.com/', '日本');
 
-insert into brands (user_id, name, link, image_id, country)
+insert into shops (user_id, name, link, station_name, address, business_hours, tel)
 values
-    (1, 'bukht', 'http://bukht.com/', 1, '日本');
+    (1, 'O代官山 本店', 'http://store.moc-o.com/', '代官山', '東京都渋谷区猿楽町26-13 グレイス代官山 #202', '12:00 - 20:00 定休日 無し', '03-6416-1187');
 
-insert into shops (user_id, name, link, station_name, image_id, address, business_hours, tel)
+insert into clothes (user_id, genre_id, brand_id, shop_id, price, buy_date)
 values
-    (1, 'O代官山 本店', 'http://store.moc-o.com/', '代官山', 1, '東京都渋谷区猿楽町26-13 グレイス代官山 #202', '12:00 - 20:00 定休日 無し', '03-6416-1187');
-
-insert into clothes (user_id, image_id, genre_id, brand_id, shop_id, price, buy_date)
-values
-    (1, 1, 1, 1, 1, 10000, '2019/01/01');
+    (1, 1, 1, 1, 10000, '2019/01/01');
