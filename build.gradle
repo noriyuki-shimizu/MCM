@@ -79,4 +79,7 @@ dependencies {
 
     // flyway
     compile group: 'org.flywaydb', name: 'flyway-core'
+    
+    // scraping
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.10.2'
 }
