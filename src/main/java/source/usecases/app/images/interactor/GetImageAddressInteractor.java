@@ -22,7 +22,7 @@ public class GetImageAddressInteractor implements IGetImageAddressUsecase {
 
         List imageAddresses = new ArrayList<>();
         for (Element element : elements) {
-            imageAddresses.add(element.attr("href"));
+            imageAddresses.add(element.attr("src"));
         }
 
         return ImageAddresses.of(imageAddresses).chooseRamdom();
