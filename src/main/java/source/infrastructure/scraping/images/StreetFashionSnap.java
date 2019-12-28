@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 @Component
 @ConfigurationProperties(prefix = "settings.scraping.images")
@@ -21,9 +22,9 @@ public class StreetFashionSnap implements IScrapingImage {
     public Elements getImageAddresses() {
         try {
             Document document = Jsoup
-                    .connect(this.streetFashionSnapUrl)
+                    .connect(URLDecoder.decode(this.streetFashionSnapUrl, "UTF-8"))
                     .get();
-            Elements elements = document.select("div.the-photo a.permalink");
+            Elements elements = document.select("div.the-photo a.permalink img");
 
             if (!(elements == null || elements.isEmpty())) {
                 return elements;
