@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
 import source.domain.entity.Brands;
-import source.usecases.dto.input.brands.BrandSearchInputData;
+import source.usecases.dto.request.brands.BrandSearchRequestData;
 import source.usecases.app.brands.IBrandSearchUsecase;
-import source.usecases.dto.output.brands.BrandResponseViewModel;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,7 @@ public class BrandsSearchController extends BrandsController {
     @GetMapping(value = "/")
     public String searchHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            BrandSearchInputData inputData = super.MAPPER.readValue(inputDataJson, BrandSearchInputData.class);
+            BrandSearchRequestData inputData = super.MAPPER.readValue(inputDataJson, BrandSearchRequestData.class);
 
             List<Brands> brands = this.usecase.search(userId, inputData);
 

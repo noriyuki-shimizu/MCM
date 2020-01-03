@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.clothes.ClothesController;
-import source.usecases.dto.input.clothes.ClothesCreateInputData;
+import source.usecases.dto.request.clothes.ClothesCreateRequestData;
 import source.usecases.app.clothes.IClothesCreateUsecase;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ClothesCreateController extends ClothesController {
     @PostMapping("/")
     public String createHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ClothesCreateInputData inputData = super.MAPPER.readValue(inputDataJson, ClothesCreateInputData.class);
+            ClothesCreateRequestData inputData = super.MAPPER.readValue(inputDataJson, ClothesCreateRequestData.class);
 
             return super.MAPPER.writeValueAsString(this.usecase.create(userId, inputData));
 

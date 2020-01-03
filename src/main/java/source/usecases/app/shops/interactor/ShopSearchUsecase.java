@@ -3,7 +3,7 @@ package source.usecases.app.shops.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.input.shops.ShopSearchInputData;
+import source.usecases.dto.request.shops.ShopSearchRequestData;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ShopsSpecification;
@@ -20,7 +20,7 @@ public class ShopSearchUsecase implements IShopSearchUsecase {
     private ShopsRepository repository;
 
     @Override
-    public List<Shops> search(Long userId, ShopSearchInputData inputData) {
+    public List<Shops> search(Long userId, ShopSearchRequestData inputData) {
         return this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.dto.input.shops.ShopUpdateInputData;
+import source.usecases.dto.request.shops.ShopUpdateRequestData;
 import source.usecases.app.shops.IShopUpdateUsecase;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ShopUpdateController extends ShopsController {
     @PutMapping(value = "/")
     public String updateHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ShopUpdateInputData inputData = super.MAPPER.readValue(inputDataJson, ShopUpdateInputData.class);
+            ShopUpdateRequestData inputData = super.MAPPER.readValue(inputDataJson, ShopUpdateRequestData.class);
 
             return super.MAPPER.writeValueAsString(this.usecase.update(userId, inputData));
         } catch (JsonProcessingException jpe) {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.dto.input.shops.ShopSearchInputData;
+import source.usecases.dto.request.shops.ShopSearchRequestData;
 import source.usecases.app.shops.IShopSearchUsecase;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ShopsSearchController extends ShopsController {
     @GetMapping(value = "/")
     public String searchHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ShopSearchInputData inputData = super.MAPPER.readValue(inputDataJson, ShopSearchInputData.class);
+            ShopSearchRequestData inputData = super.MAPPER.readValue(inputDataJson, ShopSearchRequestData.class);
 
             return super.MAPPER.writeValueAsString(this.usecase.search(userId, inputData));
         } catch (JsonProcessingException jpe) {

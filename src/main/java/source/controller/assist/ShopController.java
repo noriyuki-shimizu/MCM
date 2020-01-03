@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import source.usecases.dto.output.assist.ShopOutputData;
+import source.usecases.dto.response.assist.ShopResponseData;
 import source.usecases.app.assist.IAssistShopSearchUsecase;
 
 import java.util.List;
@@ -26,9 +26,9 @@ public class ShopController {
     @RequestMapping(value = "/keyValueList")
     public String keyValueList() {
         try {
-            List<ShopOutputData> shopOutputDataList = this.usecase.getAssistShopList();
+            List<ShopResponseData> shopResponseDataList = this.usecase.getAssistShopList();
 
-            return MAPPER.writeValueAsString(shopOutputDataList);
+            return MAPPER.writeValueAsString(shopResponseDataList);
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);
 

@@ -1,9 +1,9 @@
 package source.usecases.app.assist;
 
-import source.usecases.dto.output.assist.BrandOutputData;
+import source.usecases.dto.response.assist.BrandResponseData;
 
 import java.util.List;
 
 public interface IAssistBrandSearchUsecase {
-    public List<BrandOutputData> getAssistBrandList();
+    public List<BrandResponseData> getAssistBrandList();
 }

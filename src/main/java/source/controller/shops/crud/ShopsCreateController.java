@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.dto.input.shops.ShopCreateInputData;
+import source.usecases.dto.request.shops.ShopCreateRequestData;
 import source.usecases.app.shops.IShopCreateUsecase;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ShopsCreateController extends ShopsController {
     @PostMapping(value = "/")
     public String createHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ShopCreateInputData inputData = super.MAPPER.readValue(inputDataJson, ShopCreateInputData.class);
+            ShopCreateRequestData inputData = super.MAPPER.readValue(inputDataJson, ShopCreateRequestData.class);
 
             return super.MAPPER.writeValueAsString(this.usecase.create(userId, inputData));
         } catch (JsonProcessingException jpe) {

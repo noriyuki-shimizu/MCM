@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
 import source.domain.entity.Brands;
-import source.usecases.dto.input.brands.BrandUpdateInputData;
+import source.usecases.dto.request.brands.BrandUpdateRequestData;
 import source.usecases.app.brands.IBrandUpdateUsecase;
-import source.usecases.dto.output.brands.BrandResponseViewModel;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class BrandsUpdateController extends BrandsController {
     @PutMapping(value = "/")
     public String updateHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            BrandUpdateInputData inputData = super.MAPPER.readValue(inputDataJson, BrandUpdateInputData.class);
+            BrandUpdateRequestData inputData = super.MAPPER.readValue(inputDataJson, BrandUpdateRequestData.class);
 
             Brands brand = this.usecase.update(userId, inputData);
 

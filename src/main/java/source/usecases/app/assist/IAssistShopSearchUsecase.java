@@ -1,9 +1,9 @@
 package source.usecases.app.assist;
 
-import source.usecases.dto.output.assist.ShopOutputData;
+import source.usecases.dto.response.assist.ShopResponseData;
 
 import java.util.List;
 
 public interface IAssistShopSearchUsecase {
-    public List<ShopOutputData> getAssistShopList();
+    public List<ShopResponseData> getAssistShopList();
 }

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.clothes.ClothesController;
-import source.usecases.dto.input.clothes.ClothesSearchInputData;
+import source.usecases.dto.request.clothes.ClothesSearchRequestData;
 import source.usecases.app.clothes.IClothesSearchUsecase;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class ClothesSearchController extends ClothesController {
     @GetMapping("/")
     public String search(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            ClothesSearchInputData inputData = super.MAPPER.readValue(inputDataJson, ClothesSearchInputData.class);
+            ClothesSearchRequestData inputData = super.MAPPER.readValue(inputDataJson, ClothesSearchRequestData.class);
 
             return super.MAPPER.writeValueAsString(this.usecase.search(userId, inputData));
 

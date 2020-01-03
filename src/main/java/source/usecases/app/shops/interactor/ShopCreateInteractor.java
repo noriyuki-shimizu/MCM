@@ -2,7 +2,7 @@ package source.usecases.app.shops.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.input.shops.ShopCreateInputData;
+import source.usecases.dto.request.shops.ShopCreateRequestData;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.usecases.app.images.IImageSaveUsecase;
@@ -21,7 +21,7 @@ public class ShopCreateInteractor implements IShopCreateUsecase {
     private IImageSaveUsecase imageSaveUsecase;
 
     @Override
-    public Shops create(Long userId, ShopCreateInputData inputData) {
+    public Shops create(Long userId, ShopCreateRequestData inputData) {
         Shops shop = inputData.toEntity(userId);
 
         shop.setImage(this.imageSaveUsecase.save(shop.getImage()));

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
 import source.domain.entity.Brands;
-import source.usecases.dto.input.brands.BrandCreateInputData;
+import source.usecases.dto.request.brands.BrandCreateRequestData;
 import source.usecases.app.brands.IBrandCreateUsecase;
-import source.usecases.dto.output.brands.BrandResponseViewModel;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class BrandsCreateController extends BrandsController {
     @PostMapping(value = "/")
     public String createHandler(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
         try {
-            BrandCreateInputData inputData = super.MAPPER.readValue(inputDataJson, BrandCreateInputData.class);
+            BrandCreateRequestData inputData = super.MAPPER.readValue(inputDataJson, BrandCreateRequestData.class);
 
             Brands brand = this.usecase.create(userId, inputData);
 

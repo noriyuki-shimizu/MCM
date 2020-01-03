@@ -2,7 +2,7 @@ package source.usecases.app.assist.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.output.assist.BrandOutputData;
+import source.usecases.dto.response.assist.BrandResponseData;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
 import source.presenter.assist.IAssistBrandSearchPresenter;
@@ -20,7 +20,7 @@ public class AssistBrandSearchInteractor implements IAssistBrandSearchUsecase {
     private IAssistBrandSearchPresenter presenter;
 
     @Override
-    public List<BrandOutputData> getAssistBrandList() {
+    public List<BrandResponseData> getAssistBrandList() {
         List<Brands> brandsList = this.repository.findAll();
 
         return this.presenter.handle(brandsList);

@@ -3,7 +3,7 @@ package source.usecases.app.clothes.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.input.clothes.ClothesSearchInputData;
+import source.usecases.dto.request.clothes.ClothesSearchRequestData;
 import source.domain.entity.Clothes;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
@@ -17,7 +17,7 @@ public class ClothesSearchInteractor implements IClothesSearchUsecase {
     @Autowired
     private ClothesRepository repository;
 
-    public List<Clothes> search(Long userId, ClothesSearchInputData inputData) {
+    public List<Clothes> search(Long userId, ClothesSearchRequestData inputData) {
         return this.repository.findAll(
                 Specifications
                         .where(ClothesSpecification.userIdEqual(userId))

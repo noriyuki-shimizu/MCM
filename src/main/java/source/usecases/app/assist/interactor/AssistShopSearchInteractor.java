@@ -2,7 +2,7 @@ package source.usecases.app.assist.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.output.assist.ShopOutputData;
+import source.usecases.dto.response.assist.ShopResponseData;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.presenter.assist.IAssistShopSearchPresenter;
@@ -20,7 +20,7 @@ public class AssistShopSearchInteractor implements IAssistShopSearchUsecase {
     private IAssistShopSearchPresenter presenter;
 
     @Override
-    public List<ShopOutputData> getAssistShopList() {
+    public List<ShopResponseData> getAssistShopList() {
         List<Shops> shopsList = this.repository.findAll();
 
         return presenter.handle(shopsList);

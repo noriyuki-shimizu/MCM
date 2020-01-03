@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import source.usecases.dto.output.assist.BrandOutputData;
+import source.usecases.dto.response.assist.BrandResponseData;
 import source.usecases.app.assist.IAssistBrandSearchUsecase;
 
 import java.util.List;
@@ -26,9 +26,9 @@ public class BrandController {
     @RequestMapping(value = "/keyValueList")
     public String keyValueList() {
         try {
-            List<BrandOutputData> brandOutputDataList = this.usecase.getAssistBrandList();
+            List<BrandResponseData> brandResponseDataList = this.usecase.getAssistBrandList();
 
-            return MAPPER.writeValueAsString(brandOutputDataList);
+            return MAPPER.writeValueAsString(brandResponseDataList);
         } catch (JsonProcessingException jpe) {
             log.error("JSON の変換エラー", jpe);
 
