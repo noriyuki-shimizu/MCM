@@ -34,8 +34,7 @@ public class BrandsSearchController extends BrandsController {
             List<Brands> brands = this.usecase.search(userId, inputData);
 
             List<BrandResponseViewModel> result = brands.stream()
-                    .map(brand -> {
-                        return BrandResponseViewModel.of(
+                    .map(brand -> BrandResponseViewModel.of(
                                 brand.getId(),
                                 brand.getUserId(),
                                 brand.getName(),
@@ -43,8 +42,8 @@ public class BrandsSearchController extends BrandsController {
                                 brand.getImage(),
                                 brand.getCountry(),
                                 brand.isDeleted()
-                        );
-                    })
+                        )
+                    )
                     .collect(Collectors.toList());
             return super.MAPPER.writeValueAsString(result);
 
