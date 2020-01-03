@@ -1,4 +1,4 @@
-package source.usecases.dto.input.brands;
+package source.usecases.dto.request.brands;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,23 +6,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import source.domain.entity.Brands;
-import source.usecases.dto.input.images.ImageCreateInputData;
+import source.usecases.dto.request.images.ImageUpdateRequestData;
 
 @Builder
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class BrandCreateInputData {
+public class BrandUpdateRequestData {
+    private Long id;
+
     private String name;
 
     private String link;
 
-    private ImageCreateInputData image;
+    private ImageUpdateRequestData image;
 
     private String country;
 
     public Brands toEntity(Long userId) {
-        return Brands.builder()
+        Brands brand = Brands.builder()
+                .id(this.id)
                 .userId(userId)
                 .name(this.name)
                 .link(this.link)
@@ -33,5 +36,7 @@ public class BrandCreateInputData {
                 )
                 .country(this.country)
                 .build();
+
+        return brand;
     }
 }

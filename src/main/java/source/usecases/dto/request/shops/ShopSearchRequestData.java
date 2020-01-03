@@ -1,4 +1,4 @@
-package source.usecases.dto.input.brands;
+package source.usecases.dto.request.shops;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,20 +6,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * ブランドの検索フォームのデータ.
- */
 @Builder
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class BrandSearchInputData {
-    /** 名称 */
+public class ShopSearchRequestData {
     private String name;
 
-    /** 発祥国 */
-    private String country;
+    private String stationName;
 
-    /** 削除フラグ */
+    private String address;
+
     private Boolean isDeleted;
 }

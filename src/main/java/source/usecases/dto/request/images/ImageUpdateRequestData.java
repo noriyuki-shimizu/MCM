@@ -1,4 +1,4 @@
-package source.usecases.dto.input.images;
+package source.usecases.dto.request.images;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,16 @@ import source.domain.entity.Images;
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ImageCreateInputData {
+public class ImageUpdateRequestData {
+    private Long id;
+
     private String name;
 
     private String path;
 
     public Images toEntity() {
         return Images.builder()
+                .id(this.id)
                 .name(this.name)
                 .path(this.path)
                 .build();

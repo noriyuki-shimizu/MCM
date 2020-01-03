@@ -1,9 +1,9 @@
-package source.usecases.dto.output;
+package source.usecases.dto.response;
 
 import lombok.Data;
 
 @Data
-public class OutputBase {
+public class ResponseBase {
 
     @Data
     private class Error {

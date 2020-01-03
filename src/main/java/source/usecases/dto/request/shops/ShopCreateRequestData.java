@@ -1,4 +1,4 @@
-package source.usecases.dto.input.shops;
+package source.usecases.dto.request.shops;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import source.domain.entity.Shops;
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ShopCreateInputData {
+public class ShopCreateRequestData {
     private String name;
 
     private String link;

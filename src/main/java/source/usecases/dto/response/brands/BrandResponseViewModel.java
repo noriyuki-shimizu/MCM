@@ -1,4 +1,4 @@
-package source.usecases.dto.output.brands;
+package source.usecases.dto.response.brands;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

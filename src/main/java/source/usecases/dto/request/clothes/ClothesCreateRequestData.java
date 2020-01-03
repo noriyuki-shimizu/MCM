@@ -1,4 +1,4 @@
-package source.usecases.dto.input.clothes;
+package source.usecases.dto.request.clothes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -13,11 +13,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ClothesUpdateInputData {
-
-    private Long id;
-
-    private Long imageId;
+public class ClothesCreateRequestData {
 
     private String imageName;
 
@@ -35,13 +31,11 @@ public class ClothesUpdateInputData {
 
     public Clothes toEntity(Long userId) {
         Images image = Images.builder()
-                .id(this.imageId)
                 .name(this.imageName)
                 .path(this.imagePath)
                 .build();
 
         return Clothes.builder()
-                .id(this.id)
                 .userId(userId)
                 .genre(Genres.builder().id(this.genreId).build())
                 .brand(Brands.builder().id(this.brandId).build())
