@@ -42,6 +42,7 @@ public class Interceptor implements HandlerInterceptor {
         RequestToken requestToken = RequestToken.of(request);
         String token = requestToken.getToken();
         if (token == null) {
+            response.sendError(403, "Invalid access token.");
             return false;
         }
 
@@ -49,9 +50,11 @@ public class Interceptor implements HandlerInterceptor {
             FirebaseToken decodedToken = this.firebase.getDecodedToken(token);
             Users users = this.usersRepository.findByUidEquals(decodedToken.getUid());
             if (users == null) {
+                response.sendError(403, "Requested user does not exist.");
                 return false;
             }
         } catch(FirebaseAuthException fae) {
+            response.sendError(500, "Server internal error.");
             return false;
         }
 
