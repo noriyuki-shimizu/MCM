@@ -16,4 +16,4 @@ settings:
     database-url: https://mcm-client.firebaseio.com
   scraping:
     images:
-      street-fashion-snap-url: https://street-fashion-snap.com/tagged/%E3%83%A1%E3%83%B3%E3%82%BA
+      street-fashion-snap-url: https://street-fashion-snap.com/tagged/%E3%83%A1%E3%83%B3%E3%82%BA/page/
