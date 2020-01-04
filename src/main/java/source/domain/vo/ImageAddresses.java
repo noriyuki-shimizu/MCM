@@ -11,6 +11,8 @@ public class ImageAddresses {
 
     public ImageAddresses chooseRamdom() {
         Collections.shuffle(this.values);
-        return ImageAddresses.of(this.values.subList(0, 8));
+        return ImageAddresses.of(
+                this.values.subList(0, this.values.size() >= 8 ? 8 : this.values.size())
+        );
     }
 }
