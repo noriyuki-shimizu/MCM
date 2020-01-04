@@ -1,7 +1,9 @@
 package source.infrastructure.scraping.images;
 
-import org.jsoup.select.Elements;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public interface IScrapingImage {
-    public Elements getImageAddresses();
+    public List<String> pickImageAddresses() throws UnsupportedEncodingException, IOException;
 }
