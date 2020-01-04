@@ -1,7 +1,7 @@
 package source.usecases.app.images;
 
-import source.domain.vo.ImageAddresses;
+import java.util.List;
 
 public interface IGetImageAddressUsecase {
-    public ImageAddresses handle();
+    public List<String> handle();
 }
