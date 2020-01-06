@@ -6,7 +6,7 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 @Data
-public class BrandResponseViewModel {
+public class BrandResponseModel {
     private Long id;
 
     private String name;
