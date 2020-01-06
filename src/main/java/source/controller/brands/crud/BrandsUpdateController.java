@@ -12,7 +12,7 @@ import source.controller.brands.BrandsController;
 import source.domain.entity.Brands;
 import source.usecases.dto.request.brands.BrandUpdateRequestData;
 import source.usecases.app.brands.IBrandUpdateUsecase;
-import source.usecases.dto.response.brands.BrandResponseViewModel;
+import source.usecases.dto.response.brands.BrandResponseModel;
 
 import java.io.IOException;
 
@@ -31,12 +31,13 @@ public class BrandsUpdateController extends BrandsController {
 
             Brands brand = this.usecase.update(userId, inputData);
 
-            BrandResponseViewModel response = BrandResponseViewModel.of(
+            BrandResponseModel response = BrandResponseModel.of(
                     brand.getId(),
-                    brand.getUserId(),
                     brand.getName(),
                     brand.getLink(),
-                    brand.getImage(),
+                    brand.getImage() != null
+                            ? brand.getImage().getPath()
+                            : null,
                     brand.getCountry(),
                     brand.isDeleted()
             );
