@@ -1,10 +1,9 @@
 package source.usecases.app.brands;
 
-import source.usecases.dto.request.brands.BrandSearchRequestData;
-import source.domain.entity.Brands;
+import source.usecases.dto.response.brands.BrandResponseModel;
 
 import java.util.List;
 
 public interface IBrandSearchUsecase {
-    public List<Brands> search(Long userId, BrandSearchRequestData inputData);
+    public List<BrandResponseModel> search(Long userId);
 }
