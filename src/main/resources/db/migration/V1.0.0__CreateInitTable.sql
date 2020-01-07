@@ -20,7 +20,6 @@ CREATE TABLE users (
 -- 画像情報テーブル
 CREATE TABLE images (
     id bigserial PRIMARY KEY,
-    name varchar(60) NOT NULL,
     path varchar(255) NOT NULL,
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
