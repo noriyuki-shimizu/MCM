@@ -7,5 +7,6 @@ import source.domain.entity.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
     Users findByEMailEquals(final String eMail);
-    Users findByUidEquals(final String uid);
+    Users findByUid(final String uid);
+    Users findByIdAndUid(final Long id, final String uid);
 }
