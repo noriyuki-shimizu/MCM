@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
-import source.domain.auth.RequestToken;
+import source.domain.auth.AnalysisRequestHeader;
 import source.domain.entity.Users;
 import source.infrastructure.firebase.Firebase;
 import source.domain.repository.db.UsersRepository;
@@ -39,22 +39,23 @@ public class Interceptor implements HandlerInterceptor {
             return true;
         }
 
-        RequestToken requestToken = RequestToken.of(request);
-        String token = requestToken.getToken();
-        if (token == null) {
+        AnalysisRequestHeader analysisRequestHeader = AnalysisRequestHeader.of(request);
+        Long userId = analysisRequestHeader.getUserId();
+        String token = analysisRequestHeader.getToken();
+        if (userId == null || token == null) {
             response.sendError(403, "Invalid access token.");
             return false;
         }
 
         try {
             FirebaseToken decodedToken = this.firebase.getDecodedToken(token);
-            Users users = this.usersRepository.findByUidEquals(decodedToken.getUid());
+            Users users = this.usersRepository.findByIdAndUid(userId, decodedToken.getUid());
             if (users == null) {
-                response.sendError(403, "Requested user does not exist.");
+                response.sendError(401, "Requested user does not exist.");
                 return false;
             }
         } catch(FirebaseAuthException fae) {
-            response.sendError(500, "Server internal error.");
+            response.sendError(403, "Request token is invalid or expired.");
             return false;
         }
 
