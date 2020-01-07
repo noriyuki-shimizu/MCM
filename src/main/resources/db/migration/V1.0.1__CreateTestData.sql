@@ -1,5 +1,5 @@
 insert into users (name, uid, e_mail)
-values ('zaqwsx', 'wV7nLTXuNHZky9MlNn4T84BQI6x1', 'zaqwsx@zaqwsx.jp');
+values ('zaqwsx', 'YH3JCcEvxpQyZ15E4jUBfsMiYV12', 'zaqwsx@zaqwsx.jp');
 
 -- ジャンルマスタの初期値を設定
 insert into genres (user_id, name)
