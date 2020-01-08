@@ -13,6 +13,8 @@ public class BrandResponseModel {
 
     private String link;
 
+    private Long imageId;
+
     private String imageLink;
 
     private String country;
