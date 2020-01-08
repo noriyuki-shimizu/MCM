@@ -22,10 +22,6 @@ public class Images extends TimestampEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    @NotNull
-    private String name;
-
     @Column(name = "path")
     @NotNull
     private String path;
