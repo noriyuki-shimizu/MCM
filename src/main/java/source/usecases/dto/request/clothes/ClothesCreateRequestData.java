@@ -31,7 +31,6 @@ public class ClothesCreateRequestData {
 
     public Clothes toEntity(Long userId) {
         Images image = Images.builder()
-                .name(this.imageName)
                 .path(this.imagePath)
                 .build();
 

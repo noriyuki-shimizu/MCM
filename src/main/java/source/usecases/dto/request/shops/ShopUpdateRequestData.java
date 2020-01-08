@@ -36,7 +36,6 @@ public class ShopUpdateRequestData {
     public Shops toEntity(Long userId) {
         Images image = Images.builder()
                 .id(this.imageId)
-                .name(this.imageName)
                 .path(this.imagePath)
                 .build();
 

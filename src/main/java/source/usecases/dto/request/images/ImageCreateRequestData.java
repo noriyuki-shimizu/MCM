@@ -12,13 +12,10 @@ import source.domain.entity.Images;
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
 public class ImageCreateRequestData {
-    private String name;
-
     private String path;
 
     public Images toEntity() {
         return Images.builder()
-                .name(this.name)
                 .path(this.path)
                 .build();
     }
