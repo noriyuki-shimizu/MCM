@@ -2,9 +2,7 @@ package source.usecases.dto.response.brands;
 
 import lombok.Value;
 
-import java.util.List;
-
 @Value(staticConstructor = "of")
 public class BrandResponseViewModel {
-    private List<BrandResponseModel> brands;
+    private BrandResponseModel brand;
 }
