@@ -31,6 +31,9 @@ public class BrandSearchInteractor implements IBrandSearchUsecase {
                         brand.getName(),
                         brand.getLink(),
                         brand.getImage() != null
+                                ? brand.getImage().getId()
+                                : null,
+                        brand.getImage() != null
                                 ? brand.getImage().getPath()
                                 : null,
                         brand.getCountry(),
