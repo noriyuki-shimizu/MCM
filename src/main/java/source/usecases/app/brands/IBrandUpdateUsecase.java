@@ -1,8 +1,8 @@
 package source.usecases.app.brands;
 
 import source.usecases.dto.request.brands.BrandUpdateRequestData;
-import source.domain.entity.Brands;
+import source.usecases.dto.response.brands.BrandResponseModel;
 
 public interface IBrandUpdateUsecase {
-    public Brands update(Long userId, BrandUpdateRequestData inputData);
+    public BrandResponseModel update(Long userId, BrandUpdateRequestData inputData);
 }
