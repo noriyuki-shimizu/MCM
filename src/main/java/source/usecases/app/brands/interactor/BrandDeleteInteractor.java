@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
 import source.usecases.app.brands.IBrandDeleteUsecase;
+import source.usecases.dto.response.brands.BrandResponseModel;
 
 import javax.transaction.Transactional;
 
@@ -16,7 +17,20 @@ public class BrandDeleteInteractor implements IBrandDeleteUsecase {
     private BrandsRepository repository;
 
     @Override
-    public Brands delete(Long id) {
-        return this.repository.deleteById(id);
+    public BrandResponseModel delete(Long id) {
+        Brands result = this.repository.deleteById(id);
+        return BrandResponseModel.of(
+                result.getId(),
+                result.getName(),
+                result.getLink(),
+                result.getImage() != null
+                        ? result.getImage().getId()
+                        : null,
+                result.getImage() != null
+                        ? result.getImage().getPath()
+                        : null,
+                result.getCountry(),
+                result.isDeleted()
+        );
     }
 }

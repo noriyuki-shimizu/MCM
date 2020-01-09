@@ -3,7 +3,6 @@ package source.usecases.app.brands.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
-import source.domain.vo.BrandCreateData;
 import source.usecases.dto.request.brands.BrandCreateRequestData;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
@@ -25,17 +24,15 @@ public class BrandCreateInteractor implements IBrandCreateUsecase {
 
     @Override
     public BrandResponseModel create(Long userId, BrandCreateRequestData inputData) {
-        BrandCreateData data = BrandCreateData.of(
-                userId,
-                inputData.getName(),
-                inputData.getLink(),
-                inputData.getImageLink(),
-                inputData.getCountry()
-        );
-        Brands brand = data.toEntity();
+        Images brandImages = this.imageSaveUsecase.save(null, inputData.getImageLink());
 
-        Images brandImage = this.imageSaveUsecase.save(brand.getImage());
-        brand.setImage(brandImage);
+        Brands brand = Brands.builder()
+                .userId(userId)
+                .name(inputData.getName())
+                .link(inputData.getLink())
+                .image(brandImages)
+                .country(inputData.getCountry())
+                .build();
 
         Brands result = this.repository.save(brand);
 
