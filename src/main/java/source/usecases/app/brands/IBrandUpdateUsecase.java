@@ -4,5 +4,5 @@ import source.usecases.dto.request.brands.BrandUpdateRequestData;
 import source.usecases.dto.response.brands.BrandResponseModel;
 
 public interface IBrandUpdateUsecase {
-    public BrandResponseModel update(Long userId, BrandUpdateRequestData inputData);
+    public BrandResponseModel update(Long userId, Long id, BrandUpdateRequestData inputData);
 }

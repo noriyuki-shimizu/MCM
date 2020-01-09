@@ -1,7 +1,7 @@
 package source.usecases.app.brands;
 
-import source.domain.entity.Brands;
+import source.usecases.dto.response.brands.BrandResponseModel;
 
 public interface IBrandDeleteUsecase {
-    public Brands delete(Long id);
+    public BrandResponseModel delete(Long id);
 }
