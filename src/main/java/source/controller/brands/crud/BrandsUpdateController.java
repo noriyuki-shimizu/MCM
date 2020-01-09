@@ -16,9 +16,13 @@ public class BrandsUpdateController extends BrandsController {
     @Autowired
     private IBrandUpdateUsecase usecase;
 
-    @PutMapping()
-    public BrandResponseViewModel updateHandler(@PathVariable("userId") Long userId, @RequestBody BrandUpdateRequestData requestData) {
-        BrandResponseModel model = this.usecase.update(userId, requestData);
+    @PutMapping(value = "/{id}")
+    public BrandResponseViewModel updateHandler(
+            @PathVariable("userId") Long userId,
+            @PathVariable("id") Long id,
+            @RequestBody BrandUpdateRequestData requestData
+    ) {
+        BrandResponseModel model = this.usecase.update(userId, id, requestData);
         return BrandResponseViewModel.of(model);
     }
 }
