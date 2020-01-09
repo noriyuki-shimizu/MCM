@@ -1,37 +1,23 @@
 package source.controller.brands.crud;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
 import source.usecases.app.brands.IBrandDeleteUsecase;
-
-import java.io.IOException;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class BrandsDeleteController extends BrandsController {
 
     @Autowired
     private IBrandDeleteUsecase usecase;
 
     @DeleteMapping(value = "/{id}")
-    public String deleteHandler(@PathVariable("id") Long id) {
-        try {
-            return super.MAPPER.writeValueAsString(this.usecase.delete(id));
-        } catch (JsonProcessingException jpe) {
-            log.error("JSON の変換エラー", jpe);
-
-            return null;
-        } catch (IOException ioe) {
-            log.error("JSON の読み込みエラー", ioe);
-
-            return null;
-        }
+    public BrandResponseViewModel deleteHandler(@PathVariable("id") Long id) {
+        return BrandResponseViewModel.of(this.usecase.delete(id));
     }
 }
