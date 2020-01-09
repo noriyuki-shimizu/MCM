@@ -16,10 +16,22 @@ public class ImageSaveInteractor implements IImageSaveUsecase {
     private ImagesRepository repository;
 
     @Override
-    public Images save(Images images) {
-        if (images == null) {
-            return null;
+    public Images save(Long id, String path) {
+        if (id != null) {
+            return this.repository.save(
+                    Images.builder()
+                        .id(id)
+                        .path(path)
+                        .build()
+            );
         }
-        return this.repository.save(images);
+        if (path != null) {
+            return this.repository.save(
+                    Images.builder()
+                        .path(path)
+                        .build()
+            );
+        }
+        return null;
     }
 }
