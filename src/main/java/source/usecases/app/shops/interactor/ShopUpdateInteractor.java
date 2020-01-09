@@ -24,7 +24,7 @@ public class ShopUpdateInteractor implements IShopUpdateUsecase {
     public Shops update(Long userId, ShopUpdateRequestData inputData) {
         Shops shop = inputData.toEntity(userId);
 
-        this.imageSaveUsecase.save(shop.getImage());
+        this.imageSaveUsecase.save(shop.getImage().getId(), shop.getImage().getPath());
 
         return this.repository.save(shop);
     }

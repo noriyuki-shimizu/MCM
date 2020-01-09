@@ -9,11 +9,11 @@ import source.usecases.dto.request.images.ImageUpdateRequestData;
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
 public class BrandUpdateRequestData {
-    private Long id;
-
     private String name;
 
     private String link;
+
+    private Long imageId;
 
     private String imageLink;
 

@@ -24,7 +24,7 @@ public class ShopCreateInteractor implements IShopCreateUsecase {
     public Shops create(Long userId, ShopCreateRequestData inputData) {
         Shops shop = inputData.toEntity(userId);
 
-        shop.setImage(this.imageSaveUsecase.save(shop.getImage()));
+        shop.setImage(this.imageSaveUsecase.save(shop.getImage().getId(), shop.getImage().getPath()));
 
         return this.repository.save(shop);
     }
