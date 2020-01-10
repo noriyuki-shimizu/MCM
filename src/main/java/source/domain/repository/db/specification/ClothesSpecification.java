@@ -15,19 +15,19 @@ public class ClothesSpecification {
         };
     }
 
-    public static Specification<Clothes> brandIdContains(final Integer brandId) {
+    public static Specification<Clothes> brandIdContains(final Long brandId) {
         return brandId == null ? null : (root, query, cb) -> {
             return cb.equal(root.join("brand", JoinType.INNER).get("id"), brandId);
         };
     }
 
-    public static Specification<Clothes> genreIdEqual(final Integer genreId) {
+    public static Specification<Clothes> genreIdEqual(final Long genreId) {
         return genreId == null ? null : (root, query, cb) -> {
             return cb.equal(root.join("genre", JoinType.INNER).get("id"), genreId);
         };
     }
 
-    public static Specification<Clothes> shopIdEqual(final Integer shopId) {
+    public static Specification<Clothes> shopIdEqual(final Long shopId) {
         return shopId == null ? null : (root, query, cb) -> {
             return cb.equal(root.join("shop", JoinType.INNER).get("id"), shopId);
         };
