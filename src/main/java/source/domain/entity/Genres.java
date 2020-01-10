@@ -26,4 +26,8 @@ public class Genres extends TimestampEntity {
     @NotNull
     private String name;
 
+    @Column(name = "color", unique = true)
+    @NotNull
+    private String color;
+
 }
