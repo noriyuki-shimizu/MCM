@@ -2,17 +2,16 @@ insert into users (name, uid, e_mail)
 values ('zaqwsx', 'YH3JCcEvxpQyZ15E4jUBfsMiYV12', 'zaqwsx@zaqwsx.jp');
 
 -- ジャンルマスタの初期値を設定
-insert into genres (user_id, name)
+insert into genres (user_id, name, color)
 values
-    (1, 'Tops'),
-    (1, 'Tee'),
-    (1, 'Outer'),
-    (1, 'Bottoms'),
-    (1, 'Hat'),
-    (1, 'Bag'),
-    (1, 'Accessories'),
-    (1, 'Shoes & Boots'),
-    (1, 'All Items');
+    (1, 'Tops', 'pink'),
+    (1, 'Tee', 'red'),
+    (1, 'Outer', 'orange'),
+    (1, 'Bottoms', 'green'),
+    (1, 'Hat', 'cyan'),
+    (1, 'Bag', 'blue'),
+    (1, 'Accessories', 'purple'),
+    (1, 'Shoes & Boots', 'yellow');
 
 insert into brands (user_id, name, link, country)
 values

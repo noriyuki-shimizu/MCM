@@ -33,6 +33,7 @@ CREATE TABLE genres (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
     name varchar(60) NOT NULL,
+    color varchar(15) NOT NULL,
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
