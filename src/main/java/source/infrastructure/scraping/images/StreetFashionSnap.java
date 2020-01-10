@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Component
 @ConfigurationProperties(prefix = "settings.scraping.images")
 @Data
-@Slf4j
 public class StreetFashionSnap implements IScrapingImage {
     private String streetFashionSnapUrl;
 
