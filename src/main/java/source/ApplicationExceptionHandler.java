@@ -1,6 +1,5 @@
 package source;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,24 +10,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAllException(Exception e, WebRequest request) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleIllegalArgumentException(Exception e, WebRequest request) {
         return super.handleExceptionInternal(
                 e,
-                "API でエラーが発生しました。ログを確認してください。",
+                e.getMessage(),
                 null,
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 request
         );
     }
 
-    @ExceptionHandler(JsonProcessingException.class)
-    public ResponseEntity<Object> handleJsonProcessingException(JsonProcessingException jpe, WebRequest request) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleAllException(Exception e, WebRequest request) {
         return super.handleExceptionInternal(
-                jpe,
-                "JSON での変換処理でエラーが発生しました。リクエストパラメータを確認してください。",
+                e,
+                "An error has occurred in the API. Check the log.",
                 null,
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.INTERNAL_SERVER_ERROR,
                 request
         );
     }
