@@ -19,13 +19,13 @@ import java.util.Date;
 public class ClothesSearchRequestData extends RequestBase {
 
     /** ブランドID */
-    private Integer brandId;
+    private Long brandId;
 
     /** ジャンルID */
-    private Integer genreId;
+    private Long genreId;
 
     /** 店ID */
-    private Integer shopId;
+    private Long shopId;
 
     /** 〜円以上 */
     private Integer morePrice;
