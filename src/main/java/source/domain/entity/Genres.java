@@ -22,6 +22,10 @@ public class Genres extends TimestampEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "user_id")
+    @NotNull
+    private Long userId;
+
     @Column(name = "name", unique = true)
     @NotNull
     private String name;
