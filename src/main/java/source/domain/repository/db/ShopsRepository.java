@@ -9,6 +9,10 @@ import source.domain.entity.Shops;
 
 @Repository
 public interface ShopsRepository extends JpaRepository<Shops, Integer>, JpaSpecificationExecutor {
-    @Query(value = "UPDATE shops SET is_deleted = true, delete_date_time = now() WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE shops SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
     public Shops deleteById(@Param("id") Long id);
+
+    // Restoration
+    @Query(value = "UPDATE shops SET is_deleted = false, update_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
+    public Shops restorationById(@Param("id") Long id);
 }

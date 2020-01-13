@@ -1,10 +1,9 @@
 package source.usecases.app.shops;
 
-import source.usecases.dto.request.shops.ShopSearchRequestData;
-import source.domain.entity.Shops;
+import source.usecases.dto.response.shops.ShopResponseModel;
 
 import java.util.List;
 
 public interface IShopSearchUsecase {
-    public List<Shops> search(Long userId, ShopSearchRequestData inputData);
+    public List<ShopResponseModel> search(Long userId);
 }

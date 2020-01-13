@@ -1,8 +1,8 @@
 package source.usecases.app.shops;
 
 import source.usecases.dto.request.shops.ShopCreateRequestData;
-import source.domain.entity.Shops;
+import source.usecases.dto.response.shops.ShopResponseModel;
 
 public interface IShopCreateUsecase {
-    public Shops create(Long userId, ShopCreateRequestData inputData);
+    public ShopResponseModel create(Long userId, ShopCreateRequestData inputData);
 }

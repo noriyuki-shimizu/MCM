@@ -3,14 +3,15 @@ package source.usecases.app.shops.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
-import source.usecases.dto.request.shops.ShopSearchRequestData;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ShopsSpecification;
 import source.usecases.app.shops.IShopSearchUsecase;
+import source.usecases.dto.response.shops.ShopResponseModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Transactional
@@ -20,14 +21,27 @@ public class ShopSearchUsecase implements IShopSearchUsecase {
     private ShopsRepository repository;
 
     @Override
-    public List<Shops> search(Long userId, ShopSearchRequestData inputData) {
-        return this.repository.findAll(
+    public List<ShopResponseModel> search(Long userId) {
+        List<Shops> shops = this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
-                        .and(ShopsSpecification.nameLike(inputData.getName()))
-                        .and(ShopsSpecification.stationNameLike(inputData.getStationName()))
-                        .and(ShopsSpecification.addressLike(inputData.getAddress()))
-                        .and(ShopsSpecification.isDeletedEqual(inputData.getIsDeleted()))
         );
+        return shops.stream()
+                .map(shop -> ShopResponseModel.of(
+                    shop.getId(),
+                    shop.getName(),
+                    shop.getLink(),
+                    shop.getStationName(),
+                    shop.getImage() != null
+                            ? shop.getImage().getId()
+                            : null,
+                    shop.getImage() != null
+                            ? shop.getImage().getPath()
+                            : null,
+                    shop.getAddress(),
+                    shop.getBusinessHours(),
+                    shop.isDeleted()
+                ))
+                .collect(Collectors.toList());
     }
 }

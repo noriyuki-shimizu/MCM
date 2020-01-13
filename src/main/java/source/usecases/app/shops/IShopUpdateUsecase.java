@@ -1,8 +1,8 @@
 package source.usecases.app.shops;
 
 import source.usecases.dto.request.shops.ShopUpdateRequestData;
-import source.domain.entity.Shops;
+import source.usecases.dto.response.shops.ShopResponseModel;
 
 public interface IShopUpdateUsecase {
-    public Shops update(Long userId, ShopUpdateRequestData inputData);
+    public ShopResponseModel update(Long userId, Long id, ShopUpdateRequestData inputData);
 }
