@@ -17,7 +17,7 @@ public class BrandsUpdateController extends BrandsController {
     private IBrandUpdateUsecase usecase;
 
     @PutMapping(value = "/{id}")
-    public BrandResponseViewModel updateHandler(
+    public BrandResponseViewModel handle(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody BrandUpdateRequestData requestData

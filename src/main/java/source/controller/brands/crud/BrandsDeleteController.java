@@ -17,7 +17,7 @@ public class BrandsDeleteController extends BrandsController {
     private IBrandDeleteUsecase usecase;
 
     @DeleteMapping(value = "/{id}")
-    public BrandResponseViewModel deleteHandler(@PathVariable("id") Long id) {
+    public BrandResponseViewModel handle(@PathVariable("id") Long id) {
         return BrandResponseViewModel.of(this.usecase.delete(id));
     }
 }

@@ -15,7 +15,7 @@ public class BrandsSearchController extends BrandsController {
     private IBrandSearchUsecase usecase;
 
     @GetMapping()
-    public BrandResponseViewModels searchHandler(
+    public BrandResponseViewModels handle(
             @PathVariable("userId") Long userId
     ) {
         return BrandResponseViewModels.of(

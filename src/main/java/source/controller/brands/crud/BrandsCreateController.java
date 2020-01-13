@@ -17,7 +17,7 @@ public class BrandsCreateController extends BrandsController {
     private IBrandCreateUsecase usecase;
 
     @PostMapping()
-    public BrandResponseViewModel createHandler(@PathVariable("userId") Long userId, @RequestBody BrandCreateRequestData requestData) {
+    public BrandResponseViewModel handle(@PathVariable("userId") Long userId, @RequestBody BrandCreateRequestData requestData) {
         BrandResponseModel model = this.usecase.create(userId, requestData);
         return BrandResponseViewModel.of(model);
     }
