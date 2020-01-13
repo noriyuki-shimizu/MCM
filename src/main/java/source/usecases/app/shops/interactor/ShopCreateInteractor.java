@@ -52,6 +52,7 @@ public class ShopCreateInteractor implements IShopCreateUsecase {
                         : null,
                 result.getAddress(),
                 result.getBusinessHours(),
+                result.getTel(),
                 result.isDeleted()
         );
     }

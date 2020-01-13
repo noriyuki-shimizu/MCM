@@ -23,6 +23,8 @@ public class ShopResponseModel {
 
     private String businessHours;
 
+    private String tel;
+
     @JsonProperty("isDeleted")
     private Boolean isDeleted;
 }

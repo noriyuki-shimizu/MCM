@@ -56,6 +56,7 @@ public class ShopUpdateInteractor implements IShopUpdateUsecase {
                         : null,
                 result.getAddress(),
                 result.getBusinessHours(),
+                result.getTel(),
                 result.isDeleted()
         );
     }

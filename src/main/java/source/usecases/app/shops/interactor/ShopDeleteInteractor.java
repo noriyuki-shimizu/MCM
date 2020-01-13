@@ -53,6 +53,7 @@ public class ShopDeleteInteractor implements IShopDeleteUsecase {
                         : null,
                 result.getAddress(),
                 result.getBusinessHours(),
+                result.getTel(),
                 result.isDeleted()
         );
     }

@@ -25,6 +25,7 @@ public class ShopRestorationInteractor implements ShopRestorationUsecase {
                         : null,
                 result.getAddress(),
                 result.getBusinessHours(),
+                result.getTel(),
                 result.isDeleted()
         );
     }

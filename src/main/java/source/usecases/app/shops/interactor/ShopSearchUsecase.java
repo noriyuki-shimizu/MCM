@@ -40,6 +40,7 @@ public class ShopSearchUsecase implements IShopSearchUsecase {
                             : null,
                     shop.getAddress(),
                     shop.getBusinessHours(),
+                    shop.getTel(),
                     shop.isDeleted()
                 ))
                 .collect(Collectors.toList());
