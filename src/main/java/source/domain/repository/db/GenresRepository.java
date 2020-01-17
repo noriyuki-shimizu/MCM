@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import source.domain.entity.Genres;
 
 @Repository
-public interface GenresRepository extends JpaRepository<Genres, Integer>, JpaSpecificationExecutor {
+public interface GenresRepository extends JpaRepository<Genres, Long>, JpaSpecificationExecutor {
     @Query(value = "UPDATE genres SET is_deleted = true, delete_date_time = now() WHERE id = :id", nativeQuery = true)
     public Genres deleteById(@Param("id") Long id);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import source.domain.entity.Images;
 
 @Repository
-public interface ImagesRepository extends JpaRepository<Images, Integer> {
+public interface ImagesRepository extends JpaRepository<Images, Long> {
     @Query(value = "UPDATE images SET is_deleted = true, delete_date_time = now() WHERE id = :id", nativeQuery = true)
     public Images deleteById(@Param("id") Long id);
 }
