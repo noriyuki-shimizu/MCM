@@ -17,8 +17,6 @@ public class ShopCreateController extends ShopsController {
 
     @PostMapping()
     public ShopResponseViewModel handle(@PathVariable("userId") Long userId, @RequestBody ShopCreateRequestData requestData) {
-        return ShopResponseViewModel.of(
-                this.usecase.create(userId, requestData)
-        );
+        return this.usecase.create(userId, requestData);
     }
 }

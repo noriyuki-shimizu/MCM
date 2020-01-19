@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ShopsSpecification;
+import source.presenter.shop.IShopsMappingPresenter;
 import source.usecases.app.shops.IShopSearchUsecase;
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @Transactional
@@ -20,29 +20,15 @@ public class ShopSearchUsecase implements IShopSearchUsecase {
     @Autowired
     private ShopsRepository repository;
 
+    @Autowired
+    private IShopsMappingPresenter presenter;
+
     @Override
-    public List<ShopResponseModel> search(Long userId) {
+    public ShopResponseViewModels search(Long userId) {
         List<Shops> shops = this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
         );
-        return shops.stream()
-                .map(shop -> ShopResponseModel.of(
-                    shop.getId(),
-                    shop.getName(),
-                    shop.getLink(),
-                    shop.getStationName(),
-                    shop.getImage() != null
-                            ? shop.getImage().getId()
-                            : null,
-                    shop.getImage() != null
-                            ? shop.getImage().getPath()
-                            : null,
-                    shop.getAddress(),
-                    shop.getBusinessHours(),
-                    shop.getTel(),
-                    shop.isDeleted()
-                ))
-                .collect(Collectors.toList());
+        return this.presenter.mapping(shops);
     }
 }

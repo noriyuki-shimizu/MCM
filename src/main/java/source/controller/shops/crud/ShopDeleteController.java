@@ -18,6 +18,6 @@ public class ShopDeleteController extends ShopsController {
 
     @DeleteMapping(value = "/{id}")
     public ShopResponseViewModel handle(@PathVariable("id") Long id) {
-        return ShopResponseViewModel.of(this.usecase.delete(id));
+        return this.usecase.delete(id);
     }
 }

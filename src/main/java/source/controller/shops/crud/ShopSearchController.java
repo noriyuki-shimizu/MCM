@@ -18,9 +18,7 @@ public class ShopSearchController extends ShopsController {
 
     @GetMapping()
     public ShopResponseViewModels handle(@PathVariable("userId") Long userId) {
-        return ShopResponseViewModels.of(
-                this.usecase.search(userId)
-        );
+        return this.usecase.search(userId);
     }
 
 }

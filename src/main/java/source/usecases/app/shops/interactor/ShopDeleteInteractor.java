@@ -9,8 +9,9 @@ import source.domain.entity.Shops;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
+import source.presenter.shop.IShopMappingPresenter;
 import source.usecases.app.shops.IShopDeleteUsecase;
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -26,8 +27,11 @@ public class ShopDeleteInteractor implements IShopDeleteUsecase {
     @Autowired
     private ClothesRepository clothesRepository;
 
+    @Autowired
+    private IShopMappingPresenter presenter;
+
     @Override
-    public ShopResponseModel delete(Long id) {
+    public ShopResponseViewModel delete(Long id) {
         List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.shopIdEqual(id))
@@ -40,21 +44,6 @@ public class ShopDeleteInteractor implements IShopDeleteUsecase {
 
         Shops result = this.repository.deleteById(id);
 
-        return ShopResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getLink(),
-                result.getStationName(),
-                result.getImage() != null
-                        ? result.getImage().getId()
-                        : null,
-                result.getImage() != null
-                        ? result.getImage().getPath()
-                        : null,
-                result.getAddress(),
-                result.getBusinessHours(),
-                result.getTel(),
-                result.isDeleted()
-        );
+        return this.presenter.mapping(result);
     }
 }

@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
+import source.presenter.shop.IShopMappingPresenter;
 import source.usecases.app.shops.ShopRestorationUsecase;
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModel;
 
 import javax.transaction.Transactional;
 
@@ -17,23 +18,11 @@ public class ShopRestorationInteractor implements ShopRestorationUsecase {
     @Autowired
     private ShopsRepository repository;
 
-    public ShopResponseModel restoration(Long id) {
+    @Autowired
+    private IShopMappingPresenter presenter;
+
+    public ShopResponseViewModel restoration(Long id) {
         Shops result = this.repository.restorationById(id);
-        return ShopResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getLink(),
-                result.getStationName(),
-                result.getImage() != null
-                        ? result.getImage().getId()
-                        : null,
-                result.getImage() != null
-                        ? result.getImage().getPath()
-                        : null,
-                result.getAddress(),
-                result.getBusinessHours(),
-                result.getTel(),
-                result.isDeleted()
-        );
+        return this.presenter.mapping(result);
     }
 }

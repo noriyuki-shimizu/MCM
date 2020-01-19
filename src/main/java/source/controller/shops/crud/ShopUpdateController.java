@@ -21,8 +21,6 @@ public class ShopUpdateController extends ShopsController {
             @PathVariable("id") Long id,
             @RequestBody ShopUpdateRequestData requestData
     ) {
-        return ShopResponseViewModel.of(
-                this.usecase.update(userId, id, requestData)
-        );
+        return this.usecase.update(userId, id, requestData);
     }
 }

@@ -17,8 +17,6 @@ public class ShopRestorationController extends ShopsController {
 
     @PutMapping(value = "/{id}/restoration")
     public ShopResponseViewModel handle(@PathVariable("id") Long id) {
-        return ShopResponseViewModel.of(
-                this.usecase.restoration(id)
-        );
+        return this.usecase.restoration(id);
     }
 }

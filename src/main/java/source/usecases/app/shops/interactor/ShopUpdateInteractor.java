@@ -3,12 +3,13 @@ package source.usecases.app.shops.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
+import source.presenter.shop.IShopMappingPresenter;
 import source.usecases.dto.request.shops.ShopUpdateRequestData;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.usecases.app.images.IImageSaveUsecase;
 import source.usecases.app.shops.IShopUpdateUsecase;
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModel;
 
 import javax.transaction.Transactional;
 
@@ -22,8 +23,11 @@ public class ShopUpdateInteractor implements IShopUpdateUsecase {
     @Autowired
     private IImageSaveUsecase imageSaveUsecase;
 
+    @Autowired
+    private IShopMappingPresenter presenter;
+
     @Override
-    public ShopResponseModel update(Long userId, Long id, ShopUpdateRequestData inputData) {
+    public ShopResponseViewModel update(Long userId, Long id, ShopUpdateRequestData inputData) {
         Images shopImage = this.imageSaveUsecase.save(
                 inputData.getImageId(),
                 inputData.getImageLink()
@@ -43,21 +47,6 @@ public class ShopUpdateInteractor implements IShopUpdateUsecase {
 
         Shops result = this.repository.save(shop);
 
-        return ShopResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getLink(),
-                result.getStationName(),
-                result.getImage() != null
-                        ? result.getImage().getId()
-                        : null,
-                result.getImage() != null
-                        ? result.getImage().getPath()
-                        : null,
-                result.getAddress(),
-                result.getBusinessHours(),
-                result.getTel(),
-                result.isDeleted()
-        );
+        return this.presenter.mapping(result);
     }
 }

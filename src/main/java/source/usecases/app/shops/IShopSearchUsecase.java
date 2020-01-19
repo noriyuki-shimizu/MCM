@@ -1,9 +1,7 @@
 package source.usecases.app.shops;
 
-import source.usecases.dto.response.shops.ShopResponseModel;
-
-import java.util.List;
+import source.usecases.dto.response.shops.ShopResponseViewModels;
 
 public interface IShopSearchUsecase {
-    public List<ShopResponseModel> search(Long userId);
+    public ShopResponseViewModels search(Long userId);
 }

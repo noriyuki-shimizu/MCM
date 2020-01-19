@@ -1,7 +1,7 @@
 package source.usecases.app.shops;
 
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModel;
 
 public interface IShopDeleteUsecase {
-    public ShopResponseModel delete(Long id);
+    public ShopResponseViewModel delete(Long id);
 }

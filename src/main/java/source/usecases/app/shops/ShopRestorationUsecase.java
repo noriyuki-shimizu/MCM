@@ -1,7 +1,7 @@
 package source.usecases.app.shops;
 
-import source.usecases.dto.response.shops.ShopResponseModel;
+import source.usecases.dto.response.shops.ShopResponseViewModel;
 
 public interface ShopRestorationUsecase {
-    public ShopResponseModel restoration(Long id);
+    public ShopResponseViewModel restoration(Long id);
 }
