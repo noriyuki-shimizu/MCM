@@ -1,9 +1,7 @@
 package source.usecases.app.genres;
 
-import source.usecases.dto.response.genre.GenreResponseModel;
-
-import java.util.List;
+import source.usecases.dto.response.genre.GenreResponseViewModels;
 
 public interface IGenreSearchUsecase {
-    public List<GenreResponseModel> search(Long userId);
+    public GenreResponseViewModels search(Long userId);
 }

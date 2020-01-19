@@ -19,8 +19,6 @@ public class GenreSearchController extends GenresController {
     public GenreResponseViewModels handle(
             @PathVariable("userId") Long userId
     ) {
-        return GenreResponseViewModels.of(
-                this.usecase.search(userId)
-        );
+        return this.usecase.search(userId);
     }
 }

@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Genres;
 import source.domain.repository.db.GenresRepository;
+import source.presenter.genre.IGenreMappingPresenter;
 import source.usecases.app.genres.IGenreCreateUsecase;
 import source.usecases.dto.request.genre.GenreCreateRequestData;
-import source.usecases.dto.response.genre.GenreResponseModel;
+import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 import javax.transaction.Transactional;
 
@@ -16,8 +17,11 @@ public class GenreCreateInteractor implements IGenreCreateUsecase {
     @Autowired
     private GenresRepository repository;
 
+    @Autowired
+    private IGenreMappingPresenter presenter;
+
     @Override
-    public GenreResponseModel create(Long userId, GenreCreateRequestData requestData) {
+    public GenreResponseViewModel create(Long userId, GenreCreateRequestData requestData) {
         Genres genres = Genres.builder()
                 .userId(userId)
                 .name(requestData.getName())
@@ -26,10 +30,6 @@ public class GenreCreateInteractor implements IGenreCreateUsecase {
 
         Genres result = this.repository.save(genres);
 
-        return GenreResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getColor()
-        );
+        return this.presenter.mapping(result);
     }
 }

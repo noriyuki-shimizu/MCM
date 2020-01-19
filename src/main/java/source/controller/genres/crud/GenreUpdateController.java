@@ -23,8 +23,6 @@ public class GenreUpdateController extends GenresController {
             @PathVariable("id") Long id,
             @RequestBody GenreUpdateRequestData requestData
     ) {
-        return GenreResponseViewModel.of(
-                this.usecase.update(userId, id, requestData)
-        );
+        return this.usecase.update(userId, id, requestData);
     }
 }

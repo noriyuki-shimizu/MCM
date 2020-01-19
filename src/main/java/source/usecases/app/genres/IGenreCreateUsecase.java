@@ -1,8 +1,8 @@
 package source.usecases.app.genres;
 
 import source.usecases.dto.request.genre.GenreCreateRequestData;
-import source.usecases.dto.response.genre.GenreResponseModel;
+import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 public interface IGenreCreateUsecase {
-    public GenreResponseModel create(Long userId, GenreCreateRequestData requestData);
+    public GenreResponseViewModel create(Long userId, GenreCreateRequestData requestData);
 }

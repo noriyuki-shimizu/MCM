@@ -22,8 +22,6 @@ public class GenreCreateController extends GenresController {
             @PathVariable("userId") Long userId,
             @RequestBody GenreCreateRequestData requestData
     ) {
-        return GenreResponseViewModel.of(
-                this.usecase.create(userId, requestData)
-        );
+        return this.usecase.create(userId, requestData);
     }
 }
