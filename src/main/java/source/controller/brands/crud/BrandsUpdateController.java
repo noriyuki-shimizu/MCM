@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
 import source.usecases.dto.request.brands.BrandUpdateRequestData;
 import source.usecases.app.brands.IBrandUpdateUsecase;
-import source.usecases.dto.response.brands.BrandResponseModel;
 import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 @RestController
@@ -22,7 +21,6 @@ public class BrandsUpdateController extends BrandsController {
             @PathVariable("id") Long id,
             @RequestBody BrandUpdateRequestData requestData
     ) {
-        BrandResponseModel model = this.usecase.update(userId, id, requestData);
-        return BrandResponseViewModel.of(model);
+        return this.usecase.update(userId, id, requestData);
     }
 }

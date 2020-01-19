@@ -9,8 +9,9 @@ import source.domain.entity.Clothes;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
+import source.presenter.brand.IBrandMappingPresenter;
 import source.usecases.app.brands.IBrandDeleteUsecase;
-import source.usecases.dto.response.brands.BrandResponseModel;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -26,8 +27,11 @@ public class BrandDeleteInteractor implements IBrandDeleteUsecase {
     @Autowired
     private ClothesRepository clothesRepository;
 
+    @Autowired
+    private IBrandMappingPresenter presenter;
+
     @Override
-    public BrandResponseModel delete(Long id) {
+    public BrandResponseViewModel delete(Long id) {
         List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                     .where(ClothesSpecification.brandIdContains(id))
@@ -39,18 +43,6 @@ public class BrandDeleteInteractor implements IBrandDeleteUsecase {
         }
 
         Brands result = this.repository.deleteById(id);
-        return BrandResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getLink(),
-                result.getImage() != null
-                        ? result.getImage().getId()
-                        : null,
-                result.getImage() != null
-                        ? result.getImage().getPath()
-                        : null,
-                result.getCountry(),
-                result.isDeleted()
-        );
+        return this.presenter.mapping(result);
     }
 }

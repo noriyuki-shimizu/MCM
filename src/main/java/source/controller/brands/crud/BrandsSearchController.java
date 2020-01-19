@@ -18,8 +18,6 @@ public class BrandsSearchController extends BrandsController {
     public BrandResponseViewModels handle(
             @PathVariable("userId") Long userId
     ) {
-        return BrandResponseViewModels.of(
-                this.usecase.search(userId)
-        );
+        return this.usecase.search(userId);
     }
 }

@@ -1,4 +1,8 @@
 package source.presenter.brand;
 
-public class IBrandMappingPresenter {
+import source.domain.entity.Brands;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
+
+public interface IBrandMappingPresenter {
+    public BrandResponseViewModel mapping(Brands brand);
 }

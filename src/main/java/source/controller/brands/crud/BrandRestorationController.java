@@ -17,6 +17,6 @@ public class BrandRestorationController extends BrandsController {
 
     @PutMapping(value = "/{id}/restoration")
     public BrandResponseViewModel handle(@PathVariable("id") Long id) {
-        return BrandResponseViewModel.of(this.usecase.restoration(id));
+        return this.usecase.restoration(id);
     }
 }

@@ -3,12 +3,13 @@ package source.usecases.app.brands.interactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
+import source.presenter.brand.IBrandMappingPresenter;
 import source.usecases.dto.request.brands.BrandUpdateRequestData;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
 import source.usecases.app.brands.IBrandUpdateUsecase;
 import source.usecases.app.images.IImageSaveUsecase;
-import source.usecases.dto.response.brands.BrandResponseModel;
+import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 import javax.transaction.Transactional;
 
@@ -22,8 +23,11 @@ public class BrandUpdateInteractor implements IBrandUpdateUsecase {
     @Autowired
     private IImageSaveUsecase imageSaveUsecase;
 
+    @Autowired
+    private IBrandMappingPresenter presenter;
+
     @Override
-    public BrandResponseModel update(Long userId, Long id, BrandUpdateRequestData inputData) {
+    public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestData inputData) {
         Images brandImage = this.imageSaveUsecase.save(
                 inputData.getImageId(),
                 inputData.getImageLink()
@@ -40,18 +44,6 @@ public class BrandUpdateInteractor implements IBrandUpdateUsecase {
 
         Brands result = this.repository.save(brand);
 
-        return BrandResponseModel.of(
-                result.getId(),
-                result.getName(),
-                result.getLink(),
-                result.getImage() != null
-                        ? result.getImage().getId()
-                        : null,
-                result.getImage() != null
-                        ? result.getImage().getPath()
-                        : null,
-                result.getCountry(),
-                result.isDeleted()
-        );
+        return this.presenter.mapping(result);
     }
 }
