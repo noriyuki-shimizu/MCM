@@ -1,9 +1,9 @@
-package source.usecases.dto.response.assist;
+package source.usecases.dto.response.shops;
 
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public class ShopResponseData {
+public class ShopAssistResponseModel {
 
     private Long id;
 
