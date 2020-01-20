@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases.app.auth;
 
 import com.google.firebase.auth.FirebaseToken;
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.annotation.NonAuth;
 import source.infrastructure.firebase.Firebase;
-import source.usecases.app.IPreLoginUsecase;
+import source.usecases.app.auth.IPreLoginUsecase;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,11 +1,11 @@
-package source.usecases.app.interactor;
+package source.usecases.app.auth.interactor;
 
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Users;
 import source.domain.repository.db.UsersRepository;
-import source.usecases.app.IPreLoginUsecase;
+import source.usecases.app.auth.IPreLoginUsecase;
 
 import javax.transaction.Transactional;
 
