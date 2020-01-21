@@ -6,15 +6,14 @@ import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
 import source.domain.repository.db.ClothesRepository;
 import source.presenter.clothes.IClothesMappingPresenter;
-import source.usecases.app.clothes.IClothesDeleteUsecase;
+import source.usecases.app.clothes.IClothesRestorationUsecase;
 import source.usecases.dto.response.clothes.ClothesResponseViewModel;
 
 import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class ClothesDeleteInteractor implements IClothesDeleteUsecase {
-
+public class ClothesRestorationInteractor implements IClothesRestorationUsecase {
     @Autowired
     private ClothesRepository repository;
 
@@ -22,8 +21,8 @@ public class ClothesDeleteInteractor implements IClothesDeleteUsecase {
     private IClothesMappingPresenter presenter;
 
     @Override
-    public ClothesResponseViewModel delete(Long id) {
-        Clothes clothes = this.repository.deleteById(id);
+    public ClothesResponseViewModel restoration(Long id) {
+        Clothes clothes = this.repository.restorationById(id);
         return this.presenter.mapping(clothes);
     }
 }

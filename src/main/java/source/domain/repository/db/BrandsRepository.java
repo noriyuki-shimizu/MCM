@@ -13,6 +13,6 @@ public interface BrandsRepository extends JpaRepository<Brands, Long>, JpaSpecif
     public Brands deleteById(@Param("id") Long id);
 
     // Restoration
-    @Query(value = "UPDATE brands SET is_deleted = false, update_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
+    @Query(value = "UPDATE brands SET is_deleted = false, update_date_time = now(), delete_date_time = null WHERE id = :id RETURNING *", nativeQuery = true)
     public Brands restorationById(@Param("id") Long id);
 }

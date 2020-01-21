@@ -51,7 +51,7 @@ public class ClothesSpecification {
         };
     }
 
-    public static Specification<Clothes> deleteFlagEqual(final boolean isDeleted) {
+    public static Specification<Clothes> isDeleted(final boolean isDeleted) {
         return (root, query, cb) -> {
             return cb.equal(root.get("is_deleted"), isDeleted);
         };

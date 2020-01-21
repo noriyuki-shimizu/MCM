@@ -28,7 +28,7 @@ public class ShopsSpecification {
         };
     }
 
-    public static Specification<Shops> isDeletedEqual(final boolean isDeleted) {
+    public static Specification<Shops> isDeleted(final boolean isDeleted) {
         return (root, query, cb) -> {
             return cb.equal(root.get("isDeleted"), isDeleted);
         };

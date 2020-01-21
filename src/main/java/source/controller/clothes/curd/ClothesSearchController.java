@@ -1,15 +1,14 @@
 package source.controller.clothes.curd;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import source.controller.clothes.ClothesController;
-import source.usecases.dto.request.clothes.ClothesSearchRequestData;
 import source.usecases.app.clothes.IClothesSearchUsecase;
-
-import java.io.IOException;
+import source.usecases.dto.response.clothes.ClothesResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,21 +19,8 @@ public class ClothesSearchController extends ClothesController {
     private IClothesSearchUsecase usecase;
 
     @GetMapping("/")
-    public String search(@PathVariable("userId") Long userId, @RequestParam("inputDataJson") String inputDataJson) {
-        try {
-            ClothesSearchRequestData inputData = super.MAPPER.readValue(inputDataJson, ClothesSearchRequestData.class);
-
-            return super.MAPPER.writeValueAsString(this.usecase.search(userId, inputData));
-
-        } catch (JsonProcessingException jpe) {
-            log.error("JSON の変換エラー", jpe);
-
-            return null;
-        } catch (IOException ioe) {
-            log.error("JSON の読み込みエラー", ioe);
-
-            return null;
-        }
+    public ClothesResponseViewModels search(@PathVariable("userId") Long userId) {
+        return this.usecase.search(userId);
     }
 
 }

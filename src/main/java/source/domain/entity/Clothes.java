@@ -1,15 +1,14 @@
 package source.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "clothes")
 @Data
@@ -31,10 +30,13 @@ public class Clothes extends TimestampEntity {
     @JoinColumn(name = "id", referencedColumnName = "image_id")
     private Images image;
 
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "genre_id")
-    @NotNull
-    private Genres genre;
+    @ManyToMany
+    @JoinTable(
+            name = "clothing_genres",
+            joinColumns = @JoinColumn(name = "clothing_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genres> genres;
 
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "brand_id")
@@ -55,4 +57,9 @@ public class Clothes extends TimestampEntity {
     @NotNull
     private Date buyDate;
 
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "satisfaction")
+    private Float satisfaction;
 }

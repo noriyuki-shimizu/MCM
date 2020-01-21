@@ -1,10 +1,7 @@
 package source.usecases.app.clothes;
 
-import source.usecases.dto.request.clothes.ClothesSearchRequestData;
-import source.domain.entity.Clothes;
-
-import java.util.List;
+import source.usecases.dto.response.clothes.ClothesResponseViewModels;
 
 public interface IClothesSearchUsecase {
-    public List<Clothes> search(Long userId, ClothesSearchRequestData inputData);
+    public ClothesResponseViewModels search(Long userId);
 }

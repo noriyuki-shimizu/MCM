@@ -12,6 +12,10 @@ public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpec
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
     public int sumPrice(@Param("user_id") Long userId);
 
-    @Query(value = "UPDATE clothes SET is_deleted = true, delete_date_time = now() WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE clothes SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
     public Clothes deleteById(@Param("id") Long id);
+
+    // Restoration
+    @Query(value = "UPDATE clothes SET is_deleted = false, update_date_time = now(), delete_date_time = null WHERE id = :id RETURNING *", nativeQuery = true)
+    public Clothes restorationById(@Param("id") Long id);
 }

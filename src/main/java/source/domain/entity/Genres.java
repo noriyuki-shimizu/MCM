@@ -1,14 +1,13 @@
 package source.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "genres")
 @Data
@@ -26,12 +25,15 @@ public class Genres extends TimestampEntity {
     @NotNull
     private Long userId;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     @NotNull
     private String name;
 
-    @Column(name = "color", unique = true)
+    @Column(name = "color")
     @NotNull
     private String color;
+
+    @ManyToMany(mappedBy = "genres")
+    private Set<Clothes> clothes;
 
 }

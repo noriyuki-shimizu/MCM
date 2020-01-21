@@ -1,10 +1,10 @@
 package source.usecases.app.clothes;
 
-import source.usecases.dto.request.clothes.ClothesUpdateRequestData;
-import source.domain.entity.Clothes;
+import source.usecases.dto.request.clothes.ClothesUpdateRequestModel;
+import source.usecases.dto.response.clothes.ClothesResponseViewModel;
 
 public interface IClothesUpdateUsecase {
 
-    public Clothes update(Long userId, ClothesUpdateRequestData inputData);
+    public ClothesResponseViewModel update(Long userId, Long id, ClothesUpdateRequestModel inputData);
 
 }
