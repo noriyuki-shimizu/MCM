@@ -37,8 +37,7 @@ CREATE TABLE genres (
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    delete_date_time timestamp,
-    UNIQUE (name)
+    delete_date_time timestamp
 );
 
 
@@ -78,13 +77,19 @@ CREATE TABLE clothes (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
     image_id bigint REFERENCES images(id),
-    genre_id bigint NOT NULL REFERENCES genres(id),
     brand_id bigint NOT NULL REFERENCES brands(id),
     shop_id bigint NOT NULL REFERENCES shops(id),
     price integer NOT NULL,
     buy_date date NOT NULL,
+    comment varchar(255),
+    satisfaction numeric(3, 1),
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     delete_date_time timestamp
 );
+
+CREATE TABLE clothing_genres (
+    clothing_id bigint NOT NULL REFERENCES clothes(id),
+    genre_id bigint NOT NULL REFERENCES genres(id)
+)
