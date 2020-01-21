@@ -6,7 +6,7 @@ import source.domain.entity.Genres;
 import source.domain.repository.db.GenresRepository;
 import source.presenter.genre.IGenreMappingPresenter;
 import source.usecases.app.genres.IGenreCreateUsecase;
-import source.usecases.dto.request.genre.GenreCreateRequestData;
+import source.usecases.dto.request.genre.GenreCreateRequestModel;
 import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 import javax.transaction.Transactional;
@@ -21,7 +21,7 @@ public class GenreCreateInteractor implements IGenreCreateUsecase {
     private IGenreMappingPresenter presenter;
 
     @Override
-    public GenreResponseViewModel create(Long userId, GenreCreateRequestData requestData) {
+    public GenreResponseViewModel create(Long userId, GenreCreateRequestModel requestData) {
         Genres genres = Genres.builder()
                 .userId(userId)
                 .name(requestData.getName())

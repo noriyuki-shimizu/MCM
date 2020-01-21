@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ShopCreateRequestData {
+public class ShopCreateRequestModel {
     private String name;
 
     private String link;

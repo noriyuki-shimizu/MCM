@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
 import source.presenter.shop.IShopMappingPresenter;
-import source.usecases.dto.request.shops.ShopCreateRequestData;
+import source.usecases.dto.request.shops.ShopCreateRequestModel;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ShopsRepository;
 import source.usecases.app.images.IImageSaveUsecase;
@@ -27,7 +27,7 @@ public class ShopCreateInteractor implements IShopCreateUsecase {
     private IShopMappingPresenter presenter;
 
     @Override
-    public ShopResponseViewModel create(Long userId, ShopCreateRequestData inputData) {
+    public ShopResponseViewModel create(Long userId, ShopCreateRequestModel inputData) {
         Images shopImage = this.imageSaveUsecase.save(null, inputData.getImageLink());
 
         Shops shop = Shops.builder()

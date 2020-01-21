@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreUpdateUsecase;
-import source.usecases.dto.request.genre.GenreUpdateRequestData;
+import source.usecases.dto.request.genre.GenreUpdateRequestModel;
 import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 @RestController
@@ -21,7 +21,7 @@ public class GenreUpdateController extends GenresController {
     public GenreResponseViewModel handle(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
-            @RequestBody GenreUpdateRequestData requestData
+            @RequestBody GenreUpdateRequestModel requestData
     ) {
         return this.usecase.update(userId, id, requestData);
     }

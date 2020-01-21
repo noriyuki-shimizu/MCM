@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class GenreUpdateRequestData {
+public class GenreUpdateRequestModel {
     private Long id;
 
     private String name;

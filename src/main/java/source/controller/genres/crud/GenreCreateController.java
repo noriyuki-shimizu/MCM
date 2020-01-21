@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreCreateUsecase;
-import source.usecases.dto.request.genre.GenreCreateRequestData;
+import source.usecases.dto.request.genre.GenreCreateRequestModel;
 import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 @RestController
@@ -20,7 +20,7 @@ public class GenreCreateController extends GenresController {
     @PostMapping
     public GenreResponseViewModel handle(
             @PathVariable("userId") Long userId,
-            @RequestBody GenreCreateRequestData requestData
+            @RequestBody GenreCreateRequestModel requestData
     ) {
         return this.usecase.create(userId, requestData);
     }

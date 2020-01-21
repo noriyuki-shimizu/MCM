@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import source.controller.shops.ShopsController;
-import source.usecases.dto.request.shops.ShopUpdateRequestData;
+import source.usecases.dto.request.shops.ShopUpdateRequestModel;
 import source.usecases.app.shops.IShopUpdateUsecase;
 import source.usecases.dto.response.shops.ShopResponseViewModel;
 
@@ -19,7 +19,7 @@ public class ShopUpdateController extends ShopsController {
     public ShopResponseViewModel handle(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
-            @RequestBody ShopUpdateRequestData requestData
+            @RequestBody ShopUpdateRequestModel requestData
     ) {
         return this.usecase.update(userId, id, requestData);
     }

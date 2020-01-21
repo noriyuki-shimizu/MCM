@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
 import source.presenter.brand.IBrandMappingPresenter;
-import source.usecases.dto.request.brands.BrandUpdateRequestData;
+import source.usecases.dto.request.brands.BrandUpdateRequestModel;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
 import source.usecases.app.brands.IBrandUpdateUsecase;
@@ -27,7 +27,7 @@ public class BrandUpdateInteractor implements IBrandUpdateUsecase {
     private IBrandMappingPresenter presenter;
 
     @Override
-    public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestData inputData) {
+    public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestModel inputData) {
         Images brandImage = this.imageSaveUsecase.save(
                 inputData.getImageId(),
                 inputData.getImageLink()

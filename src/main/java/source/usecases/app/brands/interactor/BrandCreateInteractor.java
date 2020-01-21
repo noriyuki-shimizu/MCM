@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
 import source.presenter.brand.IBrandMappingPresenter;
-import source.usecases.dto.request.brands.BrandCreateRequestData;
+import source.usecases.dto.request.brands.BrandCreateRequestModel;
 import source.domain.entity.Brands;
 import source.domain.repository.db.BrandsRepository;
 import source.usecases.app.brands.IBrandCreateUsecase;
@@ -27,7 +27,7 @@ public class BrandCreateInteractor implements IBrandCreateUsecase {
     private IBrandMappingPresenter presenter;
 
     @Override
-    public BrandResponseViewModel create(Long userId, BrandCreateRequestData inputData) {
+    public BrandResponseViewModel create(Long userId, BrandCreateRequestModel inputData) {
         Images brandImages = this.imageSaveUsecase.save(null, inputData.getImageLink());
 
         Brands brand = Brands.builder()

@@ -6,7 +6,7 @@ import source.domain.entity.Genres;
 import source.domain.repository.db.GenresRepository;
 import source.presenter.genre.IGenreMappingPresenter;
 import source.usecases.app.genres.IGenreUpdateUsecase;
-import source.usecases.dto.request.genre.GenreUpdateRequestData;
+import source.usecases.dto.request.genre.GenreUpdateRequestModel;
 import source.usecases.dto.response.genre.GenreResponseViewModel;
 
 import javax.transaction.Transactional;
@@ -21,7 +21,7 @@ public class GenreUpdateInteractor implements IGenreUpdateUsecase {
     private IGenreMappingPresenter presenter;
 
     @Override
-    public GenreResponseViewModel update(Long userId, Long id, GenreUpdateRequestData requestData) {
+    public GenreResponseViewModel update(Long userId, Long id, GenreUpdateRequestModel requestData) {
         Genres genres = Genres.builder()
                 .id(id)
                 .userId(userId)

@@ -1,4 +1,4 @@
-package source.usecases.dto.request.shops;
+package source.usecases.dto.request.brands;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -6,20 +6,14 @@ import lombok.*;
 @Data
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ShopUpdateRequestData {
+public class BrandUpdateRequestModel {
     private String name;
 
     private String link;
-
-    private String stationName;
 
     private Long imageId;
 
     private String imageLink;
 
-    private String address;
-
-    private String businessHours;
-
-    private String tel;
+    private String country;
 }

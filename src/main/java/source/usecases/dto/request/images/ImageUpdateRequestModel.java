@@ -11,11 +11,14 @@ import source.domain.entity.Images;
 @Getter
 @AllArgsConstructor(onConstructor = @__(@JsonIgnore))
 @NoArgsConstructor
-public class ImageCreateRequestData {
+public class ImageUpdateRequestModel {
+    private Long id;
+
     private String path;
 
     public Images toEntity() {
         return Images.builder()
+                .id(this.id)
                 .path(this.path)
                 .build();
     }
