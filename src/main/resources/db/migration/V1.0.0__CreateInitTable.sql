@@ -1,10 +1,3 @@
-DROP TABLE IF EXISTS clothes;
-DROP TABLE IF EXISTS shops;
-DROP TABLE IF EXISTS brands;
-DROP TABLE IF EXISTS genres;
-DROP TABLE IF EXISTS images;
-DROP TABLE IF EXISTS users;
-
 -- ユーザ
 CREATE TABLE users (
     id bigserial PRIMARY KEY,
@@ -82,7 +75,7 @@ CREATE TABLE clothes (
     price integer NOT NULL,
     buy_date date NOT NULL,
     comment varchar(255),
-    satisfaction numeric(3, 1),
+    satisfaction numeric(3, 1) NOT NULL DEFAULT 0.0,
     is_deleted boolean NOT NULL DEFAULT false,
     create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
