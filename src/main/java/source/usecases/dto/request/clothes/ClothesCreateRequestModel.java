@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -28,5 +29,5 @@ public class ClothesCreateRequestModel {
 
     private String comment;
 
-    private Float satisfaction;
+    private BigDecimal satisfaction;
 }
