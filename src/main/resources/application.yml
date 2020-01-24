@@ -5,10 +5,24 @@ spring:
     username: postgres
     password: postgres
     sql-script-encoding: UTF-8
+  jpa:
+    show-sql: true
+
 logging:
   file: logs/logback.log
+  level:
+    org:
+      hidernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
+          EnumType: trace
+
 server:
   context-path: /mcm
+
 settings:
   firebase:
     api-name: mcm-client
