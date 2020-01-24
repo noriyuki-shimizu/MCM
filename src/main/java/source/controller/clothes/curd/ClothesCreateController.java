@@ -20,7 +20,7 @@ public class ClothesCreateController extends ClothesController {
     @Autowired
     private IClothesCreateUsecase usecase;
 
-    @PostMapping("/")
+    @PostMapping()
     public ClothesResponseViewModel createHandler(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) {
         return this.usecase.create(userId, inputData);
     }

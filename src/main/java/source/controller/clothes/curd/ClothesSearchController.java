@@ -18,7 +18,7 @@ public class ClothesSearchController extends ClothesController {
     @Autowired
     private IClothesSearchUsecase usecase;
 
-    @GetMapping("/")
+    @GetMapping()
     public ClothesResponseViewModels search(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
