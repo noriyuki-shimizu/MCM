@@ -5,13 +5,14 @@ import source.domain.entity.common.TimestampEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "clothes")
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +31,7 @@ public class Clothes extends TimestampEntity {
     @JoinColumn(name = "id", referencedColumnName = "image_id")
     private Images image;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "clothing_genres",
             joinColumns = @JoinColumn(name = "clothing_id"),
@@ -52,7 +53,6 @@ public class Clothes extends TimestampEntity {
     @NotNull
     private Integer price;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "buy_date")
     @NotNull
     private Date buyDate;
@@ -61,5 +61,6 @@ public class Clothes extends TimestampEntity {
     private String comment;
 
     @Column(name = "satisfaction")
-    private Float satisfaction;
+    private BigDecimal satisfaction;
+
 }

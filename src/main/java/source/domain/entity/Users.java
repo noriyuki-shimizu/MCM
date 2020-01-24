@@ -2,7 +2,8 @@ package source.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Tolerate;
 import source.domain.entity.common.TimestampEntity;
 
@@ -11,7 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class Users extends TimestampEntity {
@@ -22,7 +24,7 @@ public class Users extends TimestampEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id = 0l;
+    private Long id = 0L;
 
     @Column(name = "uid")
     @NotNull

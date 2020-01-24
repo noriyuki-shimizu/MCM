@@ -1,5 +1,6 @@
 package source.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import source.domain.entity.common.TimestampEntity;
 
@@ -7,10 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "genres")
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +35,7 @@ public class Genres extends TimestampEntity {
     private String color;
 
     @ManyToMany(mappedBy = "genres")
+    @JsonBackReference
     private Set<Clothes> clothes;
 
 }
