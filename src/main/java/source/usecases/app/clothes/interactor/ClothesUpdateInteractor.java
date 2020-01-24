@@ -7,11 +7,10 @@ import source.domain.repository.db.ClothesRepository;
 import source.presenter.clothes.IClothesMappingPresenter;
 import source.usecases.app.clothes.IClothesUpdateUsecase;
 import source.usecases.app.images.IImageSaveUsecase;
+import source.usecases.converter.BuyDate;
 import source.usecases.dto.request.clothes.ClothesUpdateRequestModel;
 import source.usecases.dto.response.clothes.ClothesResponseViewModel;
 
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,13 +38,6 @@ public class ClothesUpdateInteractor implements IClothesUpdateUsecase {
                 .map(genreId -> Genres.builder().id(genreId).build())
                 .collect(Collectors.toSet());
 
-        Date buyDate = Date.from(
-                inputData
-                        .getBuyDate()
-                        .atStartOfDay(ZoneId.systemDefault())
-                        .toInstant()
-        );
-
         Clothes clothes = Clothes.builder()
                 .id(id)
                 .userId(userId)
@@ -54,7 +46,7 @@ public class ClothesUpdateInteractor implements IClothesUpdateUsecase {
                 .brand(Brands.builder().id(inputData.getBrandId()).build())
                 .shop(Shops.builder().id(inputData.getShopId()).build())
                 .price(inputData.getPrice())
-                .buyDate(buyDate)
+                .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
                 .comment(inputData.getComment())
                 .satisfaction(inputData.getSatisfaction())
                 .build();

@@ -2,14 +2,13 @@ package source.presenter.clothes;
 
 import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
+import source.usecases.converter.BuyDate;
 import source.usecases.dto.response.brands.BrandAssistResponseModel;
 import source.usecases.dto.response.clothes.ClothesResponseModel;
 import source.usecases.dto.response.clothes.ClothesResponseViewModels;
 import source.usecases.dto.response.genre.GenreAssistResponseModel;
 import source.usecases.dto.response.shops.ShopAssistResponseModel;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,12 +38,6 @@ public class ClothesListMappingPresenter implements IClothesListMappingPresenter
                             ))
                             .collect(Collectors.toSet());
 
-                    LocalDate buyDate = c
-                            .getBuyDate()
-                            .toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDate();
-
                     return ClothesResponseModel.of(
                             c.getId(),
                             c.getImage() != null
@@ -57,7 +50,7 @@ public class ClothesListMappingPresenter implements IClothesListMappingPresenter
                             shopModel,
                             genreModels,
                             c.getPrice(),
-                            buyDate,
+                            BuyDate.toString(c.getBuyDate()),
                             c.getComment(),
                             c.getSatisfaction(),
                             c.isDeleted()
