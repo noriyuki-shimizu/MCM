@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS clothes;
+DROP TABLE IF EXISTS shops;
+DROP TABLE IF EXISTS brands;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS users;
+
 -- ユーザ
 CREATE TABLE users (
     id bigserial PRIMARY KEY,
