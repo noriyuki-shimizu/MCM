@@ -3,6 +3,7 @@ package source.domain.auth;
 import lombok.Value;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Value(staticConstructor = "of")
 public class AnalysisRequestHeader {
@@ -14,11 +15,11 @@ public class AnalysisRequestHeader {
      * return {Long} userId
      */
     public Long getUserId() {
-        String userId = this.request.getHeader("UserId");
-        if (userId == null) {
-            return null;
-        }
-        return Long.parseLong(userId);
+        Optional<String> userId = Optional.ofNullable(this.request.getHeader("UserId"));
+
+        return userId
+                .map(Long::parseLong)
+                .orElse(null);
     }
 
     /**
@@ -26,11 +27,13 @@ public class AnalysisRequestHeader {
      * @return token
      */
     public String getToken() {
-        String token = this.request.getHeader("Authorization");
-        if (token == null || !token.startsWith("Bearer ")) {
-            return null;
-        }
-        return token.replace("Bearer ", "");
+        Optional<String> authorization = Optional
+                .ofNullable(this.request.getHeader("Authorization"));
+
+        return authorization
+                .filter(token -> token.startsWith("Bearer "))
+                .map(token -> token.replace("Bearer ", ""))
+                .orElse(null);
     }
 
 }

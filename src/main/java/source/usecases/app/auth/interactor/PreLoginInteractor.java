@@ -8,6 +8,7 @@ import source.domain.repository.db.UsersRepository;
 import source.usecases.app.auth.IPreLoginUsecase;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Transactional
 @Component
@@ -17,8 +18,11 @@ public class PreLoginInteractor implements IPreLoginUsecase {
     private UsersRepository repository;
 
     public long getUserIdAndSetIfNotExistUser(FirebaseToken firebaseToken) {
-        Users users = this.repository.findByUid(firebaseToken.getUid());
-        if (users == null) {
+        Optional<Users> users = Optional.ofNullable(
+                this.repository.findByUid(firebaseToken.getUid())
+        );
+
+        if (!users.isPresent()) {
             Users insertUser = Users.builder()
                     .name(firebaseToken.getName())
                     .eMail(firebaseToken.getEmail())
@@ -27,6 +31,6 @@ public class PreLoginInteractor implements IPreLoginUsecase {
 
             return this.repository.save(insertUser).getId();
         }
-        return users.getId();
+        return users.get().getId();
     }
 }
