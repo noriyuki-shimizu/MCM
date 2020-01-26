@@ -1,13 +1,11 @@
 package source.usecases.dto.request.clothes;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -26,8 +24,7 @@ public class ClothesUpdateRequestModel {
 
     private Integer price;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate buyDate;
+    private String buyDate;
 
     private String comment;
 
