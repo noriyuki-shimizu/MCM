@@ -1,7 +1,6 @@
 package source.usecases.app.clothes.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
 import source.domain.repository.db.ClothesRepository;
@@ -17,7 +16,7 @@ public class ClothesRestorationInteractor implements IClothesRestorationUsecase 
     @Autowired
     private ClothesRepository repository;
 
-    @AutoConfigureOrder
+    @Autowired
     private IClothesMappingPresenter presenter;
 
     @Override
