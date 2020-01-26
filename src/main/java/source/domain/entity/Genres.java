@@ -1,6 +1,5 @@
 package source.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import source.domain.entity.common.TimestampEntity;
 
@@ -35,7 +34,6 @@ public class Genres extends TimestampEntity {
     private String color;
 
     @ManyToMany(mappedBy = "genres")
-    @JsonBackReference
     private Set<Clothes> clothes;
 
 }
