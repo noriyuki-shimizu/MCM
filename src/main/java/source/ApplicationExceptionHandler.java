@@ -23,6 +23,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllException(Exception e, WebRequest request) {
+        e.printStackTrace();
         return super.handleExceptionInternal(
                 e,
                 "An error has occurred in the API. Check the log.",
