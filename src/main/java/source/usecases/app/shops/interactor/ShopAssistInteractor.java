@@ -25,6 +25,7 @@ public class ShopAssistInteractor implements IShopAssistUsecase {
         List<Shops> shops = this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
+                        .and(ShopsSpecification.isDeleted(false))
         );
 
         return this.presenter.mapping(shops);

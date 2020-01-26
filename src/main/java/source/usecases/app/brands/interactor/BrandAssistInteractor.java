@@ -26,6 +26,7 @@ public class BrandAssistInteractor implements IBrandAssistUsecase {
         List<Brands> brands = this.repository.findAll(
                 Specifications
                         .where(BrandsSpecification.userIdEqual(userId))
+                        .and(BrandsSpecification.isDeleted(false))
         );
 
         return this.presenter.mapping(brands);
