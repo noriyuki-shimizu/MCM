@@ -28,7 +28,7 @@ public class Clothes extends TimestampEntity {
     private Long userId;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "image_id")
+    @JoinColumn(name = "image_id")
     private Images image;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -40,12 +40,12 @@ public class Clothes extends TimestampEntity {
     private Set<Genres> genres;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "brand_id")
+    @JoinColumn(name = "brand_id")
     @NotNull
     private Brands brand;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "shop_id")
+    @JoinColumn(name = "shop_id")
     @NotNull
     private Shops shop;
 
