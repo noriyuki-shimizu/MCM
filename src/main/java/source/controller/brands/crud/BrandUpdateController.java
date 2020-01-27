@@ -10,7 +10,7 @@ import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 @RestController
 @RequiredArgsConstructor
-public class BrandsUpdateController extends BrandsController {
+public class BrandUpdateController extends BrandsController {
 
     @Autowired
     private IBrandUpdateUsecase usecase;

@@ -11,7 +11,7 @@ import source.usecases.dto.response.brands.BrandResponseViewModel;
 
 @RestController
 @RequiredArgsConstructor
-public class BrandsDeleteController extends BrandsController {
+public class BrandDeleteController extends BrandsController {
 
     @Autowired
     private IBrandDeleteUsecase usecase;
