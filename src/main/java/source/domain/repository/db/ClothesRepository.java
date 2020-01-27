@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import source.domain.entity.Clothes;
 
+import java.util.Set;
+
 @Repository
 public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpecificationExecutor {
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
@@ -18,4 +20,6 @@ public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpec
     // Restoration
     @Query(value = "UPDATE clothes SET is_deleted = false, update_date_time = now(), delete_date_time = null WHERE id = :id RETURNING *", nativeQuery = true)
     public Clothes restorationById(@Param("id") Long id);
+
+    public Set<Clothes> findByIdIn(Set<Long> ids);
 }

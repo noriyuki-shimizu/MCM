@@ -63,4 +63,7 @@ public class Clothes extends TimestampEntity {
     @Column(name = "satisfaction")
     private BigDecimal satisfaction;
 
+    @ManyToMany(mappedBy = "usedCoordinates")
+    private Set<Coordinates> coordinates;
+
 }
