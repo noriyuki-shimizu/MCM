@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS clothing_genres;
+DROP TABLE IF EXISTS coordinates;
+DROP TABLE IF EXISTS used_coordinates;
 DROP TABLE IF EXISTS clothes;
 DROP TABLE IF EXISTS shops;
 DROP TABLE IF EXISTS brands;
@@ -76,7 +79,7 @@ CREATE TABLE shops (
 CREATE TABLE clothes (
     id bigserial PRIMARY KEY,
     user_id bigint NOT NULL REFERENCES users(id),
-    image_id bigint REFERENCES images(id),
+    image_id bigint NOT NULL REFERENCES images(id),
     brand_id bigint NOT NULL REFERENCES brands(id),
     shop_id bigint NOT NULL REFERENCES shops(id),
     price integer NOT NULL,
@@ -89,7 +92,26 @@ CREATE TABLE clothes (
     delete_date_time timestamp
 );
 
+-- 服のジャンル情報テーブル
 CREATE TABLE clothing_genres (
     clothing_id bigint NOT NULL REFERENCES clothes(id),
     genre_id bigint NOT NULL REFERENCES genres(id)
-)
+);
+
+-- コーディネートテーブル
+CREATE TABLE coordinates (
+    id bigserial PRIMARY KEY,
+    user_id bigint NOT NULL REFERENCES users(id),
+    season varchar(6) NOT NULL,
+    image_id bigint NOT NULL REFERENCES images(id),
+    is_deleted boolean NOT NULL DEFAULT false,
+    create_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_date_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    delete_date_time timestamp
+);
+
+-- コーディネートに用いる服情報テーブル
+CREATE TABLE used_coordinates (
+    coordinate_id bigint NOT NULL REFERENCES coordinates(id),
+    clothing_id bigint NOT NULL REFERENCES clothes(id)
+);

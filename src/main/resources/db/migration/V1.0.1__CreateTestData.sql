@@ -21,11 +21,3 @@ insert into shops (user_id, name, link, station_name, address, business_hours, t
 values
     (1, 'O代官山 本店', 'http://store.moc-o.com/', '代官山', '東京都渋谷区猿楽町26-13 グレイス代官山 #202', '12:00~20:00', '03-6416-1187');
 
-insert into clothes (user_id, brand_id, shop_id, price, buy_date)
-values
-    (1, 1, 1, 10000, '2019/01/01');
-
-insert into clothing_genres (clothing_id, genre_id)
-values
-    (1, 1);
-
