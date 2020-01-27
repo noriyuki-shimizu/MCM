@@ -40,12 +40,8 @@ public class ClothesListMappingPresenter implements IClothesListMappingPresenter
 
                     return ClothesResponseModel.of(
                             c.getId(),
-                            c.getImage() != null
-                                    ? c.getImage().getId()
-                                    : null,
-                            c.getImage() != null
-                                    ? c.getImage().getPath()
-                                    : null,
+                            c.getImage().getId(),
+                            c.getImage().getPath(),
                             brandModel,
                             shopModel,
                             genreModels,
