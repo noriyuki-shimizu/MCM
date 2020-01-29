@@ -28,7 +28,7 @@ public class GenreDeleteInteractor implements IGenreDeleteUsecase {
     public void delete(Long id) {
         List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
-                        .where(ClothesSpecification.genreIdEqual(id))
+                        .where(ClothesSpecification.hasGenres(id))
         );
         if(clothes.size() > 0) {
             String errorMessage = "The brand cannot be deleted because it is used by other data.";

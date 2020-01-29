@@ -1,10 +1,14 @@
 package source.domain.repository.db.specification;
 
 import org.springframework.data.jpa.domain.Specification;
-import source.domain.entity.Brands;
 import source.domain.entity.Clothes;
+import source.domain.entity.Genres;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
+import java.util.Collection;
 import java.util.Date;
 
 public class ClothesSpecification {
@@ -21,9 +25,16 @@ public class ClothesSpecification {
         };
     }
 
-    public static Specification<Clothes> genreIdEqual(final Long genreId) {
-        return genreId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.join("genre", JoinType.INNER).get("id"), genreId);
+    public static Specification<Clothes> hasGenres(final Long genreId) {
+        return (root, query, cb) -> {
+            query.distinct(true);
+            Root<Clothes> clothes = root;
+            Subquery<Genres> genreSubquery = query.subquery(Genres.class);
+            Root<Genres> genre = genreSubquery.from(Genres.class);
+            Expression<Collection<Clothes>> genreClothes = genre.get("clothes");
+            genreSubquery.select(genre);
+            genreSubquery.where(cb.equal(genre.get("id"), genreId), cb.isMember(clothes, genreClothes));
+            return cb.exists(genreSubquery);
         };
     }
 

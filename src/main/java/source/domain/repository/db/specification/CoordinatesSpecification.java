@@ -4,7 +4,10 @@ import org.springframework.data.jpa.domain.Specification;
 import source.domain.entity.Clothes;
 import source.domain.entity.Coordinates;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
+import java.util.Collection;
 
 public class CoordinatesSpecification {
     public static Specification<Coordinates> userIdEqual(final Long userId) {
@@ -25,12 +28,16 @@ public class CoordinatesSpecification {
         };
     }
 
-    public static Specification<Coordinates> hasOwnerName(final Long clothingId) {
+    public static Specification<Coordinates> hasClothes(final Long clothingId) {
         return (root, query, cb) -> {
             query.distinct(true);
             Root<Coordinates> coordinate = root;
-            Root<Clothes> clothes = query.from(Clothes.class);
-            return cb.and(cb.equal(clothes.get("id"), clothingId));
+            Subquery<Clothes> clothesSubquery = query.subquery(Clothes.class);
+            Root<Clothes> clothes = clothesSubquery.from(Clothes.class);
+            Expression<Collection<Coordinates>> clothesCoordinate = clothes.get("coordinates");
+            clothesSubquery.select(clothes);
+            clothesSubquery.where(cb.equal(clothes.get("id"), clothingId), cb.isMember(coordinate, clothesCoordinate));
+            return cb.exists(clothesSubquery);
         };
     }
 }

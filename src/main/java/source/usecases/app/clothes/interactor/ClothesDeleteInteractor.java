@@ -34,7 +34,7 @@ public class ClothesDeleteInteractor implements IClothesDeleteUsecase {
     public ClothesResponseViewModel delete(Long id) {
         List<Coordinates> coordinates = this.coordinatesRepository.findAll(
                 Specifications
-                        .where(CoordinatesSpecification.hasOwnerName(id))
+                        .where(CoordinatesSpecification.hasClothes(id))
         );
         if(coordinates.size() > 0) {
             String errorMessage = "The clothes cannot be deleted because it is used by other data.";
