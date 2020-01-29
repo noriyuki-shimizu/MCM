@@ -8,19 +8,21 @@ public class BuyDate {
 
     // sql.Date -> String
     public static String toString(Date date) {
-        if (Optional.ofNullable(date).isPresent()) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(("yyyy-MM-dd"));
-            return dateFormat.format(date);
-        }
-        return "";
+        return Optional
+                .ofNullable(date)
+                .map(d -> {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    return dateFormat.format(d);
+                })
+                .orElse("");
     }
 
     // LocalDate -> sql.Date
     public static Date toSqlDate(String date) {
-        if (Optional.ofNullable(date).isPresent()) {
-            return Date.valueOf(date);
-        }
-        return null;
+        return Optional
+                .ofNullable(date)
+                .map(Date::valueOf)
+                .orElse(null);
     }
 
 }
