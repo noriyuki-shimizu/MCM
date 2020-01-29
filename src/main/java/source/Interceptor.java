@@ -17,6 +17,7 @@ import source.domain.repository.db.UsersRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 public class Interceptor implements HandlerInterceptor {
 
@@ -34,23 +35,27 @@ public class Interceptor implements HandlerInterceptor {
 
         HandlerMethod hm = (HandlerMethod) handler;
         Method method = hm.getMethod();
-        NonAuth annotation = AnnotationUtils.findAnnotation(method, NonAuth.class);
-        if (annotation != null) {
+        Optional<NonAuth> annotation = Optional.ofNullable(
+                AnnotationUtils.findAnnotation(method, NonAuth.class)
+        );
+        if (annotation.isPresent()) {
             return true;
         }
 
         AnalysisRequestHeader analysisRequestHeader = AnalysisRequestHeader.of(request);
-        Long userId = analysisRequestHeader.getUserId();
-        String token = analysisRequestHeader.getToken();
-        if (userId == null || token == null) {
+        Optional<Long> userId = Optional.ofNullable(analysisRequestHeader.getUserId());
+        Optional<String> token = Optional.ofNullable(analysisRequestHeader.getToken());
+        if (!userId.isPresent() || !token.isPresent()) {
             response.sendError(403, "Invalid access token.");
             return false;
         }
 
         try {
-            FirebaseToken decodedToken = this.firebase.getDecodedToken(token);
-            Users users = this.usersRepository.findByIdAndUid(userId, decodedToken.getUid());
-            if (users == null) {
+            FirebaseToken decodedToken = this.firebase.getDecodedToken(token.get());
+            Optional<Users> users = Optional.ofNullable(
+                    this.usersRepository.findByIdAndUid(userId.get(), decodedToken.getUid())
+            );
+            if (!users.isPresent()) {
                 response.sendError(401, "Requested user does not exist.");
                 return false;
             }

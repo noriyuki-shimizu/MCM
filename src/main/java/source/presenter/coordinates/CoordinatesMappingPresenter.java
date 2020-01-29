@@ -2,6 +2,7 @@ package source.presenter.coordinates;
 
 import org.springframework.stereotype.Component;
 import source.domain.entity.Coordinates;
+import source.domain.entity.Images;
 import source.usecases.converter.BuyDate;
 import source.usecases.dto.response.clothes.ClothesAssistResponseModel;
 import source.usecases.dto.response.coordinates.CoordinateResponseModel;
@@ -9,6 +10,7 @@ import source.usecases.dto.response.coordinates.CoordinateResponseViewModels;
 import source.usecases.dto.response.genre.ClothesGenreResponseModel;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,12 +43,14 @@ public class CoordinatesMappingPresenter implements ICoordinatesMappingPresenter
                     return CoordinateResponseModel.of(
                             coordinate.getId(),
                             coordinate.getSeason(),
-                            coordinate.getImage() != null
-                                    ? coordinate.getImage().getId()
-                                    : null,
-                            coordinate.getImage() != null
-                                    ? coordinate.getImage().getPath()
-                                    : null,
+                            Optional
+                                    .ofNullable(coordinate.getImage())
+                                    .map(Images::getId)
+                                    .orElse(null),
+                            Optional
+                                    .ofNullable(coordinate.getImage())
+                                    .map(Images::getPath)
+                                    .orElse(null),
                             usedCoordinates
                     );
                 })

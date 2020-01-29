@@ -36,7 +36,7 @@ public class BrandDeleteInteractor implements IBrandDeleteUsecase {
                 Specifications
                     .where(ClothesSpecification.brandIdContains(id))
         );
-        if(clothes != null && clothes.size() > 0) {
+        if(clothes.size() > 0) {
             String errorMessage = "The brand cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);

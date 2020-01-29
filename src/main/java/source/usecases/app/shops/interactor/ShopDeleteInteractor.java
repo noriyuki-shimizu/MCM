@@ -29,6 +29,7 @@ public class ShopDeleteInteractor implements IShopDeleteUsecase {
 
     @Autowired
     private IShopMappingPresenter presenter;
+    private List<Clothes> clothes;
 
     @Override
     public ShopResponseViewModel delete(Long id) {
@@ -36,7 +37,7 @@ public class ShopDeleteInteractor implements IShopDeleteUsecase {
                 Specifications
                         .where(ClothesSpecification.shopIdEqual(id))
         );
-        if(clothes != null && clothes.size() > 0) {
+        if(clothes.size() > 0) {
             String errorMessage = "The shop cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);

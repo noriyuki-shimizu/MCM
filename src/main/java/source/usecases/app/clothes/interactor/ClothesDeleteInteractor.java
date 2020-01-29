@@ -36,7 +36,7 @@ public class ClothesDeleteInteractor implements IClothesDeleteUsecase {
                 Specifications
                         .where(CoordinatesSpecification.hasOwnerName(id))
         );
-        if(coordinates != null && coordinates.size() > 0) {
+        if(coordinates.size() > 0) {
             String errorMessage = "The clothes cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);

@@ -7,6 +7,7 @@ import source.domain.repository.db.ImagesRepository;
 import source.usecases.app.images.IImageSaveUsecase;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Transactional
 @Component
@@ -17,7 +18,7 @@ public class ImageSaveInteractor implements IImageSaveUsecase {
 
     @Override
     public Images save(Long id, String path) {
-        if (id != null) {
+        if (Optional.ofNullable(id).isPresent()) {
             return this.repository.save(
                     Images.builder()
                         .id(id)
@@ -25,7 +26,7 @@ public class ImageSaveInteractor implements IImageSaveUsecase {
                         .build()
             );
         }
-        if (path != null) {
+        if (Optional.ofNullable(path).isPresent()) {
             return this.repository.save(
                     Images.builder()
                         .path(path)
