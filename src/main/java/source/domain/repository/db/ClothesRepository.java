@@ -10,7 +10,7 @@ import source.domain.entity.Clothes;
 import java.util.Set;
 
 @Repository
-public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpecificationExecutor {
+public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpecificationExecutor<Clothes> {
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
     public int sumPrice(@Param("user_id") Long userId);
 

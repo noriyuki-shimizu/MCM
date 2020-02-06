@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import source.domain.entity.Coordinates;
 
 @Repository
-public interface CoordinatesRepository extends JpaRepository<Coordinates, Long>, JpaSpecificationExecutor {
+public interface CoordinatesRepository extends JpaRepository<Coordinates, Long>, JpaSpecificationExecutor<Coordinates> {
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import source.domain.entity.Brands;
 
 @Repository
-public interface BrandsRepository extends JpaRepository<Brands, Long>, JpaSpecificationExecutor {
+public interface BrandsRepository extends JpaRepository<Brands, Long>, JpaSpecificationExecutor<Brands> {
     @Query(value = "UPDATE brands SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
     public Brands deleteById(@Param("id") Long id);
 
