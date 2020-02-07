@@ -6,7 +6,7 @@ import source.usecases.converter.BuyDate;
 import source.usecases.dto.response.brands.BrandAssistResponseModel;
 import source.usecases.dto.response.clothes.ClothesResponseModel;
 import source.usecases.dto.response.clothes.ClothesResponseViewModels;
-import source.usecases.dto.response.genre.GenreAssistResponseModel;
+import source.usecases.dto.response.genre.GenreKeyValueResponseModel;
 import source.usecases.dto.response.shops.ShopAssistResponseModel;
 
 import java.util.List;
@@ -28,10 +28,10 @@ public class ClothesListMappingPresenter implements IClothesListMappingPresenter
                             c.getShop().getId(),
                             c.getShop().getName()
                     );
-                    Set<GenreAssistResponseModel> genreModels = c
+                    Set<GenreKeyValueResponseModel> genreModels = c
                             .getGenres()
                             .stream()
-                            .map(genre -> GenreAssistResponseModel.of(
+                            .map(genre -> GenreKeyValueResponseModel.of(
                                     genre.getId(),
                                     genre.getName(),
                                     genre.getColor()

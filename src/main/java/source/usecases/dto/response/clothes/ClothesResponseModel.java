@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Value;
 import source.usecases.dto.response.brands.BrandAssistResponseModel;
-import source.usecases.dto.response.genre.GenreAssistResponseModel;
+import source.usecases.dto.response.genre.GenreKeyValueResponseModel;
 import source.usecases.dto.response.shops.ShopAssistResponseModel;
 
 import java.math.BigDecimal;
@@ -23,7 +23,7 @@ public class ClothesResponseModel {
 
     private ShopAssistResponseModel shop;
 
-    private Set<GenreAssistResponseModel> genres;
+    private Set<GenreKeyValueResponseModel> genres;
 
     private Integer price;
 

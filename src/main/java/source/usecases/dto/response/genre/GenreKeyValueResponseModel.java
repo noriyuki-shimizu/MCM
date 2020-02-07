@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 @Data
-public class GenreAssistResponseModel {
+public class GenreKeyValueResponseModel {
     private Long id;
 
     private String name;

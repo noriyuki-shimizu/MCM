@@ -1,10 +1,10 @@
 package source.presenter.genre;
 
 import source.domain.entity.Genres;
-import source.usecases.dto.response.genre.GenreAssistResponseViewModels;
+import source.usecases.dto.response.genre.GenreKeyValueResponseViewModels;
 
 import java.util.List;
 
 public interface IGenreAssistsMappingPresenter {
-    public GenreAssistResponseViewModels mapping(List<Genres> genres);
+    public GenreKeyValueResponseViewModels mapping(List<Genres> genres);
 }

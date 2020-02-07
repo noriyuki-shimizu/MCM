@@ -5,6 +5,6 @@ import lombok.Value;
 import java.util.List;
 
 @Value(staticConstructor = "of")
-public class GenreAssistResponseViewModels {
-    private List<GenreAssistResponseModel> assistGenres;
+public class GenreKeyValueResponseViewModels {
+    private List<GenreKeyValueResponseModel> assistGenres;
 }

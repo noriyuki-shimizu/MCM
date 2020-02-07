@@ -4,27 +4,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
+import source.domain.GenreColor;
 import source.domain.entity.Clothes;
 import source.domain.entity.Genres;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.GenresRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
 import source.domain.repository.db.specification.GenreSpecification;
-import source.domain.GenreColor;
-import source.presenter.genre.IGenreAssistsMappingPresenter;
-import source.presenter.genre.IGenreMappingPresenter;
-import source.presenter.genre.IGenresMappingPresenter;
-import source.presenter.genre.ITotalPricePerGenrePresenter;
+import source.presenter.genre.*;
 import source.usecases.app.genres.IGenreCrudUsecase;
 import source.usecases.dto.request.genre.GenreCreateRequestModel;
 import source.usecases.dto.request.genre.GenreUpdateRequestModel;
-import source.usecases.dto.response.genre.GenreAssistResponseViewModels;
-import source.usecases.dto.response.genre.GenreResponseViewModel;
-import source.usecases.dto.response.genre.GenreResponseViewModels;
-import source.usecases.dto.response.genre.TotalPricePerGenreViewModels;
+import source.usecases.dto.response.genre.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @Transactional
@@ -48,14 +44,43 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
     @Autowired
     private ITotalPricePerGenrePresenter totalPricePerGenrePresenter;
 
+    @Autowired
+    private IGenreColorMappingPresenter genreColorMappingPresenter;
+
     @Override
-    public GenreAssistResponseViewModels acceptKeyValues(Long userId) {
+    public GenreKeyValueResponseViewModels acceptKeyValues(Long userId) {
         List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
 
         return this.genreAssistsMappingPresenter.mapping(genres);
+    }
+
+    @Override
+    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Long id) {
+        List<Genres> genres = this.repository.findAll(
+                Specifications
+                        .where(GenreSpecification.userIdEqual(userId))
+        );
+        List<String> selectedColors = Optional.ofNullable(id)
+                .map(i ->
+                        genres
+                            .stream()
+                            .filter(genre -> genre.getId() != i)
+                            .map(Genres::getColor)
+                            .collect(Collectors.toList())
+                )
+                .orElse(
+                        genres
+                                .stream()
+                                .map(Genres::getColor)
+                                .collect(Collectors.toList())
+                );
+
+        return this.genreColorMappingPresenter.mapping(
+                GenreColor.acceptCanSelectedColors(selectedColors)
+        );
     }
 
     @Override
