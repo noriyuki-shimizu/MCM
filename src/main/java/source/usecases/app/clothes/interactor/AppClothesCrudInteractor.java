@@ -27,7 +27,7 @@ import java.util.Set;
 @Component
 @Transactional
 @Slf4j
-public class ClothesCrudByPostgresInteractor implements IClothesCrudUsecase {
+public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     @Autowired
     private ClothesRepository repository;
 

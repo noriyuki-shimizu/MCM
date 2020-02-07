@@ -28,7 +28,7 @@ import java.util.List;
 @Component
 @Transactional
 @Slf4j
-public class BrandCrudByPostgresInteractor implements IBrandCrudUsecase {
+public class AppBrandCrudInteractor implements IBrandCrudUsecase {
     @Autowired
     private BrandsRepository repository;
 
