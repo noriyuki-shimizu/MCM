@@ -2,7 +2,6 @@ package source.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import source.domain.entity.Genres;
 
 import java.util.List;
 import java.util.stream.Collectors;
