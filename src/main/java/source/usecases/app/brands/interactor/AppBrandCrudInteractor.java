@@ -9,13 +9,13 @@ import source.domain.entity.Clothes;
 import source.domain.entity.Images;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
+import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.specification.BrandsSpecification;
 import source.domain.repository.db.specification.ClothesSpecification;
 import source.presenter.brand.IBrandAssistsMappingPresenter;
 import source.presenter.brand.IBrandMappingPresenter;
 import source.presenter.brand.IBrandsMappingPresenter;
 import source.usecases.app.brands.IBrandCrudUsecase;
-import source.usecases.app.images.IImageSaveUsecase;
 import source.usecases.dto.request.brands.BrandCreateRequestModel;
 import source.usecases.dto.request.brands.BrandUpdateRequestModel;
 import source.usecases.dto.response.brands.BrandAssistResponseViewModels;
@@ -24,6 +24,7 @@ import source.usecases.dto.response.brands.BrandResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -36,7 +37,7 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
     private ClothesRepository clothesRepository;
 
     @Autowired
-    private IImageSaveUsecase imageSaveUsecase;
+    private ImagesRepository imagesRepository;
 
     @Autowired
     private IBrandAssistsMappingPresenter brandAssistsMappingPresenter;
@@ -60,7 +61,9 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
 
     @Override
     public BrandResponseViewModel create(Long userId, BrandCreateRequestModel inputData) {
-        Images brandImages = this.imageSaveUsecase.save(null, inputData.getImageLink());
+        Images brandImages = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .orElse(null);
 
         Brands brand = Brands.builder()
                 .userId(userId)
@@ -109,10 +112,12 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
 
     @Override
     public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestModel inputData) {
-        Images brandImage = this.imageSaveUsecase.save(
-                inputData.getImageId(),
-                inputData.getImageLink()
-        );
+        Images brandImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> {
+                    Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
+                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                })
+                .orElse(null);
 
         Brands brand = Brands.builder()
                 .id(id)

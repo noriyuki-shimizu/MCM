@@ -12,7 +12,6 @@ import source.presenter.clothes.IClothesAssistsMappingPresenter;
 import source.presenter.clothes.IClothesListMappingPresenter;
 import source.presenter.clothes.IClothesMappingPresenter;
 import source.usecases.app.clothes.IClothesCrudUsecase;
-import source.usecases.app.images.IImageSaveUsecase;
 import source.usecases.converter.BuyDate;
 import source.usecases.dto.request.clothes.ClothesCreateRequestModel;
 import source.usecases.dto.request.clothes.ClothesUpdateRequestModel;
@@ -22,6 +21,7 @@ import source.usecases.dto.response.clothes.ClothesResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -32,7 +32,7 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     private ClothesRepository repository;
 
     @Autowired
-    private IImageSaveUsecase imageSaveUsecase;
+    private ImagesRepository imagesRepository;
 
     @Autowired
     private CoordinatesRepository coordinatesRepository;
@@ -67,7 +67,9 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
 
     @Override
     public ClothesResponseViewModel create(Long userId, ClothesCreateRequestModel inputData) {
-        Images clothesImage = this.imageSaveUsecase.save(null, inputData.getImageLink());
+        Images clothesImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .orElse(null);
 
         // TODO: JPA での闇の実装（もっと調査する必要あり）
         Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
@@ -78,19 +80,19 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
                 inputData.getGenreIds()
         );
 
-        Clothes clothes = Clothes.builder()
-                .userId(userId)
-                .image(clothesImage)
-                .genres(genres)
-                .brand(brand)
-                .shop(shop)
-                .price(inputData.getPrice())
-                .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
-                .comment(inputData.getComment())
-                .satisfaction(inputData.getSatisfaction())
-                .build();
-
-        Clothes result = this.repository.save(clothes);
+        Clothes result = this.repository.save(
+                Clothes.builder()
+                        .userId(userId)
+                        .image(clothesImage)
+                        .genres(genres)
+                        .brand(brand)
+                        .shop(shop)
+                        .price(inputData.getPrice())
+                        .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
+                        .comment(inputData.getComment())
+                        .satisfaction(inputData.getSatisfaction())
+                        .build()
+        );
 
         return this.clothesMappingPresenter.mapping(result);
     }
@@ -128,10 +130,12 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
 
     @Override
     public ClothesResponseViewModel update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
-        Images clothesImage = this.imageSaveUsecase.save(
-                inputData.getImageId(),
-                inputData.getImageLink()
-        );
+        Images clothesImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> {
+                    Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
+                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                })
+                .orElse(null);
 
         // TODO: JPA での闇の実装（もっと調査する必要あり）
         Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
@@ -142,20 +146,20 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
                 inputData.getGenreIds()
         );
 
-        Clothes clothes = Clothes.builder()
-                .id(id)
-                .userId(userId)
-                .image(clothesImage)
-                .genres(genres)
-                .brand(brand)
-                .shop(shop)
-                .price(inputData.getPrice())
-                .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
-                .comment(inputData.getComment())
-                .satisfaction(inputData.getSatisfaction())
-                .build();
-
-        Clothes result = this.repository.save(clothes);
+        Clothes result = this.repository.save(
+                Clothes.builder()
+                        .id(id)
+                        .userId(userId)
+                        .image(clothesImage)
+                        .genres(genres)
+                        .brand(brand)
+                        .shop(shop)
+                        .price(inputData.getPrice())
+                        .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
+                        .comment(inputData.getComment())
+                        .satisfaction(inputData.getSatisfaction())
+                        .build()
+        );
 
         return this.clothesMappingPresenter.mapping(result);
     }

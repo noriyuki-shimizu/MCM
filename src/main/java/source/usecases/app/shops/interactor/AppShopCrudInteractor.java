@@ -8,13 +8,13 @@ import source.domain.entity.Clothes;
 import source.domain.entity.Images;
 import source.domain.entity.Shops;
 import source.domain.repository.db.ClothesRepository;
+import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
 import source.domain.repository.db.specification.ShopsSpecification;
 import source.presenter.shop.IShopAssistsMappingPresenter;
 import source.presenter.shop.IShopMappingPresenter;
 import source.presenter.shop.IShopsMappingPresenter;
-import source.usecases.app.images.IImageSaveUsecase;
 import source.usecases.app.shops.IShopCrudUsecase;
 import source.usecases.dto.request.shops.ShopCreateRequestModel;
 import source.usecases.dto.request.shops.ShopUpdateRequestModel;
@@ -24,6 +24,7 @@ import source.usecases.dto.response.shops.ShopResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -36,7 +37,7 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
     private ClothesRepository clothesRepository;
 
     @Autowired
-    private IImageSaveUsecase imageSaveUsecase;
+    private ImagesRepository imagesRepository;
 
     @Autowired
     private IShopAssistsMappingPresenter shopAssistsMappingPresenter;
@@ -60,7 +61,9 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
 
     @Override
     public ShopResponseViewModel create(Long userId, ShopCreateRequestModel inputData) {
-        Images shopImage = this.imageSaveUsecase.save(null, inputData.getImageLink());
+        Images shopImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .orElse(null);
 
         Shops shop = Shops.builder()
                 .userId(userId)
@@ -106,10 +109,12 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
 
     @Override
     public ShopResponseViewModel update(Long userId, Long id, ShopUpdateRequestModel inputData) {
-        Images shopImage = this.imageSaveUsecase.save(
-                inputData.getImageId(),
-                inputData.getImageLink()
-        );
+        Images shopImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> {
+                    Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
+                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                })
+                .orElse(null);
 
         Shops shop = Shops.builder()
                 .id(id)

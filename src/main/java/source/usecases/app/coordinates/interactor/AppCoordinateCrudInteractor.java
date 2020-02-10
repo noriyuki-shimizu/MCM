@@ -8,11 +8,11 @@ import source.domain.entity.Coordinates;
 import source.domain.entity.Images;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.CoordinatesRepository;
+import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.specification.CoordinatesSpecification;
 import source.presenter.coordinates.ICoordinateMappingPresenter;
 import source.presenter.coordinates.ICoordinatesMappingPresenter;
 import source.usecases.app.coordinates.ICoordinateCrudUsecase;
-import source.usecases.app.images.IImageSaveUsecase;
 import source.usecases.dto.request.coordinates.CoordinateCreateRequestModel;
 import source.usecases.dto.request.coordinates.CoordinateUpdateRequestModel;
 import source.usecases.dto.response.coordinates.CoordinateResponseViewModel;
@@ -20,6 +20,7 @@ import source.usecases.dto.response.coordinates.CoordinateResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -29,7 +30,7 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
     private CoordinatesRepository repository;
 
     @Autowired
-    private IImageSaveUsecase imageSaveUsecase;
+    private ImagesRepository imagesRepository;
 
     @Autowired
     private ClothesRepository clothesRepository;
@@ -41,14 +42,16 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
     private ICoordinatesMappingPresenter coordinatesMappingPresenter;
 
     @Override
-    public CoordinateResponseViewModel create(Long userId, CoordinateCreateRequestModel requestData) {
-        Images coordinateImage = this.imageSaveUsecase.save(null, requestData.getImageLink());
+    public CoordinateResponseViewModel create(Long userId, CoordinateCreateRequestModel inputData) {
+        Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .orElse(null);
 
-        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(requestData.getClothingIds());
+        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
 
         Coordinates coordinates = Coordinates.builder()
                 .userId(userId)
-                .season(requestData.getSeason())
+                .season(inputData.getSeason())
                 .image(coordinateImage)
                 .usedCoordinates(usedCoordinates)
                 .build();
@@ -77,15 +80,20 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
-    public CoordinateResponseViewModel update(Long userId, Long id, CoordinateUpdateRequestModel requestData) {
-        Images coordinateImage = this.imageSaveUsecase.save(requestData.getImageId(), requestData.getImageLink());
+    public CoordinateResponseViewModel update(Long userId, Long id, CoordinateUpdateRequestModel inputData) {
+        Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
+                .map(path -> {
+                    Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
+                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                })
+                .orElse(null);
 
-        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(requestData.getClothingIds());
+        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
 
         Coordinates coordinates = Coordinates.builder()
                 .id(id)
                 .userId(userId)
-                .season(requestData.getSeason())
+                .season(inputData.getSeason())
                 .image(coordinateImage)
                 .usedCoordinates(usedCoordinates)
                 .build();
