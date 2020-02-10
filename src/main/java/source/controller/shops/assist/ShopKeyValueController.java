@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.app.shops.IShopAssistUsecase;
+import source.usecases.app.shops.IShopCrudUsecase;
 import source.usecases.dto.response.shops.ShopAssistResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor
 public class ShopKeyValueController extends ShopsController {
     @Autowired
-    private IShopAssistUsecase usecase;
+    private IShopCrudUsecase usecase;
 
     @GetMapping(value = "/keyValues")
     public ShopAssistResponseViewModels handle(@PathVariable("userId") Long userId) {
-        return this.usecase.assist(userId);
+        return this.usecase.acceptKeyValues(userId);
     }
 }
