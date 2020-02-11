@@ -108,6 +108,12 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
     }
 
     @Override
+    public ShopResponseViewModel searchById(Long id) {
+        Shops shop = this.repository.findOne(id);
+        return this.shopMappingPresenter.mapping(shop);
+    }
+
+    @Override
     public ShopResponseViewModel update(Long userId, Long id, ShopUpdateRequestModel inputData) {
         Images shopImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {

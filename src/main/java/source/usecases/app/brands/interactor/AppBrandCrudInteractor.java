@@ -111,6 +111,13 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
     }
 
     @Override
+    public BrandResponseViewModel searchById(Long id) {
+        Brands brand = this.repository.findOne(id);
+
+        return this.brandMappingPresenter.mapping(brand);
+    }
+
+    @Override
     public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestModel inputData) {
         Images brandImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {

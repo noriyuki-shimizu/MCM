@@ -80,6 +80,12 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
+    public CoordinateResponseViewModel searchById(Long id) {
+        Coordinates coordinate = this.repository.findOne(id);
+        return this.coordinateMappingPresenter.mapping(coordinate);
+    }
+
+    @Override
     public CoordinateResponseViewModel update(Long userId, Long id, CoordinateUpdateRequestModel inputData) {
         Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {

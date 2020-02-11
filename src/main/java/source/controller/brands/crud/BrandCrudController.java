@@ -36,6 +36,11 @@ public class BrandCrudController extends BrandsController {
         return this.usecase.search(userId);
     }
 
+    @GetMapping(value = "/{id}")
+    public BrandResponseViewModel handleSearchById(@PathVariable("id") Long id) {
+        return this.usecase.searchById(id);
+    }
+
     @PutMapping(value = "/{id}")
     public BrandResponseViewModel handleUpdate(
             @PathVariable("userId") Long userId,

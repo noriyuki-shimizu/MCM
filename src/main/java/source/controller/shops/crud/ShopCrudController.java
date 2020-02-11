@@ -17,7 +17,7 @@ public class ShopCrudController extends ShopsController {
     private IShopCrudUsecase usecase;
 
     @PostMapping()
-    public ShopResponseViewModel createHandle(
+    public ShopResponseViewModel handleCreate(
             @PathVariable("userId") Long userId,
             @RequestBody ShopCreateRequestModel requestData
     ) {
@@ -25,22 +25,27 @@ public class ShopCrudController extends ShopsController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ShopResponseViewModel deleteHandle(@PathVariable("id") Long id) {
+    public ShopResponseViewModel handleDelete(@PathVariable("id") Long id) {
         return this.usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
-    public ShopResponseViewModel restorationHandle(@PathVariable("id") Long id) {
+    public ShopResponseViewModel handleRestoration(@PathVariable("id") Long id) {
         return this.usecase.restoration(id);
     }
 
     @GetMapping()
-    public ShopResponseViewModels searchHandle(@PathVariable("userId") Long userId) {
+    public ShopResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
 
+    @GetMapping(value = "/{id}")
+    public ShopResponseViewModel handleSearchById(@PathVariable("id") Long id) {
+        return this.usecase.searchById(id);
+    }
+
     @PutMapping(value = "/{id}")
-    public ShopResponseViewModel updateHandle(
+    public ShopResponseViewModel handleUpdate(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody ShopUpdateRequestModel requestData

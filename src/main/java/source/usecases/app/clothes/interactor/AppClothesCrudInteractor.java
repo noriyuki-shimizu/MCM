@@ -129,6 +129,12 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
+    public ClothesResponseViewModel searchById(Long id) {
+        Clothes clothes = this.repository.findOne(id);
+        return this.clothesMappingPresenter.mapping(clothes);
+    }
+
+    @Override
     public ClothesResponseViewModel update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
         Images clothesImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {

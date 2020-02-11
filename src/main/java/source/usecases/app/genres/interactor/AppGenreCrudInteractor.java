@@ -67,7 +67,7 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
                 .map(i ->
                         genres
                             .stream()
-                            .filter(genre -> genre.getId() != i)
+                            .filter(genre -> !genre.getId().equals(i))
                             .map(Genres::getColor)
                             .collect(Collectors.toList())
                 )
@@ -123,6 +123,12 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
         );
 
         return this.genresMappingPresenter.mapping(genres);
+    }
+
+    @Override
+    public GenreResponseViewModel searchById(Long id) {
+        Genres genre = this.repository.findOne(id);
+        return this.genreMappingPresenter.mapping(genre);
     }
 
     @Override

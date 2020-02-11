@@ -18,7 +18,7 @@ public class GenreCrudController extends GenresController {
     private IGenreCrudUsecase usecase;
 
     @PostMapping
-    public GenreResponseViewModel createHandle(
+    public GenreResponseViewModel handleCreate(
             @PathVariable("userId") Long userId,
             @RequestBody GenreCreateRequestModel requestData
     ) {
@@ -26,17 +26,22 @@ public class GenreCrudController extends GenresController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteHandle(@PathVariable("id") Long id) {
+    public void handleDelete(@PathVariable("id") Long id) {
         this.usecase.delete(id);
     }
 
     @GetMapping
-    public GenreResponseViewModels SearchHandle(@PathVariable("userId") Long userId) {
+    public GenreResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
 
+    @GetMapping(value = "/{id}")
+    public GenreResponseViewModel handleSearchById(@PathVariable("id") Long id) {
+        return this.usecase.searchById(id);
+    }
+
     @PutMapping(value = "/{id}")
-    public GenreResponseViewModel updateHandle(
+    public GenreResponseViewModel handleUpdate(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody GenreUpdateRequestModel requestData
@@ -45,7 +50,7 @@ public class GenreCrudController extends GenresController {
     }
 
     @GetMapping("/clothes/total-price")
-    public TotalPricePerGenreViewModels totalPricePerGenreHandle(@PathVariable("userId") Long userId) {
+    public TotalPricePerGenreViewModels handleTotalPricePerGenre(@PathVariable("userId") Long userId) {
         return this.usecase.acceptTotalPricePerGenre(userId);
     }
 }

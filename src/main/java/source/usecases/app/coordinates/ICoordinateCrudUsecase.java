@@ -34,6 +34,14 @@ public interface ICoordinateCrudUsecase {
     public CoordinateResponseViewModels search(Long userId);
 
     /**
+     * 1件検索を行います.
+     *
+     * @param id primary key
+     * @return 画面描画するための DTO
+     */
+    public CoordinateResponseViewModel searchById(Long id);
+
+    /**
      * 更新を行います.
      *
      * @param userId ユーザID

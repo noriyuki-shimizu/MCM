@@ -44,6 +44,14 @@ public interface IShopCrudUsecase {
     public ShopResponseViewModels search(Long userId);
 
     /**
+     * 1件検索を行います.
+     *
+     * @param id primary key
+     * @return 画面描画するための DTO
+     */
+    public ShopResponseViewModel searchById(Long id);
+
+    /**
      * 更新を行います.
      *
      * @param userId ユーザID

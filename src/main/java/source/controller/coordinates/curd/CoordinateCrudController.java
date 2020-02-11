@@ -17,22 +17,27 @@ public class CoordinateCrudController extends CoordinatesController {
     private ICoordinateCrudUsecase usecase;
 
     @PostMapping()
-    public CoordinateResponseViewModel createHandler(@PathVariable("userId") Long userId, @RequestBody CoordinateCreateRequestModel inputData) {
+    public CoordinateResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody CoordinateCreateRequestModel inputData) {
         return this.usecase.create(userId, inputData);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void handle(@PathVariable("id") Long id) {
+    public void handleDelete(@PathVariable("id") Long id) {
         this.usecase.delete(id);
     }
 
     @GetMapping()
-    public CoordinateResponseViewModels search(@PathVariable("userId") Long userId) {
+    public CoordinateResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
 
+    @GetMapping(value = "/{id}")
+    public CoordinateResponseViewModel handleSearchById(@PathVariable("id") Long id) {
+        return this.usecase.searchById(id);
+    }
+
     @PutMapping("/{id}")
-    public CoordinateResponseViewModel updateHandler(
+    public CoordinateResponseViewModel handleUpdate(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody CoordinateUpdateRequestModel inputData

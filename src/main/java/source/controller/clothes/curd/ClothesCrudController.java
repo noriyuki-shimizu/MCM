@@ -17,27 +17,32 @@ public class ClothesCrudController extends ClothesController {
     private IClothesCrudUsecase usecase;
 
     @PostMapping()
-    public ClothesResponseViewModel createHandler(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) {
+    public ClothesResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) {
         return this.usecase.create(userId, inputData);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ClothesResponseViewModel deleteHandler(@PathVariable("id") Long id) {
+    public ClothesResponseViewModel handleDelete(@PathVariable("id") Long id) {
         return this.usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
-    public ClothesResponseViewModel handle(@PathVariable("id") Long id) {
+    public ClothesResponseViewModel handleRestoration(@PathVariable("id") Long id) {
         return this.usecase.restoration(id);
     }
 
     @GetMapping()
-    public ClothesResponseViewModels search(@PathVariable("userId") Long userId) {
+    public ClothesResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
 
-    @PutMapping("/{id}")
-    public ClothesResponseViewModel updateHandler(
+    @GetMapping(value = "/{id}")
+    public ClothesResponseViewModel handleSearchById(@PathVariable("id") Long id) {
+        return this.usecase.searchById(id);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ClothesResponseViewModel handleUpdate(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody ClothesUpdateRequestModel inputData
