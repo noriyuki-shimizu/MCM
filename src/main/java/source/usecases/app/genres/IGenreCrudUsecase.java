@@ -4,6 +4,8 @@ import source.usecases.dto.request.genre.GenreCreateRequestModel;
 import source.usecases.dto.request.genre.GenreUpdateRequestModel;
 import source.usecases.dto.response.genre.*;
 
+import java.util.Optional;
+
 /**
  * ジャンルの DB 操作を行うユースケースです.
  */
@@ -26,7 +28,7 @@ public interface IGenreCrudUsecase {
      * @param id primary key
      * @return プルダウン + 画面描画のための DTO
      */
-    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Long id);
+    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Optional<Long> id);
 
     /**
      * 新規作成を行います.

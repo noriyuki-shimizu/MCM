@@ -58,12 +58,12 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Long id) {
+    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Optional<Long> id) {
         List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
-        List<String> selectedColors = Optional.ofNullable(id)
+        List<String> selectedColors = id
                 .map(i ->
                         genres
                             .stream()

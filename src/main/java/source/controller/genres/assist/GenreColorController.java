@@ -10,6 +10,8 @@ import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreCrudUsecase;
 import source.usecases.dto.response.genre.GenreColorResponseViewModels;
 
+import java.util.Optional;
+
 @RestController
 @RequiredArgsConstructor
 public class GenreColorController extends GenresController {
@@ -17,7 +19,7 @@ public class GenreColorController extends GenresController {
     private IGenreCrudUsecase usecase;
 
     @GetMapping(value = "/colors")
-    public GenreColorResponseViewModels handle(@PathVariable("userId") Long userId, @RequestParam("id") Long id) {
+    public GenreColorResponseViewModels handle(@PathVariable("userId") Long userId, @RequestParam("id") Optional<Long> id) {
         return this.usecase.acceptCanSelectedColors(userId, id);
     }
 }
