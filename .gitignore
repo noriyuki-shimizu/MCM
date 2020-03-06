@@ -26,3 +26,6 @@ bin
 # OS
 Thumbs.db
 .DS_Store
+
+# firebase
+src/main/resources/path
