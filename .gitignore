@@ -29,3 +29,6 @@ Thumbs.db
 
 # firebase
 src/main/resources/path
+
+# prod
+src/main/resources/application-prod.yml
