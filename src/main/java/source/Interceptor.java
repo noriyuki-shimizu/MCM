@@ -1,6 +1,5 @@
 package source;
 
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -11,8 +10,8 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
 import source.domain.auth.AnalysisRequestHeader;
 import source.domain.entity.Users;
-import source.infrastructure.firebase.Firebase;
 import source.domain.repository.db.UsersRepository;
+import source.infrastructure.firebase.Firebase;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,17 +49,17 @@ public class Interceptor implements HandlerInterceptor {
             return false;
         }
 
-        try {
-            FirebaseToken decodedToken = this.firebase.getDecodedToken(token.get());
-            Optional<Users> users = Optional.ofNullable(
-                    this.usersRepository.findByIdAndUid(userId.get(), decodedToken.getUid())
-            );
-            if (!users.isPresent()) {
-                response.sendError(401, "Requested user does not exist.");
-                return false;
-            }
-        } catch(FirebaseAuthException fae) {
+        Optional<FirebaseToken> decodedTokenOpt = this.firebase.getDecodedToken(token.get());
+        if (!decodedTokenOpt.isPresent()) {
             response.sendError(403, "Request token is invalid or expired.");
+            return false;
+        }
+        FirebaseToken decodedToken = decodedTokenOpt.get();
+        Optional<Users> users = Optional.ofNullable(
+                this.usersRepository.findByIdAndUid(userId.get(), decodedToken.getUid())
+        );
+        if (!users.isPresent()) {
+            response.sendError(401, "Requested user does not exist.");
             return false;
         }
 
@@ -68,12 +67,8 @@ public class Interceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-    }
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {}
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
-    }
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {}
 }

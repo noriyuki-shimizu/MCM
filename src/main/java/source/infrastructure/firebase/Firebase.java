@@ -13,6 +13,7 @@ import source.domain.util.FirebaseEnv;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 public class Firebase {
@@ -50,11 +51,16 @@ public class Firebase {
     /**
      * 引数のトークン情報から、UIDを取得します.
      *
-     * @return
+     * @return Optional<FirebaseToken>
      */
-    public FirebaseToken getDecodedToken(String token) throws FirebaseAuthException {
-        // idToken comes from the client app (shown above)
-        return FirebaseAuth.getInstance(this.app).verifyIdToken(token);
+    public Optional<FirebaseToken> getDecodedToken(String token) {
+        try {
+            // idToken comes from the client app (shown above)
+            return Optional.ofNullable(FirebaseAuth.getInstance(this.app).verifyIdToken(token));
+        } catch (FirebaseAuthException fae) {
+            fae.printStackTrace();
+        }
+        return Optional.empty();
     }
 
 }
