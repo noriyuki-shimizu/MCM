@@ -72,7 +72,7 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     // firebase
-    implementation 'com.google.firebase:firebase-admin:6.8.0'
+    compile 'com.google.firebase:firebase-admin:6.8.0'
 
     // flyway
     compile group: 'org.flywaydb', name: 'flyway-core'
