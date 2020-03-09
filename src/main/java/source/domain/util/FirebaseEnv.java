@@ -15,6 +15,8 @@ import java.net.URL;
 @Data
 public class FirebaseEnv {
 
+    private String webUrl;
+
     private String apiName;
 
     private String serviceAccount;
