@@ -24,16 +24,16 @@ public class Users extends TimestampEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id = 0L;
+    private Long id;
 
     @Column(name = "uid")
     @NotNull
-    private String uid = "";
+    private String uid;
 
     @Column(name = "name")
-    private String name = "";
+    private String name;
 
     @Column(name = "e_mail")
     @NotNull
-    private String eMail = "";
+    private String eMail;
 }
