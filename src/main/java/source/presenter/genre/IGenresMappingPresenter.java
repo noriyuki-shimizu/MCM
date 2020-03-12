@@ -6,5 +6,5 @@ import source.controller.genres.crud.response.GenreResponseViewModels;
 import java.util.List;
 
 public interface IGenresMappingPresenter {
-    public GenreResponseViewModels mapping(List<Genres> genres);
+    GenreResponseViewModels mapping(List<Genres> genres);
 }

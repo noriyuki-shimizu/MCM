@@ -6,5 +6,5 @@ import source.controller.clothes.curd.response.ClothesResponseViewModels;
 import java.util.List;
 
 public interface IClothesListMappingPresenter {
-    public ClothesResponseViewModels mapping(List<Clothes> clothes);
+    ClothesResponseViewModels mapping(List<Clothes> clothes);
 }

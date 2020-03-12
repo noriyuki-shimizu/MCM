@@ -6,5 +6,5 @@ import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 import java.util.List;
 
 public interface ITotalPricePerGenrePresenter {
-    public TotalPricePerGenreViewModels mapping(List<Genres> genres);
+    TotalPricePerGenreViewModels mapping(List<Genres> genres);
 }

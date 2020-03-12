@@ -6,5 +6,5 @@ import source.controller.shops.crud.response.ShopResponseViewModels;
 import java.util.List;
 
 public interface IShopsMappingPresenter {
-    public ShopResponseViewModels mapping(List<Shops> shops);
+    ShopResponseViewModels mapping(List<Shops> shops);
 }

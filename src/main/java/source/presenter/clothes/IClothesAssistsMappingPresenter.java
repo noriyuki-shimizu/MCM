@@ -6,5 +6,5 @@ import source.controller.clothes.assist.response.ClothesAssistResponseViewModels
 import java.util.List;
 
 public interface IClothesAssistsMappingPresenter {
-    public ClothesAssistResponseViewModels mapping(List<Clothes> clothes);
+    ClothesAssistResponseViewModels mapping(List<Clothes> clothes);
 }

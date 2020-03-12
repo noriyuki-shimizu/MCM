@@ -6,5 +6,5 @@ import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
 import java.util.List;
 
 public interface ICoordinatesMappingPresenter {
-    public CoordinateResponseViewModels mapping(List<Coordinates> clothes);
+    CoordinateResponseViewModels mapping(List<Coordinates> clothes);
 }

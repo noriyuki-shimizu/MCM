@@ -6,5 +6,5 @@ import source.controller.genres.assist.response.GenreKeyValueResponseViewModels;
 import java.util.List;
 
 public interface IGenreAssistsMappingPresenter {
-    public GenreKeyValueResponseViewModels mapping(List<Genres> genres);
+    GenreKeyValueResponseViewModels mapping(List<Genres> genres);
 }

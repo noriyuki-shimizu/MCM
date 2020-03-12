@@ -5,5 +5,5 @@ import source.controller.genres.assist.response.GenreColorResponseViewModels;
 import java.util.List;
 
 public interface IGenreColorMappingPresenter {
-    public GenreColorResponseViewModels mapping(List<String> canSelectedColors);
+    GenreColorResponseViewModels mapping(List<String> canSelectedColors);
 }
