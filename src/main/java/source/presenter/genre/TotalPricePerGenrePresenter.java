@@ -7,6 +7,7 @@ import source.controller.genres.crud.response.TotalPricePerGenreModel;
 import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -17,17 +18,16 @@ public class TotalPricePerGenrePresenter implements ITotalPricePerGenrePresenter
                 .stream()
                 .filter(genre -> !genre.getClothes().isEmpty())
                 .map(genre -> {
-                    Integer pricePerGenre = genre
+                    Optional<Integer> pricePerGenreOpt = genre
                             .getClothes()
                             .stream()
                             .map(Clothes::getPrice)
-                            .reduce((accumulator, value) -> accumulator + value)
-                            .get();
+                            .reduce((accumulator, value) -> accumulator + value);
 
                     return  TotalPricePerGenreModel.of(
                                 genre.getName(),
                                 genre.getColor(),
-                                pricePerGenre
+                                pricePerGenreOpt.orElse(0)
                     );
                 })
                 .collect(Collectors.toList());
