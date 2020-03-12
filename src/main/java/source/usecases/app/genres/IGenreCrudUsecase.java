@@ -1,8 +1,12 @@
 package source.usecases.app.genres;
 
-import source.usecases.dto.request.genre.GenreCreateRequestModel;
-import source.usecases.dto.request.genre.GenreUpdateRequestModel;
-import source.usecases.dto.response.genre.*;
+import source.controller.genres.assist.response.GenreColorResponseViewModels;
+import source.controller.genres.assist.response.GenreKeyValueResponseViewModels;
+import source.controller.genres.crud.request.GenreCreateRequestModel;
+import source.controller.genres.crud.request.GenreUpdateRequestModel;
+import source.controller.genres.crud.response.GenreResponseViewModel;
+import source.controller.genres.crud.response.GenreResponseViewModels;
+import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 
 import java.util.Optional;
 

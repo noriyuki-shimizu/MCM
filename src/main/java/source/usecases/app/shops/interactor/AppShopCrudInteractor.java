@@ -16,11 +16,11 @@ import source.presenter.shop.IShopAssistsMappingPresenter;
 import source.presenter.shop.IShopMappingPresenter;
 import source.presenter.shop.IShopsMappingPresenter;
 import source.usecases.app.shops.IShopCrudUsecase;
-import source.usecases.dto.request.shops.ShopCreateRequestModel;
-import source.usecases.dto.request.shops.ShopUpdateRequestModel;
-import source.usecases.dto.response.shops.ShopAssistResponseViewModels;
-import source.usecases.dto.response.shops.ShopResponseViewModel;
-import source.usecases.dto.response.shops.ShopResponseViewModels;
+import source.controller.shops.crud.request.ShopCreateRequestModel;
+import source.controller.shops.crud.request.ShopUpdateRequestModel;
+import source.controller.shops.assist.response.ShopAssistResponseViewModels;
+import source.controller.shops.crud.response.ShopResponseViewModel;
+import source.controller.shops.crud.response.ShopResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;

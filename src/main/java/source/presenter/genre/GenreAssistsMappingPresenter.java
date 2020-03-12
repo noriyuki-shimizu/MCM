@@ -2,8 +2,8 @@ package source.presenter.genre;
 
 import org.springframework.stereotype.Component;
 import source.domain.entity.Genres;
-import source.usecases.dto.response.genre.GenreKeyValueResponseModel;
-import source.usecases.dto.response.genre.GenreKeyValueResponseViewModels;
+import source.controller.genres.assist.response.GenreKeyValueResponseModel;
+import source.controller.genres.assist.response.GenreKeyValueResponseViewModels;
 
 import java.util.List;
 import java.util.stream.Collectors;

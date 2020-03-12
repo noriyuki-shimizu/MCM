@@ -13,11 +13,11 @@ import source.presenter.clothes.IClothesListMappingPresenter;
 import source.presenter.clothes.IClothesMappingPresenter;
 import source.usecases.app.clothes.IClothesCrudUsecase;
 import source.usecases.converter.BuyDate;
-import source.usecases.dto.request.clothes.ClothesCreateRequestModel;
-import source.usecases.dto.request.clothes.ClothesUpdateRequestModel;
-import source.usecases.dto.response.clothes.ClothesAssistResponseViewModels;
-import source.usecases.dto.response.clothes.ClothesResponseViewModel;
-import source.usecases.dto.response.clothes.ClothesResponseViewModels;
+import source.controller.clothes.curd.request.ClothesCreateRequestModel;
+import source.controller.clothes.curd.request.ClothesUpdateRequestModel;
+import source.controller.clothes.assist.response.ClothesAssistResponseViewModels;
+import source.controller.clothes.curd.response.ClothesResponseViewModel;
+import source.controller.clothes.curd.response.ClothesResponseViewModels;
 
 import javax.transaction.Transactional;
 import java.util.List;

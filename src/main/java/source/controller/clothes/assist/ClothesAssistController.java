@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.clothes.ClothesController;
 import source.usecases.app.clothes.IClothesCrudUsecase;
-import source.usecases.dto.response.clothes.ClothesAssistResponseViewModels;
+import source.controller.clothes.assist.response.ClothesAssistResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor

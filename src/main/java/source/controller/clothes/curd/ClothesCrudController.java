@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.clothes.ClothesController;
 import source.usecases.app.clothes.IClothesCrudUsecase;
-import source.usecases.dto.request.clothes.ClothesCreateRequestModel;
-import source.usecases.dto.request.clothes.ClothesUpdateRequestModel;
-import source.usecases.dto.response.clothes.ClothesResponseViewModel;
-import source.usecases.dto.response.clothes.ClothesResponseViewModels;
+import source.controller.clothes.curd.request.ClothesCreateRequestModel;
+import source.controller.clothes.curd.request.ClothesUpdateRequestModel;
+import source.controller.clothes.curd.response.ClothesResponseViewModel;
+import source.controller.clothes.curd.response.ClothesResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor

@@ -2,8 +2,8 @@ package source.presenter.brand;
 
 import org.springframework.stereotype.Component;
 import source.domain.entity.Brands;
-import source.usecases.dto.response.brands.BrandAssistResponseModel;
-import source.usecases.dto.response.brands.BrandAssistResponseViewModels;
+import source.controller.brands.assist.response.BrandAssistResponseModel;
+import source.controller.brands.assist.response.BrandAssistResponseViewModels;
 
 import java.util.List;
 import java.util.stream.Collectors;

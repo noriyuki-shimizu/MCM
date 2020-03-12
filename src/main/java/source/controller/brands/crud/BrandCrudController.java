@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
 import source.usecases.app.brands.IBrandCrudUsecase;
-import source.usecases.dto.request.brands.BrandCreateRequestModel;
-import source.usecases.dto.request.brands.BrandUpdateRequestModel;
-import source.usecases.dto.response.brands.BrandResponseViewModel;
-import source.usecases.dto.response.brands.BrandResponseViewModels;
+import source.controller.brands.crud.request.BrandCreateRequestModel;
+import source.controller.brands.crud.request.BrandUpdateRequestModel;
+import source.controller.brands.crud.response.BrandResponseViewModel;
+import source.controller.brands.crud.response.BrandResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor

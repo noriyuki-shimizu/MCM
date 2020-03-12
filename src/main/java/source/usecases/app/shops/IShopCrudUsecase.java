@@ -1,10 +1,10 @@
 package source.usecases.app.shops;
 
-import source.usecases.dto.request.shops.ShopCreateRequestModel;
-import source.usecases.dto.request.shops.ShopUpdateRequestModel;
-import source.usecases.dto.response.shops.ShopAssistResponseViewModels;
-import source.usecases.dto.response.shops.ShopResponseViewModel;
-import source.usecases.dto.response.shops.ShopResponseViewModels;
+import source.controller.shops.crud.request.ShopCreateRequestModel;
+import source.controller.shops.crud.request.ShopUpdateRequestModel;
+import source.controller.shops.assist.response.ShopAssistResponseViewModels;
+import source.controller.shops.crud.response.ShopResponseViewModel;
+import source.controller.shops.crud.response.ShopResponseViewModels;
 
 /**
  * お店の DB 操作を行うユースケースです.

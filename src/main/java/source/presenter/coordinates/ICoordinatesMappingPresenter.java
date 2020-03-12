@@ -1,7 +1,7 @@
 package source.presenter.coordinates;
 
 import source.domain.entity.Coordinates;
-import source.usecases.dto.response.coordinates.CoordinateResponseViewModels;
+import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
 
 import java.util.List;
 

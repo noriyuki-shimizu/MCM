@@ -1,9 +1,9 @@
 package source.usecases.app.coordinates;
 
-import source.usecases.dto.request.coordinates.CoordinateCreateRequestModel;
-import source.usecases.dto.request.coordinates.CoordinateUpdateRequestModel;
-import source.usecases.dto.response.coordinates.CoordinateResponseViewModel;
-import source.usecases.dto.response.coordinates.CoordinateResponseViewModels;
+import source.controller.coordinates.curd.request.CoordinateCreateRequestModel;
+import source.controller.coordinates.curd.request.CoordinateUpdateRequestModel;
+import source.controller.coordinates.curd.response.CoordinateResponseViewModel;
+import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
 
 /**
  * コーディネートの DB 操作を行うユースケースです.

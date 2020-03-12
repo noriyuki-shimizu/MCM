@@ -3,9 +3,9 @@ package source.presenter.clothes;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
 import source.usecases.converter.BuyDate;
-import source.usecases.dto.response.clothes.ClothesAssistResponseModel;
-import source.usecases.dto.response.clothes.ClothesAssistResponseViewModels;
-import source.usecases.dto.response.genre.ClothesGenreResponseModel;
+import source.controller.clothes.assist.response.ClothesAssistResponseModel;
+import source.controller.clothes.assist.response.ClothesAssistResponseViewModels;
+import source.controller.clothes.assist.response.ClothesGenreResponseModel;
 
 import java.util.List;
 import java.util.Set;

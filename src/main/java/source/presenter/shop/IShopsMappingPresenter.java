@@ -1,7 +1,7 @@
 package source.presenter.shop;
 
 import source.domain.entity.Shops;
-import source.usecases.dto.response.shops.ShopResponseViewModels;
+import source.controller.shops.crud.response.ShopResponseViewModels;
 
 import java.util.List;
 

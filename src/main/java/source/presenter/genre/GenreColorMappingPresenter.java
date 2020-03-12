@@ -1,7 +1,7 @@
 package source.presenter.genre;
 
 import org.springframework.stereotype.Component;
-import source.usecases.dto.response.genre.GenreColorResponseViewModels;
+import source.controller.genres.assist.response.GenreColorResponseViewModels;
 
 import java.util.List;
 

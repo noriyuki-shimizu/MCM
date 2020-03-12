@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.images.ImageController;
 import source.usecases.app.images.IGetImageAddressUsecase;
-import source.usecases.dto.response.images.ImageAddressResponseData;
+import source.controller.images.fashion.response.ImageAddressResponseData;
 
 @RestController
 @Slf4j

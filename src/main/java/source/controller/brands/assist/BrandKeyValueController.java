@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.brands.BrandsController;
 import source.usecases.app.brands.IBrandCrudUsecase;
-import source.usecases.dto.response.brands.BrandAssistResponseViewModels;
+import source.controller.brands.assist.response.BrandAssistResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
 package source.presenter.genre;
 
 import source.domain.entity.Genres;
-import source.usecases.dto.response.genre.GenreResponseViewModels;
+import source.controller.genres.crud.response.GenreResponseViewModels;
 
 import java.util.List;
 

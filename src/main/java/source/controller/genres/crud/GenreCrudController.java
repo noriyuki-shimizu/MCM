@@ -6,11 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreCrudUsecase;
-import source.usecases.dto.request.genre.GenreCreateRequestModel;
-import source.usecases.dto.request.genre.GenreUpdateRequestModel;
-import source.usecases.dto.response.genre.GenreResponseViewModel;
-import source.usecases.dto.response.genre.GenreResponseViewModels;
-import source.usecases.dto.response.genre.TotalPricePerGenreViewModels;
+import source.controller.genres.crud.request.GenreCreateRequestModel;
+import source.controller.genres.crud.request.GenreUpdateRequestModel;
+import source.controller.genres.crud.response.GenreResponseViewModel;
+import source.controller.genres.crud.response.GenreResponseViewModels;
+import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 
 @RestController
 @RequiredArgsConstructor

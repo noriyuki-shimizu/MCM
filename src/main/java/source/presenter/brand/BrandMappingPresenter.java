@@ -3,8 +3,8 @@ package source.presenter.brand;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Brands;
 import source.domain.entity.Images;
-import source.usecases.dto.response.brands.BrandResponseModel;
-import source.usecases.dto.response.brands.BrandResponseViewModel;
+import source.controller.brands.crud.response.BrandResponseModel;
+import source.controller.brands.crud.response.BrandResponseViewModel;
 
 import java.util.Optional;
 

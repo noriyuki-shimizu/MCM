@@ -2,8 +2,8 @@ package source.presenter.shop;
 
 import org.springframework.stereotype.Component;
 import source.domain.entity.Shops;
-import source.usecases.dto.response.shops.ShopAssistResponseModel;
-import source.usecases.dto.response.shops.ShopAssistResponseViewModels;
+import source.controller.shops.assist.response.ShopAssistResponseModel;
+import source.controller.shops.assist.response.ShopAssistResponseViewModels;
 
 import java.util.List;
 import java.util.stream.Collectors;

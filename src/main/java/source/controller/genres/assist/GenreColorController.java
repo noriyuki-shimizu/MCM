@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreCrudUsecase;
-import source.usecases.dto.response.genre.GenreColorResponseViewModels;
+import source.controller.genres.assist.response.GenreColorResponseViewModels;
 
 import java.util.Optional;
 

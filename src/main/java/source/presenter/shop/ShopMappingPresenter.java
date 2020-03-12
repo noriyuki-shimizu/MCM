@@ -3,8 +3,8 @@ package source.presenter.shop;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Images;
 import source.domain.entity.Shops;
-import source.usecases.dto.response.shops.ShopResponseModel;
-import source.usecases.dto.response.shops.ShopResponseViewModel;
+import source.controller.shops.crud.response.ShopResponseModel;
+import source.controller.shops.crud.response.ShopResponseViewModel;
 
 import java.util.Optional;
 

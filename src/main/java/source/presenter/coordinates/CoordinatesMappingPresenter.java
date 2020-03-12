@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 import source.domain.entity.Coordinates;
 import source.domain.entity.Images;
 import source.usecases.converter.BuyDate;
-import source.usecases.dto.response.clothes.ClothesAssistResponseModel;
-import source.usecases.dto.response.coordinates.CoordinateResponseModel;
-import source.usecases.dto.response.coordinates.CoordinateResponseViewModels;
-import source.usecases.dto.response.genre.ClothesGenreResponseModel;
+import source.controller.clothes.assist.response.ClothesAssistResponseModel;
+import source.controller.coordinates.curd.response.CoordinateResponseModel;
+import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
+import source.controller.clothes.assist.response.ClothesGenreResponseModel;
 
 import java.util.List;
 import java.util.Optional;

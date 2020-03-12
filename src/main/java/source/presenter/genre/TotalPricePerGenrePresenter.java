@@ -3,8 +3,8 @@ package source.presenter.genre;
 import org.springframework.stereotype.Component;
 import source.domain.entity.Clothes;
 import source.domain.entity.Genres;
-import source.usecases.dto.response.genre.TotalPricePerGenreModel;
-import source.usecases.dto.response.genre.TotalPricePerGenreViewModels;
+import source.controller.genres.crud.response.TotalPricePerGenreModel;
+import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 
 import java.util.List;
 import java.util.stream.Collectors;

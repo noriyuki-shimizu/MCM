@@ -1,7 +1,7 @@
 package source.presenter.clothes;
 
 import source.domain.entity.Clothes;
-import source.usecases.dto.response.clothes.ClothesAssistResponseViewModels;
+import source.controller.clothes.assist.response.ClothesAssistResponseViewModels;
 
 import java.util.List;
 

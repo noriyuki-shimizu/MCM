@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.shops.ShopsController;
 import source.usecases.app.shops.IShopCrudUsecase;
-import source.usecases.dto.request.shops.ShopCreateRequestModel;
-import source.usecases.dto.request.shops.ShopUpdateRequestModel;
-import source.usecases.dto.response.shops.ShopResponseViewModel;
-import source.usecases.dto.response.shops.ShopResponseViewModels;
+import source.controller.shops.crud.request.ShopCreateRequestModel;
+import source.controller.shops.crud.request.ShopUpdateRequestModel;
+import source.controller.shops.crud.response.ShopResponseViewModel;
+import source.controller.shops.crud.response.ShopResponseViewModels;
 
 @RestController
 @RequiredArgsConstructor
