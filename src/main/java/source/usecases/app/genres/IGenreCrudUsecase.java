@@ -68,9 +68,8 @@ public interface IGenreCrudUsecase {
      * @param userId ユーザID
      * @param id primary key
      * @param requestData 画面からの入力値
-     * @return 画面描画するための DTO
      */
-    public GenreResponseViewModel update(Long userId, Long id, GenreUpdateRequestModel requestData);
+    public void update(Long userId, Long id, GenreUpdateRequestModel requestData);
 
     /**
      * ジャンルごとの合計金額を取得します.

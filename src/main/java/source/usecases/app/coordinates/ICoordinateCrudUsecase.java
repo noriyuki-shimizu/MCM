@@ -47,7 +47,6 @@ public interface ICoordinateCrudUsecase {
      * @param userId ユーザID
      * @param id primary key
      * @param requestData 画面からの入力値
-     * @return 画面描画するための DTO
      */
-    public CoordinateResponseViewModel update(Long userId, Long id, CoordinateUpdateRequestModel requestData);
+    public void update(Long userId, Long id, CoordinateUpdateRequestModel requestData);
 }

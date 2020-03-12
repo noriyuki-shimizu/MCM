@@ -86,7 +86,7 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
-    public CoordinateResponseViewModel update(Long userId, Long id, CoordinateUpdateRequestModel inputData) {
+    public void update(Long userId, Long id, CoordinateUpdateRequestModel inputData) {
         Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
@@ -104,6 +104,6 @@ public class AppCoordinateCrudInteractor implements ICoordinateCrudUsecase {
                 .usedCoordinates(usedCoordinates)
                 .build();
 
-        return this.coordinateMappingPresenter.mapping(this.repository.save(coordinates));
+        this.coordinateMappingPresenter.mapping(this.repository.save(coordinates));
     }
 }

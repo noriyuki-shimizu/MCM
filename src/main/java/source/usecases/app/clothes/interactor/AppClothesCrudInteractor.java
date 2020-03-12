@@ -98,7 +98,7 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
-    public ClothesResponseViewModel delete(Long id) {
+    public void delete(Long id) {
         List<Coordinates> coordinates = this.coordinatesRepository.findAll(
                 Specifications
                         .where(CoordinatesSpecification.hasClothes(id))
@@ -110,13 +110,13 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
         }
 
         Clothes clothes = this.repository.deleteById(id);
-        return this.clothesMappingPresenter.mapping(clothes);
+        this.clothesMappingPresenter.mapping(clothes);
     }
 
     @Override
-    public ClothesResponseViewModel restoration(Long id) {
+    public void restoration(Long id) {
         Clothes clothes = this.repository.restorationById(id);
-        return this.clothesMappingPresenter.mapping(clothes);
+        this.clothesMappingPresenter.mapping(clothes);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
-    public ClothesResponseViewModel update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
+    public void update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
         Images clothesImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
@@ -167,6 +167,6 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
                         .build()
         );
 
-        return this.clothesMappingPresenter.mapping(result);
+        this.clothesMappingPresenter.mapping(result);
     }
 }

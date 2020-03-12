@@ -132,7 +132,7 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreResponseViewModel update(Long userId, Long id, GenreUpdateRequestModel requestData) {
+    public void update(Long userId, Long id, GenreUpdateRequestModel requestData) {
         Genres genres = Genres.builder()
                 .id(id)
                 .userId(userId)
@@ -142,7 +142,7 @@ public class AppGenreCrudInteractor implements IGenreCrudUsecase {
 
         Genres result = this.repository.save(genres);
 
-        return this.genreMappingPresenter.mapping(result);
+        this.genreMappingPresenter.mapping(result);
     }
 
     @Override

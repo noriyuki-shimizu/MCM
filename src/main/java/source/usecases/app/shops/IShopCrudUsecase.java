@@ -31,9 +31,8 @@ public interface IShopCrudUsecase {
      * 削除を行います.
      *
      * @param id primary key
-     * @return 画面描画のための DTO
      */
-    public ShopResponseViewModel delete(Long id);
+    public void delete(Long id);
 
     /**
      * 検索を行います.
@@ -57,15 +56,13 @@ public interface IShopCrudUsecase {
      * @param userId ユーザID
      * @param id primary key
      * @param inputData 画面からの入力値
-     * @return 画面描画のための DTO
      */
-    public ShopResponseViewModel update(Long userId, Long id, ShopUpdateRequestModel inputData);
+    public void update(Long userId, Long id, ShopUpdateRequestModel inputData);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
-     * @return 画面描画のための DTO
      */
-    public ShopResponseViewModel restoration(Long id);
+    public void restoration(Long id);
 }

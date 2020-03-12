@@ -31,17 +31,15 @@ public interface IClothesCrudUsecase {
      * 論理削除を行います.
      *
      * @param id primary key
-     * @return 画面描画するための DTO
      */
-    public ClothesResponseViewModel delete(Long id);
+    public void delete(Long id);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
-     * @return 画面描画するための DTO
      */
-    public ClothesResponseViewModel restoration(Long id);
+    public void restoration(Long id);
 
     /**
      * 検索を行います.
@@ -65,7 +63,6 @@ public interface IClothesCrudUsecase {
      * @param userId ユーザID
      * @param id primary key
      * @param inputData 画面からの入力値
-     * @return 画面描画するための DTO
      */
-    public ClothesResponseViewModel update(Long userId, Long id, ClothesUpdateRequestModel inputData);
+    public void update(Long userId, Long id, ClothesUpdateRequestModel inputData);
 }

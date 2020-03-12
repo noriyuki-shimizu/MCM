@@ -82,7 +82,7 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
     }
 
     @Override
-    public ShopResponseViewModel delete(Long id) {
+    public void delete(Long id) {
         List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.shopIdEqual(id))
@@ -95,7 +95,7 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
 
         Shops result = this.repository.deleteById(id);
 
-        return this.shopMappingPresenter.mapping(result);
+        this.shopMappingPresenter.mapping(result);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
     }
 
     @Override
-    public ShopResponseViewModel update(Long userId, Long id, ShopUpdateRequestModel inputData) {
+    public void update(Long userId, Long id, ShopUpdateRequestModel inputData) {
         Images shopImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
@@ -136,12 +136,12 @@ public class AppShopCrudInteractor implements IShopCrudUsecase {
 
         Shops result = this.repository.save(shop);
 
-        return this.shopMappingPresenter.mapping(result);
+        this.shopMappingPresenter.mapping(result);
     }
 
     @Override
-    public ShopResponseViewModel restoration(Long id) {
+    public void restoration(Long id) {
         Shops result = this.repository.restorationById(id);
-        return this.shopMappingPresenter.mapping(result);
+        this.shopMappingPresenter.mapping(result);
     }
 }

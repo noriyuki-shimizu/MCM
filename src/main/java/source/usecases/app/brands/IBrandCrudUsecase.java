@@ -31,17 +31,15 @@ public interface IBrandCrudUsecase {
      * 論理削除を行います.
      *
      * @param id primary key
-     * @return 画面描画するための DTO
      */
-    public BrandResponseViewModel delete(Long id);
+    public void delete(Long id);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
-     * @return 画面描画するための DTO
      */
-    public BrandResponseViewModel restoration(Long id);
+    public void restoration(Long id);
 
     /**
      * 検索を行います.
@@ -65,11 +63,7 @@ public interface IBrandCrudUsecase {
      * @param userId ユーザID
      * @param id primary key
      * @param inputData 画面からの入力値
-     * @return 画面描画するための DTO
      */
-    public BrandResponseViewModel update(
-            Long userId,
-            Long id,
-            BrandUpdateRequestModel inputData
+    public void update(Long userId, Long id, BrandUpdateRequestModel inputData
     );
 }

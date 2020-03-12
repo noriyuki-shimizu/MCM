@@ -2,6 +2,7 @@ package source.controller.shops.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.shops.ShopsController;
 import source.usecases.app.shops.IShopCrudUsecase;
@@ -17,6 +18,7 @@ public class ShopCrudController extends ShopsController {
     private IShopCrudUsecase usecase;
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ShopResponseViewModel handleCreate(
             @PathVariable("userId") Long userId,
             @RequestBody ShopCreateRequestModel requestData
@@ -25,31 +27,36 @@ public class ShopCrudController extends ShopsController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ShopResponseViewModel handleDelete(@PathVariable("id") Long id) {
-        return this.usecase.delete(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void handleDelete(@PathVariable("id") Long id) {
+        this.usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
-    public ShopResponseViewModel handleRestoration(@PathVariable("id") Long id) {
-        return this.usecase.restoration(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void handleRestoration(@PathVariable("id") Long id) {
+        this.usecase.restoration(id);
     }
 
     @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
     public ShopResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
         return this.usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ShopResponseViewModel handleSearchById(@PathVariable("id") Long id) {
         return this.usecase.searchById(id);
     }
 
     @PutMapping(value = "/{id}")
-    public ShopResponseViewModel handleUpdate(
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void handleUpdate(
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody ShopUpdateRequestModel requestData
     ) {
-        return this.usecase.update(userId, id, requestData);
+        this.usecase.update(userId, id, requestData);
     }
 }

@@ -79,7 +79,7 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
     }
 
     @Override
-    public BrandResponseViewModel delete(Long id) {
+    public void delete(Long id) {
         List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.brandIdContains(id))
@@ -91,13 +91,13 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
         }
 
         Brands result = this.repository.deleteById(id);
-        return this.brandMappingPresenter.mapping(result);
+        this.brandMappingPresenter.mapping(result);
     }
 
     @Override
-    public BrandResponseViewModel restoration(Long id) {
+    public void restoration(Long id) {
         Brands result = this.repository.restorationById(id);
-        return this.brandMappingPresenter.mapping(result);
+        this.brandMappingPresenter.mapping(result);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
     }
 
     @Override
-    public BrandResponseViewModel update(Long userId, Long id, BrandUpdateRequestModel inputData) {
+    public void update(Long userId, Long id, BrandUpdateRequestModel inputData) {
         Images brandImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
@@ -137,6 +137,6 @@ public class AppBrandCrudInteractor implements IBrandCrudUsecase {
 
         Brands result = this.repository.save(brand);
 
-        return this.brandMappingPresenter.mapping(result);
+        this.brandMappingPresenter.mapping(result);
     }
 }

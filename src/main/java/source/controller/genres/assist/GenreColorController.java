@@ -2,10 +2,8 @@ package source.controller.genres.assist;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import source.controller.genres.GenresController;
 import source.usecases.app.genres.IGenreCrudUsecase;
 import source.usecases.dto.response.genre.GenreColorResponseViewModels;
@@ -19,6 +17,7 @@ public class GenreColorController extends GenresController {
     private IGenreCrudUsecase usecase;
 
     @GetMapping(value = "/colors")
+    @ResponseStatus(HttpStatus.OK)
     public GenreColorResponseViewModels handle(@PathVariable("userId") Long userId, @RequestParam("id") Optional<Long> id) {
         return this.usecase.acceptCanSelectedColors(userId, id);
     }
