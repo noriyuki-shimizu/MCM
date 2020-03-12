@@ -16,14 +16,14 @@ public interface ICoordinateCrudUsecase {
      * @param requestData 画面の入力値
      * @return 画面描画するための DTO
      */
-    public CoordinateResponseViewModel create(Long userId, CoordinateCreateRequestModel requestData);
+    CoordinateResponseViewModel create(Long userId, CoordinateCreateRequestModel requestData);
 
     /**
      * 物理削除を行います.
      *
      * @param id primary key
      */
-    public void delete(Long id);
+    void delete(Long id);
 
     /**
      * 検索を行います.
@@ -31,7 +31,7 @@ public interface ICoordinateCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画するための DTO List
      */
-    public CoordinateResponseViewModels search(Long userId);
+    CoordinateResponseViewModels search(Long userId);
 
     /**
      * 1件検索を行います.
@@ -39,7 +39,7 @@ public interface ICoordinateCrudUsecase {
      * @param id primary key
      * @return 画面描画するための DTO
      */
-    public CoordinateResponseViewModel searchById(Long id);
+    CoordinateResponseViewModel searchById(Long id);
 
     /**
      * 更新を行います.
@@ -48,5 +48,5 @@ public interface ICoordinateCrudUsecase {
      * @param id primary key
      * @param requestData 画面からの入力値
      */
-    public void update(Long userId, Long id, CoordinateUpdateRequestModel requestData);
+    void update(Long userId, Long id, CoordinateUpdateRequestModel requestData);
 }

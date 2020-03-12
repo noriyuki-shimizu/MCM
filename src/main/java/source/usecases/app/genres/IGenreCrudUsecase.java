@@ -16,7 +16,7 @@ public interface IGenreCrudUsecase {
      * @param userId ユーザID
      * @return ブルダウン表記のための DTO
      */
-    public GenreKeyValueResponseViewModels acceptKeyValues(Long userId);
+    GenreKeyValueResponseViewModels acceptKeyValues(Long userId);
 
     /**
      * 選択可能な色の一覧を取得します.
@@ -28,7 +28,7 @@ public interface IGenreCrudUsecase {
      * @param id primary key
      * @return プルダウン + 画面描画のための DTO
      */
-    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Optional<Long> id);
+    GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Optional<Long> id);
 
     /**
      * 新規作成を行います.
@@ -37,14 +37,14 @@ public interface IGenreCrudUsecase {
      * @param requestData 画面からの入力値
      * @return 画面描画するための DTO
      */
-    public GenreResponseViewModel create(Long userId, GenreCreateRequestModel requestData);
+    GenreResponseViewModel create(Long userId, GenreCreateRequestModel requestData);
 
     /**
      * 物理削除を行います.
      *
      * @param id primary key
      */
-    public void delete(Long id);
+    void delete(Long id);
 
     /**
      * 検索を行います.
@@ -52,7 +52,7 @@ public interface IGenreCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画するための DTO List
      */
-    public GenreResponseViewModels search(Long userId);
+    GenreResponseViewModels search(Long userId);
 
     /**
      * 1件検索を行います.
@@ -60,7 +60,7 @@ public interface IGenreCrudUsecase {
      * @param id primary key
      * @return 画面描画するための DTO
      */
-    public GenreResponseViewModel searchById(Long id);
+    GenreResponseViewModel searchById(Long id);
 
     /**
      * 更新を行います.
@@ -69,7 +69,7 @@ public interface IGenreCrudUsecase {
      * @param id primary key
      * @param requestData 画面からの入力値
      */
-    public void update(Long userId, Long id, GenreUpdateRequestModel requestData);
+    void update(Long userId, Long id, GenreUpdateRequestModel requestData);
 
     /**
      * ジャンルごとの合計金額を取得します.
@@ -77,5 +77,5 @@ public interface IGenreCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画するための DTO
      */
-    public TotalPricePerGenreViewModels acceptTotalPricePerGenre(Long userId);
+    TotalPricePerGenreViewModels acceptTotalPricePerGenre(Long userId);
 }
