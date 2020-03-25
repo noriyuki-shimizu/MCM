@@ -34,6 +34,5 @@ public class Users extends TimestampEntity {
     private String name;
 
     @Column(name = "e_mail")
-    @NotNull
     private String eMail;
 }
