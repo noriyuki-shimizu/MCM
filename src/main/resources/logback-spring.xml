@@ -6,11 +6,11 @@
     <property name="logFileName" value="app" />
 
     <springProfile name="develop">
-        <property name="logFilePath" value="./logs/" />
+        <property name="logFilePath" value="./" />
     </springProfile>
 
     <springProfile name="production">
-        <property name="logFilePath" value="./logs/" />
+        <property name="logFilePath" value="./" />
     </springProfile>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -22,7 +22,7 @@
     </appender>
 
     <appender name="APPLIATION_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logFilePath}${logFileName}.log</file>
+        <file>logs/${logFilePath}${logFileName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${logFilePath}${logFileName}-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
             <maxHistory>3</maxHistory>
