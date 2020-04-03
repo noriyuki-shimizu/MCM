@@ -25,7 +25,7 @@ server:
 
 settings:
   firebase:
-    web-url: http://localhost:8888
+    web-urls: http://localhost:8888
     api-name: mcm-client
     service-account: classpath:path/to/mcm-client-firebase-adminsdk-0hzb6-b1fb766d6a.json
     database-url: https://mcm-client.firebaseio.com

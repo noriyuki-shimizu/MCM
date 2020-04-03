@@ -9,13 +9,15 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 @ConfigurationProperties(prefix = "settings.firebase")
 @Data
 public class FirebaseEnv {
 
-    private String webUrl;
+    private String webUrls;
 
     private String apiName;
 
@@ -34,6 +36,10 @@ public class FirebaseEnv {
             ioe.printStackTrace();
         }
         return null;
+    }
+
+    public List<String> getWebUrls() {
+        return Arrays.asList(this.webUrls.split("[,]"));
     }
 
 }
