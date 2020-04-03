@@ -1,0 +1,55 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: circleci/openjdk:11-jdk
+
+    working_directory: ~/repo
+
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+      BUILD_APP: build/libs/MCM-0.0.1-SNAPSHOT.jar
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+
+      - add_ssh_keys:
+          fingerprints:
+            - "a1:f6:4b:d0:98:7b:cb:43:df:13:e4:cd:86:75:c0:c0"
+      - deploy:
+          name: deploy
+          command: |
+            echo "$PROD_YAML" > ./src/main/resources/application-prod.yml
+            gradle build
+            ssh-keyscan ${HOST_NAME} >> ~/.ssh/known_hosts
+            sudo apt install -y rsync
+            ssh ${USER_NAME}@${HOST_NAME} "make stop"
+            rsync -vc ${BUILD_APP} ${USER_NAME}@${HOST_NAME}:${APP_DIR}
+            ssh ${USER_NAME}@${HOST_NAME} "make start"
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
