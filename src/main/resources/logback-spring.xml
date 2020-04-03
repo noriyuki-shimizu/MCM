@@ -24,7 +24,7 @@
     <appender name="APPLIATION_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/${logFilePath}${logFileName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logFilePath}${logFileName}-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>logs/zip/${logFilePath}${logFileName}-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
             <maxHistory>3</maxHistory>
         </rollingPolicy>
         <encoder>

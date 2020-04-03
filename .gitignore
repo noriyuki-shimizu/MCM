@@ -17,6 +17,7 @@ bin
 *.log
 *.swp
 *.bak
+*.zip
 
 # Java
 *.class
