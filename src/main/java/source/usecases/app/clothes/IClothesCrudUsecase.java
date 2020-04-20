@@ -58,6 +58,14 @@ public interface IClothesCrudUsecase {
     ClothesResponseViewModel searchById(Long id);
 
     /**
+     * ユーザごとの合計金額を取得します.
+     *
+     * @param userId ユーザID
+     * @return 合計金額
+     */
+    long getTotalPriceByUserId(Long userId);
+
+    /**
      * 更新を行います.
      *
      * @param userId ユーザID

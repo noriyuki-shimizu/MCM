@@ -47,6 +47,12 @@ public class ClothesCrudController extends ClothesController {
         return this.usecase.searchById(id);
     }
 
+    @GetMapping(value = "/total-price")
+    @ResponseStatus(HttpStatus.OK)
+    public long handleTotalPrice(@PathVariable("userId") Long userId) {
+        return this.usecase.getTotalPriceByUserId(userId);
+    }
+
     @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleUpdate(

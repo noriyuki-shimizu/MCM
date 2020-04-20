@@ -135,6 +135,11 @@ public class AppClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
+    public long getTotalPriceByUserId(Long userId) {
+        return this.repository.sumPriceByUserId(userId);
+    }
+
+    @Override
     public void update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
         Images clothesImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
