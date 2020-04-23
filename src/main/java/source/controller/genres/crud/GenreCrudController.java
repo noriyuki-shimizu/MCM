@@ -1,6 +1,8 @@
 package source.controller.genres.crud;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import source.controller.genres.crud.response.GenreResponseViewModel;
 import source.controller.genres.crud.response.GenreResponseViewModels;
 import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 
+@Slf4j(topic = "source.controller.genres.crud")
 @RestController
 @RequiredArgsConstructor
 public class GenreCrudController extends GenresController {
@@ -23,13 +26,15 @@ public class GenreCrudController extends GenresController {
     public GenreResponseViewModel handleCreate(
             @PathVariable("userId") Long userId,
             @RequestBody GenreCreateRequestModel requestData
-    ) {
+    ) throws JsonProcessingException {
+        log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
         return this.usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleDelete(@PathVariable("id") Long id) {
+    public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
+        log.info("delete -> user: {}, id: {}", userId, id);
         this.usecase.delete(id);
     }
 
@@ -51,7 +56,8 @@ public class GenreCrudController extends GenresController {
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody GenreUpdateRequestModel requestData
-    ) {
+    ) throws JsonProcessingException {
+        log.info("update -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
         this.usecase.update(userId, id, requestData);
     }
 
