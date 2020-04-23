@@ -77,6 +77,17 @@
         </encoder>
     </appender>
 
+    <appender name="COORDINATE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/coordinate-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>100</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <logger name="source">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="APPLICATION" />
@@ -105,6 +116,11 @@
     <logger name="source.controller.genres.crud">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="GENRE" />
+    </logger>
+
+    <logger name="source.controller.coordinates.crud">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="COORDINATE" />
     </logger>
 
     <root level="INFO">
