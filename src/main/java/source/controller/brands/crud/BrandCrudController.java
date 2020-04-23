@@ -1,6 +1,8 @@
 package source.controller.brands.crud;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import source.controller.brands.crud.request.BrandUpdateRequestModel;
 import source.controller.brands.crud.response.BrandResponseViewModel;
 import source.controller.brands.crud.response.BrandResponseViewModels;
 
+@Slf4j(topic = "source.controller.brands.crud")
 @RestController
 @RequiredArgsConstructor
 public class BrandCrudController extends BrandsController {
@@ -19,19 +22,22 @@ public class BrandCrudController extends BrandsController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public BrandResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody BrandCreateRequestModel requestData) {
+    public BrandResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody BrandCreateRequestModel requestData) throws JsonProcessingException {
+        log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
         return this.usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleDelete(@PathVariable("id") Long id) {
+    public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
+        log.info("delete -> user: {}, id: {}", userId, id);
         this.usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleRestoration(@PathVariable("id") Long id) {
+    public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
+        log.info("restoration -> user: {}, id: {}", userId, id);
         this.usecase.restoration(id);
     }
 
@@ -53,7 +59,8 @@ public class BrandCrudController extends BrandsController {
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody BrandUpdateRequestModel requestData
-    ) {
+    ) throws JsonProcessingException {
+        log.info("update -> user: {}, id: {}, data: {}", userId, id, MAPPER.writeValueAsString(requestData));
         this.usecase.update(userId, id, requestData);
     }
 }
