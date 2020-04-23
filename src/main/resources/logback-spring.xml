@@ -33,6 +33,17 @@
         </encoder>
     </appender>
 
+    <appender name="CLOTHES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/clothes-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>100</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <logger name="source">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="APPLICATION" />
@@ -43,7 +54,13 @@
         <appender-ref ref="ROUTING" />
     </logger>
 
+    <logger name="source.controller.clothes.crud">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="CLOTHES" />
+    </logger>
+
     <root level="INFO">
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="APPLICATION" />
     </root>
 </configuration>

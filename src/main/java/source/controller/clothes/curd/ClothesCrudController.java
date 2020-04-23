@@ -1,6 +1,8 @@
 package source.controller.clothes.curd;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import source.controller.clothes.curd.request.ClothesUpdateRequestModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModels;
 
+@Slf4j(topic = "source.controller.clothes.crud")
 @RestController
 @RequiredArgsConstructor
 public class ClothesCrudController extends ClothesController {
@@ -19,19 +22,22 @@ public class ClothesCrudController extends ClothesController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ClothesResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) {
+    public ClothesResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) throws JsonProcessingException {
+        log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(inputData));
         return this.usecase.create(userId, inputData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleDelete(@PathVariable("id") Long id) {
+    public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
+        log.info("delete -> user: {}, id: {}", userId, id);
         this.usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleRestoration(@PathVariable("id") Long id) {
+    public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
+        log.info("restoration -> user: {}, id: {}", userId, id);
         this.usecase.restoration(id);
     }
 
@@ -59,7 +65,8 @@ public class ClothesCrudController extends ClothesController {
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody ClothesUpdateRequestModel inputData
-    ) {
+    ) throws JsonProcessingException {
+        log.info("update -> user: {}, id: {}, data: {}", userId, id, MAPPER.writeValueAsString(inputData));
         this.usecase.update(userId, id, inputData);
     }
 }
