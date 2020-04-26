@@ -1,10 +1,11 @@
 package source.presenter.shop;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Images;
-import source.domain.entity.Shops;
 import source.controller.shops.crud.response.ShopResponseModel;
 import source.controller.shops.crud.response.ShopResponseViewModel;
+import source.domain.entity.db.Images;
+import source.domain.entity.db.Shops;
+import source.domain.presenter.shop.IShopMappingPresenter;
 
 import java.util.Optional;
 

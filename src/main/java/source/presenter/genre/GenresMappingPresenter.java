@@ -1,9 +1,10 @@
 package source.presenter.genre;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Genres;
 import source.controller.genres.crud.response.GenreResponseModel;
 import source.controller.genres.crud.response.GenreResponseViewModels;
+import source.domain.entity.db.Genres;
+import source.domain.presenter.genre.IGenresMappingPresenter;
 
 import java.util.List;
 import java.util.stream.Collectors;

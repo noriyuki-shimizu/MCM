@@ -1,16 +1,14 @@
 package source.interactor;
 
-import com.google.firebase.auth.FirebaseAuthException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import source.domain.entity.Users;
+import source.domain.entity.db.Users;
 import source.domain.repository.db.UsersRepository;
-import source.infrastructure.firebase.FirebaseVerifiedToken;
-import source.usecases.app.auth.interactor.PreLoginInteractor;
+import source.domain.entity.firebase.FirebaseVerifiedToken;
 
 import java.util.Optional;
 

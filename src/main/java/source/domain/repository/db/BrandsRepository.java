@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import source.domain.entity.Brands;
+import source.domain.entity.db.Brands;
 
 @Repository
 public interface BrandsRepository extends JpaRepository<Brands, Long>, JpaSpecificationExecutor<Brands> {

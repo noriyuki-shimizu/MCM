@@ -1,13 +1,14 @@
 package source.presenter.coordinates;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Coordinates;
-import source.domain.entity.Images;
-import source.usecases.converter.BuyDate;
 import source.controller.clothes.assist.response.ClothesAssistResponseModel;
+import source.controller.clothes.assist.response.ClothesGenreResponseModel;
 import source.controller.coordinates.curd.response.CoordinateResponseModel;
 import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
-import source.controller.clothes.assist.response.ClothesGenreResponseModel;
+import source.domain.entity.db.Coordinates;
+import source.domain.entity.db.Images;
+import source.domain.presenter.coordinates.ICoordinatesMappingPresenter;
+import source.usecases.converter.BuyDate;
 
 import java.util.List;
 import java.util.Optional;

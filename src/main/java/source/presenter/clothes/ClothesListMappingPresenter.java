@@ -1,13 +1,14 @@
 package source.presenter.clothes;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Clothes;
-import source.usecases.converter.BuyDate;
 import source.controller.brands.assist.response.BrandAssistResponseModel;
 import source.controller.clothes.curd.response.ClothesResponseModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModels;
 import source.controller.genres.assist.response.GenreKeyValueResponseModel;
 import source.controller.shops.assist.response.ShopAssistResponseModel;
+import source.domain.entity.db.Clothes;
+import source.domain.presenter.clothes.IClothesListMappingPresenter;
+import source.usecases.converter.BuyDate;
 
 import java.util.List;
 import java.util.Set;

@@ -2,6 +2,7 @@ package source.presenter.genre;
 
 import org.springframework.stereotype.Component;
 import source.controller.genres.assist.response.GenreColorResponseViewModels;
+import source.domain.presenter.genre.IGenreColorMappingPresenter;
 
 import java.util.List;
 

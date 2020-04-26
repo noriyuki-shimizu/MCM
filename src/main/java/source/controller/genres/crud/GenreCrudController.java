@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.genres.GenresController;
-import source.usecases.app.genres.IGenreCrudUsecase;
+import source.usecases.app.IGenreCrudUsecase;
 import source.controller.genres.crud.request.GenreCreateRequestModel;
 import source.controller.genres.crud.request.GenreUpdateRequestModel;
 import source.controller.genres.crud.response.GenreResponseViewModel;

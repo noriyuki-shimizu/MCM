@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import source.annotation.NonAuth;
 import source.infrastructure.firebase.Firebase;
-import source.infrastructure.firebase.FirebaseVerifiedToken;
-import source.usecases.app.auth.IPreLoginUsecase;
+import source.domain.entity.firebase.FirebaseVerifiedToken;
+import source.usecases.app.IPreLoginUsecase;
 
 @RestController
 @RequiredArgsConstructor

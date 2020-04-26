@@ -1,10 +1,11 @@
 package source.presenter.brand;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Brands;
-import source.domain.entity.Images;
 import source.controller.brands.crud.response.BrandResponseModel;
 import source.controller.brands.crud.response.BrandResponseViewModel;
+import source.domain.entity.db.Brands;
+import source.domain.entity.db.Images;
+import source.domain.presenter.brand.IBrandMappingPresenter;
 
 import java.util.Optional;
 

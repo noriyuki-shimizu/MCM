@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
 import source.domain.auth.AnalysisRequestHeader;
-import source.domain.entity.Users;
+import source.domain.entity.db.Users;
 import source.domain.repository.db.UsersRepository;
 import source.infrastructure.firebase.Firebase;
-import source.infrastructure.firebase.FirebaseVerifiedToken;
+import source.domain.entity.firebase.FirebaseVerifiedToken;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

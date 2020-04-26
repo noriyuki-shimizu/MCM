@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.shops.ShopsController;
-import source.usecases.app.shops.IShopCrudUsecase;
+import source.usecases.app.IShopCrudUsecase;
 import source.controller.shops.crud.request.ShopCreateRequestModel;
 import source.controller.shops.crud.request.ShopUpdateRequestModel;
 import source.controller.shops.crud.response.ShopResponseViewModel;

@@ -8,7 +8,8 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import source.domain.util.FirebaseEnv;
+import source.domain.entity.firebase.FirebaseVerifiedToken;
+import source.util.FirebaseEnv;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

@@ -1,7 +1,7 @@
 package source.domain.repository.db.specification;
 
 import org.springframework.data.jpa.domain.Specification;
-import source.domain.entity.Shops;
+import source.domain.entity.db.Shops;
 
 public class ShopsSpecification {
     public static Specification<Shops> userIdEqual(final Long userId) {

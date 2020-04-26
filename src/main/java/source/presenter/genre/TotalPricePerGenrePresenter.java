@@ -1,10 +1,11 @@
 package source.presenter.genre;
 
 import org.springframework.stereotype.Component;
-import source.domain.entity.Clothes;
-import source.domain.entity.Genres;
 import source.controller.genres.crud.response.TotalPricePerGenreModel;
 import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
+import source.domain.entity.db.Clothes;
+import source.domain.entity.db.Genres;
+import source.domain.presenter.genre.ITotalPricePerGenrePresenter;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,8 +1,8 @@
 package source.domain.repository.db.specification;
 
 import org.springframework.data.jpa.domain.Specification;
-import source.domain.entity.Clothes;
-import source.domain.entity.Coordinates;
+import source.domain.entity.db.Clothes;
+import source.domain.entity.db.Coordinates;
 
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
