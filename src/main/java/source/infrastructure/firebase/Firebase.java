@@ -53,14 +53,20 @@ public class Firebase {
      *
      * @return Optional<FirebaseToken>
      */
-    public Optional<FirebaseToken> getDecodedToken(String token) {
+    public Optional<FirebaseVerifiedToken> getDecodedToken(String token) {
+        // idToken comes from the client app (shown above)
         try {
-            // idToken comes from the client app (shown above)
-            return Optional.ofNullable(FirebaseAuth.getInstance(this.app).verifyIdToken(token));
-        } catch (FirebaseAuthException fae) {
-            fae.printStackTrace();
+            FirebaseToken firebaseToken = FirebaseAuth.getInstance(this.app).verifyIdToken(token);
+            return Optional.of(
+                    FirebaseVerifiedToken.of(
+                            firebaseToken.getUid(),
+                            firebaseToken.getName(),
+                            firebaseToken.getEmail()
+                    )
+            );
+        } catch (FirebaseAuthException e) {
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
 }

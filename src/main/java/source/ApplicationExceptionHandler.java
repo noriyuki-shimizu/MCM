@@ -16,7 +16,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
                 e,
                 e.getMessage(),
                 null,
-                HttpStatus.INTERNAL_SERVER_ERROR,
+                HttpStatus.BAD_REQUEST,
                 request
         );
     }

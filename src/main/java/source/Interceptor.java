@@ -1,6 +1,5 @@
 package source;
 
-import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -12,6 +11,7 @@ import source.domain.auth.AnalysisRequestHeader;
 import source.domain.entity.Users;
 import source.domain.repository.db.UsersRepository;
 import source.infrastructure.firebase.Firebase;
+import source.infrastructure.firebase.FirebaseVerifiedToken;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,21 +44,19 @@ public class Interceptor implements HandlerInterceptor {
         AnalysisRequestHeader analysisRequestHeader = AnalysisRequestHeader.of(request);
         Optional<Long> userId = Optional.ofNullable(analysisRequestHeader.getUserId());
         Optional<String> token = Optional.ofNullable(analysisRequestHeader.getToken());
-        if (!userId.isPresent() || !token.isPresent()) {
+        if (userId.isEmpty() || token.isEmpty()) {
             response.sendError(403, "Invalid access token.");
             return false;
         }
 
-        Optional<FirebaseToken> decodedTokenOpt = this.firebase.getDecodedToken(token.get());
-        if (!decodedTokenOpt.isPresent()) {
+        Optional<FirebaseVerifiedToken> decodedTokenOpt = this.firebase.getDecodedToken(token.get());
+        if (decodedTokenOpt.isEmpty()) {
             response.sendError(403, "Request token is invalid or expired.");
             return false;
         }
-        FirebaseToken decodedToken = decodedTokenOpt.get();
-        Optional<Users> users = Optional.ofNullable(
-                this.usersRepository.findByIdAndUid(userId.get(), decodedToken.getUid())
-        );
-        if (!users.isPresent()) {
+        FirebaseVerifiedToken firebaseVerifiedToken = decodedTokenOpt.get();
+        Optional<Users> users = this.usersRepository.findByIdAndUid(userId.get(), firebaseVerifiedToken.getUid());
+        if (users.isEmpty()) {
             response.sendError(401, "Requested user does not exist.");
             return false;
         }

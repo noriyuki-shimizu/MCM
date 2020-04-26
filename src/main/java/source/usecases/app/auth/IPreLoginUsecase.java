@@ -1,7 +1,7 @@
 package source.usecases.app.auth;
 
-import com.google.firebase.auth.FirebaseToken;
+import source.infrastructure.firebase.FirebaseVerifiedToken;
 
 public interface IPreLoginUsecase {
-    long getUserIdAndSetIfNotExistUser(FirebaseToken firebaseToken);
+    long getUserIdAndSetIfNotExistUser(FirebaseVerifiedToken firebaseVerifiedToken);
 }

@@ -4,9 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import source.domain.entity.Users;
 
+import java.util.Optional;
+
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
-    Users findByEMailEquals(final String eMail);
-    Users findByUid(final String uid);
-    Users findByIdAndUid(final Long id, final String uid);
+    Optional<Users> findByEMailEquals(final String eMail);
+    Optional<Users> findByUid(final String uid);
+    Optional<Users> findByIdAndUid(final Long id, final String uid);
 }
