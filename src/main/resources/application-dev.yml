@@ -17,3 +17,8 @@ settings:
     api-name: mcm-client
     service-account: classpath:path/to/mcm-client-firebase-adminsdk-0hzb6-b1fb766d6a.json
     database-url: https://mcm-client.firebaseio.com
+
+# 秒/分/時/日/月/曜日
+cron:
+  clean:
+    tables: 0 59 23 31 dec *

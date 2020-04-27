@@ -13,7 +13,7 @@
 
     <appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/application/application-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -24,7 +24,7 @@
 
     <appender name="ROUTING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/routing-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/routing/routing-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -35,7 +35,7 @@
 
     <appender name="CLOTHES" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/clothes-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/clothes/clothes-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -46,7 +46,7 @@
 
     <appender name="BRAND" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/brand-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/brand/brand-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -57,7 +57,7 @@
 
     <appender name="SHOP" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/shop-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/shop/shop-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -68,7 +68,7 @@
 
     <appender name="GENRE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/genre-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/genre/genre-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -79,7 +79,18 @@
 
     <appender name="COORDINATE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/coordinate-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/coordinate/coordinate-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>100</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CLEAN_TABLES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/clean/tables-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -121,6 +132,11 @@
     <logger name="source.controller.coordinates.crud">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="COORDINATE" />
+    </logger>
+
+    <logger name="source.domain.logging">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="CLEAN_TABLES" />
     </logger>
 
     <root level="INFO">

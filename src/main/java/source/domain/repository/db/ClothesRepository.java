@@ -7,10 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import source.domain.entity.db.Clothes;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Repository
 public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpecificationExecutor<Clothes> {
+    Optional<List<Clothes>> findByIsDeletedOrderByUserId(final boolean isDeleted);
+
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
     long sumPriceByUserId(@Param("user_id") Long userId);
 
