@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 @Component
 public class ClothesMappingPresenter implements IClothesMappingPresenter {
     @Override
-    public ClothesResponseViewModel mapping(Clothes clothes) {
-        BrandAssistResponseModel brandModel = BrandAssistResponseModel.of(
+    public ClothesResponseViewModel mapping(final Clothes clothes) {
+        final BrandAssistResponseModel brandModel = BrandAssistResponseModel.of(
                 clothes.getBrand().getId(),
                 clothes.getBrand().getName()
         );
-        ShopAssistResponseModel shopModel = ShopAssistResponseModel.of(
+        final ShopAssistResponseModel shopModel = ShopAssistResponseModel.of(
                 clothes.getShop().getId(),
                 clothes.getShop().getName()
         );
-        Set<GenreKeyValueResponseModel> genreModels = clothes
+        final Set<GenreKeyValueResponseModel> genreModels = clothes
                 .getGenres()
                 .stream()
                 .map(genre -> GenreKeyValueResponseModel.of(
@@ -35,7 +35,7 @@ public class ClothesMappingPresenter implements IClothesMappingPresenter {
                 ))
                 .collect(Collectors.toSet());
 
-        ClothesResponseModel model = ClothesResponseModel.of(
+        final ClothesResponseModel model = ClothesResponseModel.of(
                 clothes.getId(),
                 clothes.getImage().getId(),
                 clothes.getImage().getPath(),

@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 @Component
 public class GenreAssistsMappingPresenter implements IGenreAssistsMappingPresenter {
     @Override
-    public GenreKeyValueResponseViewModels mapping(List<Genres> genres) {
-        List<GenreKeyValueResponseModel> models = genres
+    public GenreKeyValueResponseViewModels mapping(final List<Genres> genres) {
+        final List<GenreKeyValueResponseModel> models = genres
                 .stream()
                 .map(genre -> GenreKeyValueResponseModel.of(
                         genre.getId(),

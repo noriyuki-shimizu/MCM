@@ -16,7 +16,7 @@ public interface IClothesCrudUsecase {
      * @param userId ユーザID
      * @return ブルダウン表記のための DTO
      */
-    ClothesAssistResponseViewModels acceptKeyValues(Long userId);
+    ClothesAssistResponseViewModels acceptKeyValues(final Long userId);
 
     /**
      * 新規作成を行います.
@@ -25,21 +25,21 @@ public interface IClothesCrudUsecase {
      * @param inputData 画面からの入力値
      * @return 画面描画するための DTO
      */
-    ClothesResponseViewModel create(Long userId, ClothesCreateRequestModel inputData);
+    ClothesResponseViewModel create(final Long userId, final ClothesCreateRequestModel inputData);
 
     /**
      * 論理削除を行います.
      *
      * @param id primary key
      */
-    void delete(Long id);
+    void delete(final Long id);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
      */
-    void restoration(Long id);
+    void restoration(final Long id);
 
     /**
      * 検索を行います.
@@ -47,7 +47,7 @@ public interface IClothesCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画するための DTO List
      */
-    ClothesResponseViewModels search(Long userId);
+    ClothesResponseViewModels search(final Long userId);
 
     /**
      * 1件検索を行います.
@@ -55,7 +55,7 @@ public interface IClothesCrudUsecase {
      * @param id primary key
      * @return 画面描画するための DTO
      */
-    ClothesResponseViewModel searchById(Long id);
+    ClothesResponseViewModel searchById(final Long id);
 
     /**
      * ユーザごとの合計金額を取得します.
@@ -63,7 +63,7 @@ public interface IClothesCrudUsecase {
      * @param userId ユーザID
      * @return 合計金額
      */
-    long getTotalPriceByUserId(Long userId);
+    long getTotalPriceByUserId(final Long userId);
 
     /**
      * 更新を行います.
@@ -72,5 +72,5 @@ public interface IClothesCrudUsecase {
      * @param id primary key
      * @param inputData 画面からの入力値
      */
-    void update(Long userId, Long id, ClothesUpdateRequestModel inputData);
+    void update(final Long userId, final Long id, final ClothesUpdateRequestModel inputData);
 }

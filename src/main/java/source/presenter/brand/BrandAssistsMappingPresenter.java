@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 @Component
 public class BrandAssistsMappingPresenter implements IBrandAssistsMappingPresenter {
     @Override
-    public BrandAssistResponseViewModels mapping(List<Brands> brands) {
-        List<BrandAssistResponseModel>  models = brands
+    public BrandAssistResponseViewModels mapping(final List<Brands> brands) {
+        final List<BrandAssistResponseModel>  models = brands
                 .stream()
                 .map(brand -> BrandAssistResponseModel.of(brand.getId(), brand.getName()))
                 .collect(Collectors.toList());

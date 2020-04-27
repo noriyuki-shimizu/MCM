@@ -12,8 +12,8 @@ import java.util.Optional;
 @Component
 public class ShopMappingPresenter implements IShopMappingPresenter {
     @Override
-    public ShopResponseViewModel mapping(Shops shop) {
-        ShopResponseModel model = ShopResponseModel.of(
+    public ShopResponseViewModel mapping(final Shops shop) {
+        final ShopResponseModel model = ShopResponseModel.of(
                 shop.getId(),
                 shop.getName(),
                 shop.getLink(),

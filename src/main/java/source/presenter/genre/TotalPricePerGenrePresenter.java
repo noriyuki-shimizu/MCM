@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class TotalPricePerGenrePresenter implements ITotalPricePerGenrePresenter {
     @Override
-    public TotalPricePerGenreViewModels mapping(List<Genres> genres) {
-        List<TotalPricePerGenreModel> models = genres
+    public TotalPricePerGenreViewModels mapping(final List<Genres> genres) {
+        final List<TotalPricePerGenreModel> models = genres
                 .stream()
                 .filter(genre -> !genre.getClothes().isEmpty())
                 .map(genre -> {
@@ -23,7 +23,7 @@ public class TotalPricePerGenrePresenter implements ITotalPricePerGenrePresenter
                             .getClothes()
                             .stream()
                             .map(Clothes::getPrice)
-                            .reduce((accumulator, value) -> accumulator + value);
+                            .reduce(Integer::sum);
 
                     return  TotalPricePerGenreModel.of(
                                 genre.getName(),

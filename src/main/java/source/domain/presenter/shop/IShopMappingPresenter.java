@@ -4,5 +4,5 @@ import source.controller.shops.crud.response.ShopResponseViewModel;
 import source.domain.entity.db.Shops;
 
 public interface IShopMappingPresenter {
-    ShopResponseViewModel mapping(Shops shop);
+    ShopResponseViewModel mapping(final Shops shop);
 }

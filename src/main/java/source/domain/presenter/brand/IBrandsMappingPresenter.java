@@ -6,5 +6,5 @@ import source.domain.entity.db.Brands;
 import java.util.List;
 
 public interface IBrandsMappingPresenter {
-    BrandResponseViewModels mapping(List<Brands> brands);
+    BrandResponseViewModels mapping(final List<Brands> brands);
 }

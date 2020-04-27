@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Component
 public class ClothesAssistsMappingPresenter implements IClothesAssistsMappingPresenter {
     @Override
-    public ClothesAssistResponseViewModels mapping(List<Clothes> clothes) {
-        List<ClothesAssistResponseModel> models = clothes
+    public ClothesAssistResponseViewModels mapping(final List<Clothes> clothes) {
+        final List<ClothesAssistResponseModel> models = clothes
                 .stream()
                 .map(c -> {
                     Set<ClothesGenreResponseModel> genres = c.getGenres()

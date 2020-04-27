@@ -9,8 +9,8 @@ import source.domain.presenter.genre.IGenreMappingPresenter;
 @Component
 public class GenreMappingPresenter implements IGenreMappingPresenter {
     @Override
-    public GenreResponseViewModel mapping(Genres genre) {
-        GenreResponseModel model = GenreResponseModel.of(
+    public GenreResponseViewModel mapping(final Genres genre) {
+        final GenreResponseModel model = GenreResponseModel.of(
                 genre.getId(),
                 genre.getName(),
                 genre.getColor()

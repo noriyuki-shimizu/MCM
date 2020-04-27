@@ -52,8 +52,8 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     private IGenreColorMappingPresenter genreColorMappingPresenter;
 
     @Override
-    public GenreKeyValueResponseViewModels acceptKeyValues(Long userId) {
-        List<Genres> genres = this.repository.findAll(
+    public GenreKeyValueResponseViewModels acceptKeyValues(final Long userId) {
+        final List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
@@ -62,12 +62,12 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreColorResponseViewModels acceptCanSelectedColors(Long userId, Optional<Long> id) {
-        List<Genres> genres = this.repository.findAll(
+    public GenreColorResponseViewModels acceptCanSelectedColors(final Long userId, final Optional<Long> id) {
+        final List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
-        List<String> selectedColors = id
+        final List<String> selectedColors = id
                 .map(i ->
                         genres
                             .stream()
@@ -88,26 +88,26 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreResponseViewModel create(Long userId, GenreCreateRequestModel requestData) {
-        Genres genres = Genres.builder()
+    public GenreResponseViewModel create(final Long userId, final GenreCreateRequestModel requestData) {
+        final Genres genres = Genres.builder()
                 .userId(userId)
                 .name(requestData.getName())
                 .color(requestData.getColor())
                 .build();
 
-        Genres result = this.repository.save(genres);
+        final Genres result = this.repository.save(genres);
 
         return this.genreMappingPresenter.mapping(result);
     }
 
     @Override
-    public void delete(Long id) {
-        List<Clothes> clothes = this.clothesRepository.findAll(
+    public void delete(final Long id) {
+        final List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.hasGenres(id))
         );
         if(clothes.size() > 0) {
-            String errorMessage = "The brand cannot be deleted because it is used by other data.";
+            final String errorMessage = "The brand cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
@@ -120,8 +120,8 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreResponseViewModels search(Long userId) {
-        List<Genres> genres = this.repository.findAll(
+    public GenreResponseViewModels search(final Long userId) {
+        final List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
@@ -130,28 +130,28 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     }
 
     @Override
-    public GenreResponseViewModel searchById(Long id) {
-        Genres genre = this.repository.findOne(id);
+    public GenreResponseViewModel searchById(final Long id) {
+        final Genres genre = this.repository.findOne(id);
         return this.genreMappingPresenter.mapping(genre);
     }
 
     @Override
-    public void update(Long userId, Long id, GenreUpdateRequestModel requestData) {
-        Genres genres = Genres.builder()
+    public void update(final Long userId, final Long id, final GenreUpdateRequestModel requestData) {
+        final Genres genres = Genres.builder()
                 .id(id)
                 .userId(userId)
                 .name(requestData.getName())
                 .color(requestData.getColor())
                 .build();
 
-        Genres result = this.repository.save(genres);
+        final Genres result = this.repository.save(genres);
 
         this.genreMappingPresenter.mapping(result);
     }
 
     @Override
-    public TotalPricePerGenreViewModels acceptTotalPricePerGenre(Long userId) {
-        List<Genres> genres = this.repository.findAll(
+    public TotalPricePerGenreViewModels acceptTotalPricePerGenre(final Long userId) {
+        final List<Genres> genres = this.repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );

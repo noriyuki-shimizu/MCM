@@ -6,5 +6,5 @@ import source.domain.entity.db.Shops;
 import java.util.List;
 
 public interface IShopsMappingPresenter {
-    ShopResponseViewModels mapping(List<Shops> shops);
+    ShopResponseViewModels mapping(final List<Shops> shops);
 }

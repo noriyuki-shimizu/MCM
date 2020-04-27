@@ -49,8 +49,8 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
     private IShopsMappingPresenter shopsMappingPresenter;
 
     @Override
-    public ShopAssistResponseViewModels acceptKeyValues(Long userId) {
-        List<Shops> shops = this.repository.findAll(
+    public ShopAssistResponseViewModels acceptKeyValues(final Long userId) {
+        final List<Shops> shops = this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
                         .and(ShopsSpecification.isDeleted(false))
@@ -60,12 +60,12 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
     }
 
     @Override
-    public ShopResponseViewModel create(Long userId, ShopCreateRequestModel inputData) {
-        Images shopImage = Optional.ofNullable(inputData.getImageLink())
+    public ShopResponseViewModel create(final Long userId, final ShopCreateRequestModel inputData) {
+        final Images shopImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
-        Shops shop = Shops.builder()
+        final Shops shop = Shops.builder()
                 .userId(userId)
                 .name(inputData.getName())
                 .link(inputData.getLink())
@@ -76,31 +76,31 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                 .tel(inputData.getTel())
                 .build();
 
-        Shops result = this.repository.save(shop);
+        final Shops result = this.repository.save(shop);
 
         return this.shopMappingPresenter.mapping(result);
     }
 
     @Override
-    public void delete(Long id) {
-        List<Clothes> clothes = this.clothesRepository.findAll(
+    public void delete(final Long id) {
+        final List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.shopIdEqual(id))
         );
         if(clothes.size() > 0) {
-            String errorMessage = "The shop cannot be deleted because it is used by other data.";
+            final String errorMessage = "The shop cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
-        Shops result = this.repository.deleteById(id);
+        final Shops result = this.repository.deleteById(id);
 
         this.shopMappingPresenter.mapping(result);
     }
 
     @Override
-    public ShopResponseViewModels search(Long userId) {
-        List<Shops> shops = this.repository.findAll(
+    public ShopResponseViewModels search(final Long userId) {
+        final List<Shops> shops = this.repository.findAll(
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
         );
@@ -108,21 +108,21 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
     }
 
     @Override
-    public ShopResponseViewModel searchById(Long id) {
-        Shops shop = this.repository.findOne(id);
+    public ShopResponseViewModel searchById(final Long id) {
+        final Shops shop = this.repository.findOne(id);
         return this.shopMappingPresenter.mapping(shop);
     }
 
     @Override
-    public void update(Long userId, Long id, ShopUpdateRequestModel inputData) {
-        Images shopImage = Optional.ofNullable(inputData.getImageLink())
+    public void update(final Long userId, final Long id, final ShopUpdateRequestModel inputData) {
+        final Images shopImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
                     return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
                 })
                 .orElse(null);
 
-        Shops shop = Shops.builder()
+        final Shops shop = Shops.builder()
                 .id(id)
                 .userId(userId)
                 .name(inputData.getName())
@@ -134,14 +134,14 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                 .tel(inputData.getTel())
                 .build();
 
-        Shops result = this.repository.save(shop);
+        final Shops result = this.repository.save(shop);
 
         this.shopMappingPresenter.mapping(result);
     }
 
     @Override
-    public void restoration(Long id) {
-        Shops result = this.repository.restorationById(id);
+    public void restoration(final Long id) {
+        final Shops result = this.repository.restorationById(id);
         this.shopMappingPresenter.mapping(result);
     }
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 @Repository
 public interface GenresRepository extends JpaRepository<Genres, Long>, JpaSpecificationExecutor<Genres> {
     @Query(value = "UPDATE genres SET is_deleted = true, delete_date_time = now() WHERE id = :id", nativeQuery = true)
-    Genres deleteById(@Param("id") Long id);
+    Genres deleteById(@Param("id") final Long id);
 
-    Set<Genres> findByIdIn(Set<Long> ids);
+    Set<Genres> findByIdIn(final Set<Long> ids);
 }

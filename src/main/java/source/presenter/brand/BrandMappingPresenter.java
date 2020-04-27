@@ -12,8 +12,8 @@ import java.util.Optional;
 @Component
 public class BrandMappingPresenter implements IBrandMappingPresenter {
     @Override
-    public BrandResponseViewModel mapping(Brands brand) {
-        BrandResponseModel model = BrandResponseModel.of(
+    public BrandResponseViewModel mapping(final Brands brand) {
+        final BrandResponseModel model = BrandResponseModel.of(
                 brand.getId(),
                 brand.getName(),
                 brand.getLink(),

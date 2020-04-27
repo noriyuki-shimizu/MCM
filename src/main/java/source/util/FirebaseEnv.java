@@ -30,7 +30,7 @@ public class FirebaseEnv {
 
     public InputStream getServiceAccount() {
         try {
-            URL url = resourceLoader.getResource(this.serviceAccount).getURL();
+            final URL url = resourceLoader.getResource(this.serviceAccount).getURL();
             return url.openStream();
         } catch (IOException ioe) {
             ioe.printStackTrace();

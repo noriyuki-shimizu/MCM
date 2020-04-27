@@ -16,7 +16,7 @@ public interface IShopCrudUsecase {
      * @param userId ユーザID
      * @return ブルダウン表記のための DTO
      */
-    ShopAssistResponseViewModels acceptKeyValues(Long userId);
+    ShopAssistResponseViewModels acceptKeyValues(final Long userId);
 
     /**
      * 新規作成を行います.
@@ -25,14 +25,14 @@ public interface IShopCrudUsecase {
      * @param inputData 画面からの入力値
      * @return 画面描画のための DTO
      */
-    ShopResponseViewModel create(Long userId, ShopCreateRequestModel inputData);
+    ShopResponseViewModel create(final Long userId, final ShopCreateRequestModel inputData);
 
     /**
      * 削除を行います.
      *
      * @param id primary key
      */
-    void delete(Long id);
+    void delete(final Long id);
 
     /**
      * 検索を行います.
@@ -40,7 +40,7 @@ public interface IShopCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画のための DTO List
      */
-    ShopResponseViewModels search(Long userId);
+    ShopResponseViewModels search(final Long userId);
 
     /**
      * 1件検索を行います.
@@ -48,7 +48,7 @@ public interface IShopCrudUsecase {
      * @param id primary key
      * @return 画面描画するための DTO
      */
-    ShopResponseViewModel searchById(Long id);
+    ShopResponseViewModel searchById(final Long id);
 
     /**
      * 更新を行います.
@@ -57,12 +57,12 @@ public interface IShopCrudUsecase {
      * @param id primary key
      * @param inputData 画面からの入力値
      */
-    void update(Long userId, Long id, ShopUpdateRequestModel inputData);
+    void update(final Long userId, final Long id, final ShopUpdateRequestModel inputData);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
      */
-    void restoration(Long id);
+    void restoration(final Long id);
 }

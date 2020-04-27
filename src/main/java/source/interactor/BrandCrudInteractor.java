@@ -49,8 +49,8 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
     private IBrandMappingPresenter brandMappingPresenter;
 
     @Override
-    public BrandAssistResponseViewModels acceptKeyValues(Long userId) {
-        List<Brands> brands = this.repository.findAll(
+    public BrandAssistResponseViewModels acceptKeyValues(final Long userId) {
+        final List<Brands> brands = this.repository.findAll(
                 Specifications
                         .where(BrandsSpecification.userIdEqual(userId))
                         .and(BrandsSpecification.isDeleted(false))
@@ -60,12 +60,12 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
     }
 
     @Override
-    public BrandResponseViewModel create(Long userId, BrandCreateRequestModel inputData) {
-        Images brandImages = Optional.ofNullable(inputData.getImageLink())
+    public BrandResponseViewModel create(final Long userId, final BrandCreateRequestModel inputData) {
+        final Images brandImages = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
-        Brands brand = Brands.builder()
+        final Brands brand = Brands.builder()
                 .userId(userId)
                 .name(inputData.getName())
                 .link(inputData.getLink())
@@ -73,36 +73,36 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .country(inputData.getCountry())
                 .build();
 
-        Brands result = this.repository.save(brand);
+        final Brands result = this.repository.save(brand);
 
         return this.brandMappingPresenter.mapping(result);
     }
 
     @Override
-    public void delete(Long id) {
-        List<Clothes> clothes = this.clothesRepository.findAll(
+    public void delete(final Long id) {
+        final List<Clothes> clothes = this.clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.brandIdContains(id))
         );
         if(clothes.size() > 0) {
-            String errorMessage = "The brand cannot be deleted because it is used by other data.";
+            final String errorMessage = "The brand cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
-        Brands result = this.repository.deleteById(id);
+        final Brands result = this.repository.deleteById(id);
         this.brandMappingPresenter.mapping(result);
     }
 
     @Override
-    public void restoration(Long id) {
-        Brands result = this.repository.restorationById(id);
+    public void restoration(final Long id) {
+        final Brands result = this.repository.restorationById(id);
         this.brandMappingPresenter.mapping(result);
     }
 
     @Override
-    public BrandResponseViewModels search(Long userId) {
-        List<Brands> brands = this.repository.findAll(
+    public BrandResponseViewModels search(final Long userId) {
+        final List<Brands> brands = this.repository.findAll(
                 Specifications
                         .where(BrandsSpecification.userIdEqual(userId))
         );
@@ -111,22 +111,22 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
     }
 
     @Override
-    public BrandResponseViewModel searchById(Long id) {
-        Brands brand = this.repository.findOne(id);
+    public BrandResponseViewModel searchById(final Long id) {
+        final Brands brand = this.repository.findOne(id);
 
         return this.brandMappingPresenter.mapping(brand);
     }
 
     @Override
-    public void update(Long userId, Long id, BrandUpdateRequestModel inputData) {
-        Images brandImage = Optional.ofNullable(inputData.getImageLink())
+    public void update(final Long userId, final Long id, final BrandUpdateRequestModel inputData) {
+        final Images brandImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
                     return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
                 })
                 .orElse(null);
 
-        Brands brand = Brands.builder()
+        final Brands brand = Brands.builder()
                 .id(id)
                 .userId(userId)
                 .name(inputData.getName())
@@ -135,7 +135,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .country(inputData.getCountry())
                 .build();
 
-        Brands result = this.repository.save(brand);
+        final Brands result = this.repository.save(brand);
 
         this.brandMappingPresenter.mapping(result);
     }

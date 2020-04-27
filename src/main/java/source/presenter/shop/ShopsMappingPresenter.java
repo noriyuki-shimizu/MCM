@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class ShopsMappingPresenter implements IShopsMappingPresenter {
     @Override
-    public ShopResponseViewModels mapping(List<Shops> shops) {
-        List<ShopResponseModel> models = shops
+    public ShopResponseViewModels mapping(final List<Shops> shops) {
+        final List<ShopResponseModel> models = shops
                 .stream()
                 .map(shop -> ShopResponseModel.of(
                         shop.getId(),

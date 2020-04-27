@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class ClothesListMappingPresenter implements IClothesListMappingPresenter {
     @Override
-    public ClothesResponseViewModels mapping(List<Clothes> clothes) {
-        List<ClothesResponseModel> models = clothes
+    public ClothesResponseViewModels mapping(final List<Clothes> clothes) {
+        final List<ClothesResponseModel> models = clothes
                 .stream()
                 .map(c -> {
                     BrandAssistResponseModel brandModel = BrandAssistResponseModel.of(

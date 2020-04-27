@@ -6,5 +6,5 @@ import source.domain.entity.db.Clothes;
 import java.util.List;
 
 public interface IClothesListMappingPresenter {
-    ClothesResponseViewModels mapping(List<Clothes> clothes);
+    ClothesResponseViewModels mapping(final List<Clothes> clothes);
 }

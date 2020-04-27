@@ -15,7 +15,7 @@ public class AnalysisRequestHeader {
      * return {Long} userId
      */
     public Long getUserId() {
-        Optional<String> userId = Optional.ofNullable(this.request.getHeader("UserId"));
+        final Optional<String> userId = Optional.ofNullable(this.request.getHeader("UserId"));
 
         return userId
                 .map(Long::parseLong)
@@ -27,7 +27,7 @@ public class AnalysisRequestHeader {
      * @return token
      */
     public String getToken() {
-        Optional<String> authorization = Optional
+        final Optional<String> authorization = Optional
                 .ofNullable(this.request.getHeader("Authorization"));
 
         return authorization

@@ -6,5 +6,5 @@ import source.domain.entity.db.Genres;
 import java.util.List;
 
 public interface IGenreAssistsMappingPresenter {
-    GenreKeyValueResponseViewModels mapping(List<Genres> genres);
+    GenreKeyValueResponseViewModels mapping(final List<Genres> genres);
 }

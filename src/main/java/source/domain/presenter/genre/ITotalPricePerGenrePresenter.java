@@ -6,5 +6,5 @@ import source.domain.entity.db.Genres;
 import java.util.List;
 
 public interface ITotalPricePerGenrePresenter {
-    TotalPricePerGenreViewModels mapping(List<Genres> genres);
+    TotalPricePerGenreViewModels mapping(final List<Genres> genres);
 }

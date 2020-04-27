@@ -4,5 +4,5 @@ import source.controller.brands.crud.response.BrandResponseViewModel;
 import source.domain.entity.db.Brands;
 
 public interface IBrandMappingPresenter {
-    BrandResponseViewModel mapping(Brands brand);
+    BrandResponseViewModel mapping(final Brands brand);
 }

@@ -30,7 +30,7 @@ public class Firebase {
     @PostConstruct
     private void initializeApp() {
         try {
-            FirebaseOptions options = new FirebaseOptions.Builder()
+            final FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(this.env.getServiceAccount()))
                     .setDatabaseUrl(this.env.getDatabaseUrl())
                     .build();
@@ -54,10 +54,10 @@ public class Firebase {
      *
      * @return Optional<FirebaseToken>
      */
-    public Optional<FirebaseVerifiedToken> getDecodedToken(String token) {
+    public Optional<FirebaseVerifiedToken> getDecodedToken(final String token) {
         // idToken comes from the client app (shown above)
         try {
-            FirebaseToken firebaseToken = FirebaseAuth.getInstance(this.app).verifyIdToken(token);
+            final FirebaseToken firebaseToken = FirebaseAuth.getInstance(this.app).verifyIdToken(token);
             return Optional.of(
                     FirebaseVerifiedToken.of(
                             firebaseToken.getUid(),

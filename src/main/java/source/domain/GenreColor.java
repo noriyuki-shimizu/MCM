@@ -33,7 +33,7 @@ public enum GenreColor {
 
     private String key;
 
-    public static List<String> acceptCanSelectedColors(List<String> selectedColors) {
+    public static List<String> acceptCanSelectedColors(final List<String> selectedColors) {
         return Stream.of(GenreColor.values())
                 .map(GenreColor::getKey)
                 .filter(color -> !selectedColors.contains(color))

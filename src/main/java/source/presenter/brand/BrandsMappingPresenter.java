@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class BrandsMappingPresenter implements IBrandsMappingPresenter {
     @Override
-    public BrandResponseViewModels mapping(List<Brands> brands) {
-        List<BrandResponseModel> models = brands
+    public BrandResponseViewModels mapping(final List<Brands> brands) {
+        final List<BrandResponseModel> models = brands
                 .stream()
                 .map(brand -> BrandResponseModel.of(
                         brand.getId(),

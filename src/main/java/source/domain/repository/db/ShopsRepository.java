@@ -15,9 +15,9 @@ public interface ShopsRepository extends JpaRepository<Shops, Long>, JpaSpecific
     Optional<List<Shops>> findByIsDeletedOrderByUserId(final boolean isDeleted);
 
     @Query(value = "UPDATE shops SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
-    Shops deleteById(@Param("id") Long id);
+    Shops deleteById(@Param("id") final Long id);
 
     // Restoration
     @Query(value = "UPDATE shops SET is_deleted = false, update_date_time = now(), delete_date_time = null WHERE id = :id RETURNING *", nativeQuery = true)
-    Shops restorationById(@Param("id") Long id);
+    Shops restorationById(@Param("id") final Long id);
 }

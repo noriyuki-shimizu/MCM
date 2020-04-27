@@ -16,7 +16,7 @@ public interface IBrandCrudUsecase {
      * @param userId ユーザID
      * @return ブルダウン表記のための DTO
      */
-    BrandAssistResponseViewModels acceptKeyValues(Long userId);
+    BrandAssistResponseViewModels acceptKeyValues(final Long userId);
 
     /**
      * 新規作成を行います.
@@ -25,21 +25,21 @@ public interface IBrandCrudUsecase {
      * @param inputData 画面からの入力値
      * @return 画面描画するための DTO
      */
-    BrandResponseViewModel create(Long userId, BrandCreateRequestModel inputData);
+    BrandResponseViewModel create(final Long userId, final BrandCreateRequestModel inputData);
 
     /**
      * 論理削除を行います.
      *
      * @param id primary key
      */
-    void delete(Long id);
+    void delete(final Long id);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
      */
-    void restoration(Long id);
+    void restoration(final Long id);
 
     /**
      * 検索を行います.
@@ -47,7 +47,7 @@ public interface IBrandCrudUsecase {
      * @param userId ユーザID
      * @return 画面描画するための DTO List
      */
-    BrandResponseViewModels search(Long userId);
+    BrandResponseViewModels search(final Long userId);
 
     /**
      * 1件検索を行います.
@@ -55,7 +55,7 @@ public interface IBrandCrudUsecase {
      * @param id primary key
      * @return 画面描画するための DTO
      */
-    BrandResponseViewModel searchById(Long id);
+    BrandResponseViewModel searchById(final Long id);
 
     /**
      * 更新を行います.
@@ -64,6 +64,6 @@ public interface IBrandCrudUsecase {
      * @param id primary key
      * @param inputData 画面からの入力値
      */
-    void update(Long userId, Long id, BrandUpdateRequestModel inputData
+    void update(final Long userId, final Long id, final BrandUpdateRequestModel inputData
     );
 }

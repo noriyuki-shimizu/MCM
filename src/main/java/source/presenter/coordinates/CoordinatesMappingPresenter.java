@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @Component
 public class CoordinatesMappingPresenter implements ICoordinatesMappingPresenter {
     @Override
-    public CoordinateResponseViewModels mapping(List<Coordinates> coordinates) {
-        List<CoordinateResponseModel> models = coordinates
+    public CoordinateResponseViewModels mapping(final List<Coordinates> coordinates) {
+        final List<CoordinateResponseModel> models = coordinates
                 .stream()
                 .map(coordinate -> {
                     Set<ClothesAssistResponseModel> usedCoordinates = coordinate

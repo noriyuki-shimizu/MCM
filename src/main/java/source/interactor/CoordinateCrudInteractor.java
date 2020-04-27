@@ -42,14 +42,14 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
     private ICoordinatesMappingPresenter coordinatesMappingPresenter;
 
     @Override
-    public CoordinateResponseViewModel create(Long userId, CoordinateCreateRequestModel inputData) {
-        Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
+    public CoordinateResponseViewModel create(final Long userId, final CoordinateCreateRequestModel inputData) {
+        final Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
-        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
+        final Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
 
-        Coordinates coordinates = Coordinates.builder()
+        final Coordinates coordinates = Coordinates.builder()
                 .userId(userId)
                 .season(inputData.getSeason())
                 .image(coordinateImage)
@@ -60,7 +60,7 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(final Long id) {
         this.repository.delete(
                 Coordinates
                         .builder()
@@ -70,8 +70,8 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
-    public CoordinateResponseViewModels search(Long userId) {
-        List<Coordinates> coordinates = this.repository.findAll(
+    public CoordinateResponseViewModels search(final Long userId) {
+        final List<Coordinates> coordinates = this.repository.findAll(
                 Specifications
                         .where(CoordinatesSpecification.userIdEqual(userId))
         );
@@ -80,23 +80,23 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
     }
 
     @Override
-    public CoordinateResponseViewModel searchById(Long id) {
-        Coordinates coordinate = this.repository.findOne(id);
+    public CoordinateResponseViewModel searchById(final Long id) {
+        final Coordinates coordinate = this.repository.findOne(id);
         return this.coordinateMappingPresenter.mapping(coordinate);
     }
 
     @Override
-    public void update(Long userId, Long id, CoordinateUpdateRequestModel inputData) {
-        Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
+    public void update(final Long userId, final Long id, final CoordinateUpdateRequestModel inputData) {
+        final Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
                     return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
                 })
                 .orElse(null);
 
-        Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
+        final Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
 
-        Coordinates coordinates = Coordinates.builder()
+        final Coordinates coordinates = Coordinates.builder()
                 .id(id)
                 .userId(userId)
                 .season(inputData.getSeason())

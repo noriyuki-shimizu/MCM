@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class CoordinateMappingPresenter implements ICoordinateMappingPresenter {
     @Override
-    public CoordinateResponseViewModel mapping(Coordinates coordinate) {
-        Set<ClothesAssistResponseModel> usedCoordinates = coordinate
+    public CoordinateResponseViewModel mapping(final Coordinates coordinate) {
+        final Set<ClothesAssistResponseModel> usedCoordinates = coordinate
                 .getUsedCoordinates()
                 .stream()
                 .map(clothes -> ClothesAssistResponseModel.of(
@@ -37,7 +37,7 @@ public class CoordinateMappingPresenter implements ICoordinateMappingPresenter {
                 ))
                 .collect(Collectors.toSet());
 
-        CoordinateResponseModel model = CoordinateResponseModel.of(
+        final CoordinateResponseModel model = CoordinateResponseModel.of(
                 coordinate.getId(),
                 coordinate.getSeason(),
                 Optional

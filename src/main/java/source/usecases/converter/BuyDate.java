@@ -7,7 +7,7 @@ import java.util.Optional;
 public class BuyDate {
 
     // sql.Date -> String
-    public static String toString(Date date) {
+    public static String toString(final Date date) {
         return Optional
                 .ofNullable(date)
                 .map(d -> {
@@ -18,7 +18,7 @@ public class BuyDate {
     }
 
     // LocalDate -> sql.Date
-    public static Date toSqlDate(String date) {
+    public static Date toSqlDate(final String date) {
         return Optional
                 .ofNullable(date)
                 .map(Date::valueOf)

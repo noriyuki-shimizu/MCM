@@ -56,27 +56,27 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
     private IClothesAssistsMappingPresenter clothesAssistsMappingPresenter;
 
     @Override
-    public ClothesAssistResponseViewModels acceptKeyValues(Long userId) {
-        List<Clothes> clothes = this.repository.findByUserIdAndIsDeleted(userId, false);
+    public ClothesAssistResponseViewModels acceptKeyValues(final Long userId) {
+        final List<Clothes> clothes = this.repository.findByUserIdAndIsDeleted(userId, false);
         return this.clothesAssistsMappingPresenter.mapping(clothes);
     }
 
     @Override
-    public ClothesResponseViewModel create(Long userId, ClothesCreateRequestModel inputData) {
-        Images clothesImage = Optional.ofNullable(inputData.getImageLink())
+    public ClothesResponseViewModel create(final Long userId, final ClothesCreateRequestModel inputData) {
+        final Images clothesImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
         // TODO: JPA での闇の実装（もっと調査する必要あり）
-        Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
+        final Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
 
-        Shops shop = this.shopsRepository.findOne(inputData.getShopId());
+        final Shops shop = this.shopsRepository.findOne(inputData.getShopId());
 
-        Set<Genres> genres = this.genresRepository.findByIdIn(
+        final Set<Genres> genres = this.genresRepository.findByIdIn(
                 inputData.getGenreIds()
         );
 
-        Clothes result = this.repository.save(
+        final Clothes result = this.repository.save(
                 Clothes.builder()
                         .userId(userId)
                         .image(clothesImage)
@@ -94,30 +94,30 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
-    public void delete(Long id) {
-        List<Coordinates> coordinates = this.coordinatesRepository.findAll(
+    public void delete(final Long id) {
+        final List<Coordinates> coordinates = this.coordinatesRepository.findAll(
                 Specifications
                         .where(CoordinatesSpecification.hasClothes(id))
         );
         if (coordinates.size() > 0) {
-            String errorMessage = "The clothes cannot be deleted because it is used by other data.";
+            final String errorMessage = "The clothes cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
-        Clothes clothes = this.repository.deleteById(id);
+        final Clothes clothes = this.repository.deleteById(id);
         this.clothesMappingPresenter.mapping(clothes);
     }
 
     @Override
-    public void restoration(Long id) {
-        Clothes clothes = this.repository.restorationById(id);
+    public void restoration(final Long id) {
+        final Clothes clothes = this.repository.restorationById(id);
         this.clothesMappingPresenter.mapping(clothes);
     }
 
     @Override
-    public ClothesResponseViewModels search(Long userId) {
-        List<Clothes> clothes = this.repository.findAll(
+    public ClothesResponseViewModels search(final Long userId) {
+        final List<Clothes> clothes = this.repository.findAll(
                 Specifications
                         .where(ClothesSpecification.userIdEqual(userId))
         );
@@ -125,19 +125,19 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
     }
 
     @Override
-    public ClothesResponseViewModel searchById(Long id) {
-        Clothes clothes = this.repository.findOne(id);
+    public ClothesResponseViewModel searchById(final Long id) {
+        final Clothes clothes = this.repository.findOne(id);
         return this.clothesMappingPresenter.mapping(clothes);
     }
 
     @Override
-    public long getTotalPriceByUserId(Long userId) {
+    public long getTotalPriceByUserId(final Long userId) {
         return this.repository.sumPriceByUserId(userId);
     }
 
     @Override
-    public void update(Long userId, Long id, ClothesUpdateRequestModel inputData) {
-        Images clothesImage = Optional.ofNullable(inputData.getImageLink())
+    public void update(final Long userId, final Long id, final ClothesUpdateRequestModel inputData) {
+        final Images clothesImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
                     return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
@@ -145,15 +145,15 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                 .orElse(null);
 
         // TODO: JPA での闇の実装（もっと調査する必要あり）
-        Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
+        final Brands brand = this.brandsRepository.findOne(inputData.getBrandId());
 
-        Shops shop = this.shopsRepository.findOne(inputData.getShopId());
+        final Shops shop = this.shopsRepository.findOne(inputData.getShopId());
 
-        Set<Genres> genres = this.genresRepository.findByIdIn(
+        final Set<Genres> genres = this.genresRepository.findByIdIn(
                 inputData.getGenreIds()
         );
 
-        Clothes result = this.repository.save(
+        final Clothes result = this.repository.save(
                 Clothes.builder()
                         .id(id)
                         .userId(userId)
