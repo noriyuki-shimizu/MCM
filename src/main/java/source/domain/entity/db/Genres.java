@@ -1,6 +1,7 @@
 package source.domain.entity.db;
 
 import lombok.*;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import source.domain.entity.db.common.TimestampEntity;
 
 import javax.persistence.*;
@@ -33,6 +34,7 @@ public class Genres extends TimestampEntity {
     @NotNull
     private String color;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "genres")
     private Set<Clothes> clothes;
 

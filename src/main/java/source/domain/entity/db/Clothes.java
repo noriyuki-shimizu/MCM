@@ -1,6 +1,7 @@
 package source.domain.entity.db;
 
 import lombok.*;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import source.domain.entity.db.common.TimestampEntity;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class Clothes extends TimestampEntity {
     @JoinColumn(name = "image_id")
     private Images image;
 
+    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "clothing_genres",
@@ -63,7 +65,12 @@ public class Clothes extends TimestampEntity {
     @Column(name = "satisfaction")
     private BigDecimal satisfaction;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "usedCoordinates")
     private Set<Coordinates> coordinates;
 
+    public void removeGenre(Genres genre) {
+        this.genres.remove(genre);
+        genre.getClothes().remove(this);
+    }
 }

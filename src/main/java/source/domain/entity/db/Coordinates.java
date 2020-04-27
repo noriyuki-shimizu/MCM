@@ -1,5 +1,6 @@
 package source.domain.entity.db;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import lombok.*;
 import source.domain.entity.db.common.TimestampEntity;
 
@@ -32,6 +33,7 @@ public class Coordinates extends TimestampEntity {
     @JoinColumn(name = "image_id")
     private Images image;
 
+    @JsonManagedReference
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "used_coordinates",
