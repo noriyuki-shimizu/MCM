@@ -20,14 +20,12 @@ public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpec
     List<Clothes> findByUserIdAndIsDeleted(final Long userId, final boolean isDeleted);
 
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
-    long sumPriceByUserId(@Param("user_id") Long userId);
+    long sumPriceByUserId(@Param("user_id") final Long userId);
 
     @Query(value = "UPDATE clothes SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
-    Clothes deleteById(@Param("id") Long id);
+    Clothes deleteById(@Param("id") final Long id);
 
     // Restoration
     @Query(value = "UPDATE clothes SET is_deleted = false, update_date_time = now(), delete_date_time = null WHERE id = :id RETURNING *", nativeQuery = true)
-    Clothes restorationById(@Param("id") Long id);
-
-    Set<Clothes> findByIdIn(Set<Long> ids);
+    Clothes restorationById(@Param("id") final Long id);
 }
