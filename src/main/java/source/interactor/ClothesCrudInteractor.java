@@ -57,11 +57,7 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
 
     @Override
     public ClothesAssistResponseViewModels acceptKeyValues(Long userId) {
-        List<Clothes> clothes = this.repository.findAll(
-                Specifications.where(
-                        ClothesSpecification.userIdEqual(userId)
-                )
-        );
+        List<Clothes> clothes = this.repository.findByUserIdAndIsDeleted(userId, false);
         return this.clothesAssistsMappingPresenter.mapping(clothes);
     }
 
@@ -103,7 +99,7 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                 Specifications
                         .where(CoordinatesSpecification.hasClothes(id))
         );
-        if(coordinates.size() > 0) {
+        if (coordinates.size() > 0) {
             String errorMessage = "The clothes cannot be deleted because it is used by other data.";
             log.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);

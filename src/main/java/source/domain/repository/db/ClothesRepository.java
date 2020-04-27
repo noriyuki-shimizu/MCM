@@ -15,6 +15,10 @@ import java.util.Set;
 public interface ClothesRepository extends JpaRepository<Clothes, Long>, JpaSpecificationExecutor<Clothes> {
     Optional<List<Clothes>> findByIsDeletedOrderByUserId(final boolean isDeleted);
 
+    Set<Clothes> findByIdIn(final Set<Long> ids);
+
+    List<Clothes> findByUserIdAndIsDeleted(final Long userId, final boolean isDeleted);
+
     @Query(value = "SELECT sum(price) FROM clothes WHERE user_id = :user_id", nativeQuery = true)
     long sumPriceByUserId(@Param("user_id") Long userId);
 
