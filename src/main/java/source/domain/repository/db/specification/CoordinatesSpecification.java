@@ -11,32 +11,25 @@ import java.util.Collection;
 
 public class CoordinatesSpecification {
     public static Specification<Coordinates> userIdEqual(final Long userId) {
-        return userId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("userId"), userId);
-        };
+        return userId == null ? null : (root, query, cb) -> cb.equal(root.get("userId"), userId);
     }
 
     public static Specification<Coordinates> seasonEqual(final String season) {
-        return season == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("season"), season);
-        };
+        return season == null ? null : (root, query, cb) -> cb.equal(root.get("season"), season);
     }
 
     public static Specification<Coordinates> isDeleted(final boolean isDeleted) {
-        return (root, query, cb) -> {
-            return cb.equal(root.get("isDeleted"), isDeleted);
-        };
+        return (root, query, cb) -> cb.equal(root.get("isDeleted"), isDeleted);
     }
 
     public static Specification<Coordinates> hasClothes(final Long clothingId) {
         return (root, query, cb) -> {
             query.distinct(true);
-            Root<Coordinates> coordinate = root;
             Subquery<Clothes> clothesSubquery = query.subquery(Clothes.class);
             Root<Clothes> clothes = clothesSubquery.from(Clothes.class);
             Expression<Collection<Coordinates>> clothesCoordinate = clothes.get("coordinates");
             clothesSubquery.select(clothes);
-            clothesSubquery.where(cb.equal(clothes.get("id"), clothingId), cb.isMember(coordinate, clothesCoordinate));
+            clothesSubquery.where(cb.equal(clothes.get("id"), clothingId), cb.isMember(root, clothesCoordinate));
             return cb.exists(clothesSubquery);
         };
     }

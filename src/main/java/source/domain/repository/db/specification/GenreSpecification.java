@@ -5,8 +5,6 @@ import source.domain.entity.db.Genres;
 
 public class GenreSpecification {
     public static Specification<Genres> userIdEqual(final Long userId) {
-        return userId == null ? null : (root, query, cb) -> {
-            return cb.equal(root.get("userId"), userId);
-        };
+        return userId == null ? null : (root, query, cb) -> cb.equal(root.get("userId"), userId);
     }
 }
