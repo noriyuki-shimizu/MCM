@@ -64,7 +64,7 @@ public class ClothesSpecification {
 
     public static Specification<Clothes> isDeleted(final boolean isDeleted) {
         return (root, query, cb) -> {
-            return cb.equal(root.get("is_deleted"), isDeleted);
+            return cb.equal(root.get("isDeleted"), isDeleted);
         };
     }
 }
