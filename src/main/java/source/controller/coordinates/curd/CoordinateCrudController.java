@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.coordinates.CoordinatesController;
-import source.usecases.app.ICoordinateCrudUsecase;
 import source.controller.coordinates.curd.request.CoordinateCreateRequestModel;
 import source.controller.coordinates.curd.request.CoordinateUpdateRequestModel;
 import source.controller.coordinates.curd.response.CoordinateResponseViewModel;
 import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
+import source.usecases.app.ICoordinateCrudUsecase;
 
 @Slf4j(topic = "source.controller.coordinates.crud")
 @RestController

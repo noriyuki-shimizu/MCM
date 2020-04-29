@@ -12,9 +12,7 @@ import source.controller.shops.crud.response.ShopResponseViewModels;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Images;
 import source.domain.entity.db.Shops;
-import source.domain.presenter.shop.IShopAssistsMappingPresenter;
-import source.domain.presenter.shop.IShopMappingPresenter;
-import source.domain.presenter.shop.IShopsMappingPresenter;
+import source.domain.presenter.IShopPresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.ShopsRepository;
@@ -40,13 +38,7 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
     private ImagesRepository imagesRepository;
 
     @Autowired
-    private IShopAssistsMappingPresenter shopAssistsMappingPresenter;
-
-    @Autowired
-    private IShopMappingPresenter shopMappingPresenter;
-
-    @Autowired
-    private IShopsMappingPresenter shopsMappingPresenter;
+    private IShopPresenter presenter;
 
     @Override
     public ShopAssistResponseViewModels acceptKeyValues(final Long userId) {
@@ -56,7 +48,7 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                         .and(ShopsSpecification.isDeleted(false))
         );
 
-        return this.shopAssistsMappingPresenter.mapping(shops);
+        return this.presenter.toShopAssistResponseViewModels(shops);
     }
 
     @Override
@@ -78,7 +70,7 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
 
         final Shops result = this.repository.save(shop);
 
-        return this.shopMappingPresenter.mapping(result);
+        return this.presenter.toShopResponseViewModel(result);
     }
 
     @Override
@@ -93,9 +85,7 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
-        final Shops result = this.repository.deleteById(id);
-
-        this.shopMappingPresenter.mapping(result);
+        this.repository.deleteById(id);
     }
 
     @Override
@@ -104,13 +94,13 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                 Specifications
                         .where(ShopsSpecification.userIdEqual(userId))
         );
-        return this.shopsMappingPresenter.mapping(shops);
+        return this.presenter.toShopResponseViewModels(shops);
     }
 
     @Override
     public ShopResponseViewModel searchById(final Long id) {
         final Shops shop = this.repository.findOne(id);
-        return this.shopMappingPresenter.mapping(shop);
+        return this.presenter.toShopResponseViewModel(shop);
     }
 
     @Override
@@ -134,14 +124,11 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                 .tel(inputData.getTel())
                 .build();
 
-        final Shops result = this.repository.save(shop);
-
-        this.shopMappingPresenter.mapping(result);
+        this.repository.save(shop);
     }
 
     @Override
     public void restoration(final Long id) {
-        final Shops result = this.repository.restorationById(id);
-        this.shopMappingPresenter.mapping(result);
+        this.repository.restorationById(id);
     }
 }

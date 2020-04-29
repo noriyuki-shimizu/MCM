@@ -14,7 +14,7 @@ import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 import source.domain.GenreColor;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Genres;
-import source.domain.presenter.genre.*;
+import source.domain.presenter.IGenrePresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.GenresRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
@@ -37,19 +37,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
     private ClothesRepository clothesRepository;
 
     @Autowired
-    private IGenreAssistsMappingPresenter genreAssistsMappingPresenter;
-
-    @Autowired
-    private IGenreMappingPresenter genreMappingPresenter;
-
-    @Autowired
-    private IGenresMappingPresenter genresMappingPresenter;
-
-    @Autowired
-    private ITotalPricePerGenrePresenter totalPricePerGenrePresenter;
-
-    @Autowired
-    private IGenreColorMappingPresenter genreColorMappingPresenter;
+    private IGenrePresenter presenter;
 
     @Override
     public GenreKeyValueResponseViewModels acceptKeyValues(final Long userId) {
@@ -58,7 +46,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                         .where(GenreSpecification.userIdEqual(userId))
         );
 
-        return this.genreAssistsMappingPresenter.mapping(genres);
+        return this.presenter.toGenreKeyValueResponseViewModels(genres);
     }
 
     @Override
@@ -82,7 +70,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                                 .collect(Collectors.toList())
                 );
 
-        return this.genreColorMappingPresenter.mapping(
+        return this.presenter.toGenreColorResponseViewModels(
                 GenreColor.acceptCanSelectedColors(selectedColors)
         );
     }
@@ -97,7 +85,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
         final Genres result = this.repository.save(genres);
 
-        return this.genreMappingPresenter.mapping(result);
+        return this.presenter.toGenreResponseViewModel(result);
     }
 
     @Override
@@ -126,13 +114,13 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                         .where(GenreSpecification.userIdEqual(userId))
         );
 
-        return this.genresMappingPresenter.mapping(genres);
+        return this.presenter.toGenreResponseViewModels(genres);
     }
 
     @Override
     public GenreResponseViewModel searchById(final Long id) {
         final Genres genre = this.repository.findOne(id);
-        return this.genreMappingPresenter.mapping(genre);
+        return this.presenter.toGenreResponseViewModel(genre);
     }
 
     @Override
@@ -144,9 +132,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                 .color(requestData.getColor())
                 .build();
 
-        final Genres result = this.repository.save(genres);
-
-        this.genreMappingPresenter.mapping(result);
+        this.repository.save(genres);
     }
 
     @Override
@@ -155,6 +141,6 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
-        return this.totalPricePerGenrePresenter.mapping(genres);
+        return this.presenter.toTotalPricePerGenreViewModels(genres);
     }
 }

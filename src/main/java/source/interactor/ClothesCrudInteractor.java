@@ -10,9 +10,7 @@ import source.controller.clothes.curd.request.ClothesUpdateRequestModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModels;
 import source.domain.entity.db.*;
-import source.domain.presenter.clothes.IClothesAssistsMappingPresenter;
-import source.domain.presenter.clothes.IClothesListMappingPresenter;
-import source.domain.presenter.clothes.IClothesMappingPresenter;
+import source.domain.presenter.IClothesPresenter;
 import source.domain.repository.db.*;
 import source.domain.repository.db.specification.ClothesSpecification;
 import source.domain.repository.db.specification.CoordinatesSpecification;
@@ -47,18 +45,12 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
     private GenresRepository genresRepository;
 
     @Autowired
-    private IClothesListMappingPresenter clothesListMappingPresenter;
-
-    @Autowired
-    private IClothesMappingPresenter clothesMappingPresenter;
-
-    @Autowired
-    private IClothesAssistsMappingPresenter clothesAssistsMappingPresenter;
+    private IClothesPresenter presenter;
 
     @Override
     public ClothesAssistResponseViewModels acceptKeyValues(final Long userId) {
         final List<Clothes> clothes = this.repository.findByUserIdAndIsDeleted(userId, false);
-        return this.clothesAssistsMappingPresenter.mapping(clothes);
+        return this.presenter.toClothesAssistResponseViewModels(clothes);
     }
 
     @Override
@@ -90,7 +82,7 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                         .build()
         );
 
-        return this.clothesMappingPresenter.mapping(result);
+        return this.presenter.toClothesResponseViewModel(result);
     }
 
     @Override
@@ -105,14 +97,12 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
-        final Clothes clothes = this.repository.deleteById(id);
-        this.clothesMappingPresenter.mapping(clothes);
+        this.repository.deleteById(id);
     }
 
     @Override
     public void restoration(final Long id) {
-        final Clothes clothes = this.repository.restorationById(id);
-        this.clothesMappingPresenter.mapping(clothes);
+        this.repository.restorationById(id);
     }
 
     @Override
@@ -121,13 +111,13 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                 Specifications
                         .where(ClothesSpecification.userIdEqual(userId))
         );
-        return this.clothesListMappingPresenter.mapping(clothes);
+        return this.presenter.toClothesResponseViewModels(clothes);
     }
 
     @Override
     public ClothesResponseViewModel searchById(final Long id) {
         final Clothes clothes = this.repository.findOne(id);
-        return this.clothesMappingPresenter.mapping(clothes);
+        return this.presenter.toClothesResponseViewModel(clothes);
     }
 
     @Override
@@ -153,7 +143,7 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                 inputData.getGenreIds()
         );
 
-        final Clothes result = this.repository.save(
+        this.repository.save(
                 Clothes.builder()
                         .id(id)
                         .userId(userId)
@@ -167,7 +157,5 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                         .satisfaction(inputData.getSatisfaction())
                         .build()
         );
-
-        this.clothesMappingPresenter.mapping(result);
     }
 }

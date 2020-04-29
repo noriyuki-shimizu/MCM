@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.brands.BrandsController;
-import source.usecases.app.IBrandCrudUsecase;
 import source.controller.brands.crud.request.BrandCreateRequestModel;
 import source.controller.brands.crud.request.BrandUpdateRequestModel;
 import source.controller.brands.crud.response.BrandResponseViewModel;
 import source.controller.brands.crud.response.BrandResponseViewModels;
+import source.usecases.app.IBrandCrudUsecase;
 
 @Slf4j(topic = "source.controller.brands.crud")
 @RestController

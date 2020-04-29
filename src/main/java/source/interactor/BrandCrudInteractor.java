@@ -12,9 +12,7 @@ import source.controller.brands.crud.response.BrandResponseViewModels;
 import source.domain.entity.db.Brands;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Images;
-import source.domain.presenter.brand.IBrandAssistsMappingPresenter;
-import source.domain.presenter.brand.IBrandMappingPresenter;
-import source.domain.presenter.brand.IBrandsMappingPresenter;
+import source.domain.presenter.IBrandPresenter;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
@@ -40,13 +38,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
     private ImagesRepository imagesRepository;
 
     @Autowired
-    private IBrandAssistsMappingPresenter brandAssistsMappingPresenter;
-
-    @Autowired
-    private IBrandsMappingPresenter brandsMappingPresenter;
-
-    @Autowired
-    private IBrandMappingPresenter brandMappingPresenter;
+    private IBrandPresenter presenter;
 
     @Override
     public BrandAssistResponseViewModels acceptKeyValues(final Long userId) {
@@ -56,7 +48,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                         .and(BrandsSpecification.isDeleted(false))
         );
 
-        return this.brandAssistsMappingPresenter.mapping(brands);
+        return this.presenter.toBrandAssistResponseViewModels(brands);
     }
 
     @Override
@@ -75,7 +67,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
 
         final Brands result = this.repository.save(brand);
 
-        return this.brandMappingPresenter.mapping(result);
+        return this.presenter.toBrandResponseViewModel(result);
     }
 
     @Override
@@ -90,14 +82,12 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
-        final Brands result = this.repository.deleteById(id);
-        this.brandMappingPresenter.mapping(result);
+        this.repository.deleteById(id);
     }
 
     @Override
     public void restoration(final Long id) {
-        final Brands result = this.repository.restorationById(id);
-        this.brandMappingPresenter.mapping(result);
+        this.repository.restorationById(id);
     }
 
     @Override
@@ -107,14 +97,14 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                         .where(BrandsSpecification.userIdEqual(userId))
         );
 
-        return this.brandsMappingPresenter.mapping(brands);
+        return this.presenter.toBrandResponseViewModels(brands);
     }
 
     @Override
     public BrandResponseViewModel searchById(final Long id) {
         final Brands brand = this.repository.findOne(id);
 
-        return this.brandMappingPresenter.mapping(brand);
+        return this.presenter.toBrandResponseViewModel(brand);
     }
 
     @Override
@@ -135,8 +125,6 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .country(inputData.getCountry())
                 .build();
 
-        final Brands result = this.repository.save(brand);
-
-        this.brandMappingPresenter.mapping(result);
+        this.repository.save(brand);
     }
 }
