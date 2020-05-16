@@ -22,6 +22,17 @@
         </encoder>
     </appender>
 
+    <appender name="LOGIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/login/login-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>100</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="ROUTING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>logs/routing/routing-%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -102,6 +113,11 @@
     <logger name="source">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="APPLICATION" />
+    </logger>
+
+    <logger name="source.controller.auth">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOGIN" />
     </logger>
 
     <logger name="source.controller.RoutingController">
