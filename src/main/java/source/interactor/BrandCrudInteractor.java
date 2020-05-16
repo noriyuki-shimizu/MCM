@@ -16,7 +16,6 @@ import source.domain.presenter.IBrandPresenter;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
-import source.domain.repository.db.specification.BrandsSpecification;
 import source.domain.repository.db.specification.ClothesSpecification;
 import source.usecases.app.IBrandCrudUsecase;
 
@@ -42,19 +41,15 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
 
     @Override
     public BrandAssistResponseViewModels acceptKeyValues(final Long userId) {
-        final List<Brands> brands = this.repository.findAll(
-                Specifications
-                        .where(BrandsSpecification.userIdEqual(userId))
-                        .and(BrandsSpecification.isDeleted(false))
-        );
+        final List<Brands> brands = repository.findByUserIdAndIsDeletedOrderByName(userId, false);
 
-        return this.presenter.toBrandAssistResponseViewModels(brands);
+        return presenter.toBrandAssistResponseViewModels(brands);
     }
 
     @Override
     public BrandResponseViewModel create(final Long userId, final BrandCreateRequestModel inputData) {
         final Images brandImages = Optional.ofNullable(inputData.getImageLink())
-                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .map(path -> imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
         final Brands brand = Brands.builder()
@@ -65,14 +60,14 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .country(inputData.getCountry())
                 .build();
 
-        final Brands result = this.repository.save(brand);
+        final Brands result = repository.save(brand);
 
-        return this.presenter.toBrandResponseViewModel(result);
+        return presenter.toBrandResponseViewModel(result);
     }
 
     @Override
     public void delete(final Long id) {
-        final List<Clothes> clothes = this.clothesRepository.findAll(
+        final List<Clothes> clothes = clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.brandIdContains(id))
         );
@@ -82,29 +77,26 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
-        this.repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public void restoration(final Long id) {
-        this.repository.restorationById(id);
+        repository.restorationById(id);
     }
 
     @Override
     public BrandResponseViewModels search(final Long userId) {
-        final List<Brands> brands = this.repository.findAll(
-                Specifications
-                        .where(BrandsSpecification.userIdEqual(userId))
-        );
+        final List<Brands> brands = repository.findByUserIdOrderByName(userId);
 
-        return this.presenter.toBrandResponseViewModels(brands);
+        return presenter.toBrandResponseViewModels(brands);
     }
 
     @Override
     public BrandResponseViewModel searchById(final Long id) {
-        final Brands brand = this.repository.findOne(id);
+        final Brands brand = repository.findOne(id);
 
-        return this.presenter.toBrandResponseViewModel(brand);
+        return presenter.toBrandResponseViewModel(brand);
     }
 
     @Override
@@ -112,7 +104,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
         final Images brandImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
-                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                    return imagesRepository.save(Images.builder().id(imageId).path(path).build());
                 })
                 .orElse(null);
 
@@ -125,6 +117,6 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .country(inputData.getCountry())
                 .build();
 
-        this.repository.save(brand);
+        repository.save(brand);
     }
 }

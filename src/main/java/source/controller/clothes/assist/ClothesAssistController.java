@@ -20,6 +20,6 @@ public class ClothesAssistController extends ClothesController {
     @GetMapping(value = "/items")
     @ResponseStatus(HttpStatus.OK)
     public ClothesAssistResponseViewModels handle(@PathVariable("userId") Long userId) {
-        return this.usecase.acceptKeyValues(userId);
+        return usecase.acceptKeyValues(userId);
     }
 }

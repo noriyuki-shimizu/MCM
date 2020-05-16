@@ -18,7 +18,7 @@ public class PreLoginInteractor implements IPreLoginUsecase {
     private UsersRepository repository;
 
     public long getUserIdAndSetIfNotExistUser(final FirebaseVerifiedToken firebaseVerifiedToken) {
-        final Optional<Users> users = this.repository.findByUid(firebaseVerifiedToken.getUid());
+        final Optional<Users> users = repository.findByUid(firebaseVerifiedToken.getUid());
 
         if (users.isEmpty()) {
             final Users insertUser = Users.builder()
@@ -27,7 +27,7 @@ public class PreLoginInteractor implements IPreLoginUsecase {
                     .uid(firebaseVerifiedToken.getUid())
                     .build();
 
-            return this.repository.save(insertUser).getId();
+            return repository.save(insertUser).getId();
         }
         return users.get().getId();
     }

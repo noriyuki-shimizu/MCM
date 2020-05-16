@@ -31,11 +31,11 @@ public class Firebase {
     private void initializeApp() {
         try {
             final FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(this.env.getServiceAccount()))
-                    .setDatabaseUrl(this.env.getDatabaseUrl())
+                    .setCredentials(GoogleCredentials.fromStream(env.getServiceAccount()))
+                    .setDatabaseUrl(env.getDatabaseUrl())
                     .build();
 
-            this.app = FirebaseApp.initializeApp(options, this.env.getApiName());
+            app = FirebaseApp.initializeApp(options, env.getApiName());
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class Firebase {
      */
     @PreDestroy
     private void deleteApp() {
-        this.app.delete();
+        app.delete();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Firebase {
     public Optional<FirebaseVerifiedToken> getDecodedToken(final String token) {
         // idToken comes from the client app (shown above)
         try {
-            final FirebaseToken firebaseToken = FirebaseAuth.getInstance(this.app).verifyIdToken(token);
+            final FirebaseToken firebaseToken = FirebaseAuth.getInstance(app).verifyIdToken(token);
             return Optional.of(
                     FirebaseVerifiedToken.of(
                             firebaseToken.getUid(),

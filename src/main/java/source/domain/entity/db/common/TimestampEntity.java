@@ -30,17 +30,17 @@ public abstract class TimestampEntity {
     @PrePersist
     public void prePersist() {
         Timestamp ts = new Timestamp((new Date()).getTime());
-        this.createDateTime = ts;
-        this.updateDateTime = ts;
+        createDateTime = ts;
+        updateDateTime = ts;
     }
 
     @PreUpdate
     public void preUpdate() {
         Timestamp ts = new Timestamp((new Date()).getTime());
-        this.updateDateTime = ts;
+        updateDateTime = ts;
 
-        if (this.isDeleted) {
-            this.deleteDateTime = ts;
+        if (isDeleted) {
+            deleteDateTime = ts;
         }
     }
 }

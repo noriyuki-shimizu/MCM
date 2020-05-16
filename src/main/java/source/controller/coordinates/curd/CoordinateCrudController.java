@@ -24,26 +24,26 @@ public class CoordinateCrudController extends CoordinatesController {
     @ResponseStatus(HttpStatus.CREATED)
     public CoordinateResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody CoordinateCreateRequestModel inputData) throws JsonProcessingException {
         log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(inputData));
-        return this.usecase.create(userId, inputData);
+        return usecase.create(userId, inputData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("delete -> user: {}, id: {}", userId, id);
-        this.usecase.delete(id);
+        usecase.delete(id);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public CoordinateResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
-        return this.usecase.search(userId);
+        return usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CoordinateResponseViewModel handleSearchById(@PathVariable("id") Long id) {
-        return this.usecase.searchById(id);
+        return usecase.searchById(id);
     }
 
     @PutMapping("/{id}")
@@ -54,6 +54,6 @@ public class CoordinateCrudController extends CoordinatesController {
             @RequestBody CoordinateUpdateRequestModel inputData
     ) throws JsonProcessingException {
         log.info("update -> user: {}, id: {}, data: {}", userId, id, MAPPER.writeValueAsString(inputData));
-        this.usecase.update(userId, id, inputData);
+        usecase.update(userId, id, inputData);
     }
 }

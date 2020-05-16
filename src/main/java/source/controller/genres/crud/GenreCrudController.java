@@ -28,26 +28,26 @@ public class GenreCrudController extends GenresController {
             @RequestBody GenreCreateRequestModel requestData
     ) throws JsonProcessingException {
         log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
-        return this.usecase.create(userId, requestData);
+        return usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("delete -> user: {}, id: {}", userId, id);
-        this.usecase.delete(id);
+        usecase.delete(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public GenreResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
-        return this.usecase.search(userId);
+        return usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public GenreResponseViewModel handleSearchById(@PathVariable("id") Long id) {
-        return this.usecase.searchById(id);
+        return usecase.searchById(id);
     }
 
     @PutMapping(value = "/{id}")
@@ -58,12 +58,12 @@ public class GenreCrudController extends GenresController {
             @RequestBody GenreUpdateRequestModel requestData
     ) throws JsonProcessingException {
         log.info("update -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
-        this.usecase.update(userId, id, requestData);
+        usecase.update(userId, id, requestData);
     }
 
     @GetMapping("/clothes/total-price")
     @ResponseStatus(HttpStatus.OK)
     public TotalPricePerGenreViewModels handleTotalPricePerGenre(@PathVariable("userId") Long userId) {
-        return this.usecase.acceptTotalPricePerGenre(userId);
+        return usecase.acceptTotalPricePerGenre(userId);
     }
 }

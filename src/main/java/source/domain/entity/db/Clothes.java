@@ -70,7 +70,7 @@ public class Clothes extends TimestampEntity {
     private Set<Coordinates> coordinates;
 
     public void removeGenre(Genres genre) {
-        this.genres.remove(genre);
+        genres.remove(genre);
         genre.getClothes().remove(this);
     }
 }

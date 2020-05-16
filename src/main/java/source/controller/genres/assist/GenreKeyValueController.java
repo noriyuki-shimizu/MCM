@@ -20,6 +20,6 @@ public class GenreKeyValueController extends GenresController {
     @GetMapping(value = "/keyValues")
     @ResponseStatus(HttpStatus.OK)
     public GenreKeyValueResponseViewModels handle(@PathVariable("userId") Long userId) {
-        return this.usecase.acceptKeyValues(userId);
+        return usecase.acceptKeyValues(userId);
     }
 }

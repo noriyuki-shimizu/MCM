@@ -19,6 +19,6 @@ public class GenreColorController extends GenresController {
     @GetMapping(value = "/colors")
     @ResponseStatus(HttpStatus.OK)
     public GenreColorResponseViewModels handle(@PathVariable("userId") Long userId, @RequestParam("id") Optional<Long> id) {
-        return this.usecase.acceptCanSelectedColors(userId, id);
+        return usecase.acceptCanSelectedColors(userId, id);
     }
 }

@@ -49,13 +49,13 @@ public class Interceptor implements HandlerInterceptor {
             return false;
         }
 
-        Optional<FirebaseVerifiedToken> decodedTokenOpt = this.firebase.getDecodedToken(token.get());
+        Optional<FirebaseVerifiedToken> decodedTokenOpt = firebase.getDecodedToken(token.get());
         if (decodedTokenOpt.isEmpty()) {
             response.sendError(403, "Request token is invalid or expired.");
             return false;
         }
         FirebaseVerifiedToken firebaseVerifiedToken = decodedTokenOpt.get();
-        Optional<Users> users = this.usersRepository.findByIdAndUid(userId.get(), firebaseVerifiedToken.getUid());
+        Optional<Users> users = usersRepository.findByIdAndUid(userId.get(), firebaseVerifiedToken.getUid());
         if (users.isEmpty()) {
             response.sendError(401, "Requested user does not exist.");
             return false;

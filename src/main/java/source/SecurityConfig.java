@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         try {
             httpSecurity
                     .cors()
-                        .configurationSource(this.corsConfigurationSource())
+                        .configurationSource(corsConfigurationSource())
                     .and()
                     .csrf()
                         .disable();
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
 
-        this.env.getWebUrls().forEach(corsConfiguration::addAllowedOrigin);
+        env.getWebUrls().forEach(corsConfiguration::addAllowedOrigin);
 
         corsConfiguration.setAllowCredentials(true);
 

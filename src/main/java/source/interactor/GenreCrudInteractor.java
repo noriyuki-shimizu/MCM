@@ -41,17 +41,17 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
     @Override
     public GenreKeyValueResponseViewModels acceptKeyValues(final Long userId) {
-        final List<Genres> genres = this.repository.findAll(
+        final List<Genres> genres = repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
 
-        return this.presenter.toGenreKeyValueResponseViewModels(genres);
+        return presenter.toGenreKeyValueResponseViewModels(genres);
     }
 
     @Override
     public GenreColorResponseViewModels acceptCanSelectedColors(final Long userId, final Optional<Long> id) {
-        final List<Genres> genres = this.repository.findAll(
+        final List<Genres> genres = repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
@@ -70,7 +70,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                                 .collect(Collectors.toList())
                 );
 
-        return this.presenter.toGenreColorResponseViewModels(
+        return presenter.toGenreColorResponseViewModels(
                 GenreColor.acceptCanSelectedColors(selectedColors)
         );
     }
@@ -83,14 +83,14 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                 .color(requestData.getColor())
                 .build();
 
-        final Genres result = this.repository.save(genres);
+        final Genres result = repository.save(genres);
 
-        return this.presenter.toGenreResponseViewModel(result);
+        return presenter.toGenreResponseViewModel(result);
     }
 
     @Override
     public void delete(final Long id) {
-        final List<Clothes> clothes = this.clothesRepository.findAll(
+        final List<Clothes> clothes = clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.hasGenres(id))
         );
@@ -100,7 +100,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
-        this.repository.delete(
+        repository.delete(
                 Genres.builder()
                         .id(id)
                         .build()
@@ -109,18 +109,18 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
     @Override
     public GenreResponseViewModels search(final Long userId) {
-        final List<Genres> genres = this.repository.findAll(
+        final List<Genres> genres = repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
 
-        return this.presenter.toGenreResponseViewModels(genres);
+        return presenter.toGenreResponseViewModels(genres);
     }
 
     @Override
     public GenreResponseViewModel searchById(final Long id) {
-        final Genres genre = this.repository.findOne(id);
-        return this.presenter.toGenreResponseViewModel(genre);
+        final Genres genre = repository.findOne(id);
+        return presenter.toGenreResponseViewModel(genre);
     }
 
     @Override
@@ -132,15 +132,15 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                 .color(requestData.getColor())
                 .build();
 
-        this.repository.save(genres);
+        repository.save(genres);
     }
 
     @Override
     public TotalPricePerGenreViewModels acceptTotalPricePerGenre(final Long userId) {
-        final List<Genres> genres = this.repository.findAll(
+        final List<Genres> genres = repository.findAll(
                 Specifications
                         .where(GenreSpecification.userIdEqual(userId))
         );
-        return this.presenter.toTotalPricePerGenreViewModels(genres);
+        return presenter.toTotalPricePerGenreViewModels(genres);
     }
 }

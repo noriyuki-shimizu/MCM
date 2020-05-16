@@ -27,33 +27,33 @@ public class ShopCrudController extends ShopsController {
             @RequestBody ShopCreateRequestModel requestData
     ) throws JsonProcessingException {
         log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
-        return this.usecase.create(userId, requestData);
+        return usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("delete -> user: {}, id: {}", userId, id);
-        this.usecase.delete(id);
+        usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("restoration -> user: {}, id: {}", userId, id);
-        this.usecase.restoration(id);
+        usecase.restoration(id);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public ShopResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
-        return this.usecase.search(userId);
+        return usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ShopResponseViewModel handleSearchById(@PathVariable("id") Long id) {
-        return this.usecase.searchById(id);
+        return usecase.searchById(id);
     }
 
     @PutMapping(value = "/{id}")
@@ -64,6 +64,6 @@ public class ShopCrudController extends ShopsController {
             @RequestBody ShopUpdateRequestModel requestData
     ) throws JsonProcessingException {
         log.info("update -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
-        this.usecase.update(userId, id, requestData);
+        usecase.update(userId, id, requestData);
     }
 }

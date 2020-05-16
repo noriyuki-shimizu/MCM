@@ -1,7 +1,6 @@
 package source.interactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
 import source.controller.coordinates.curd.request.CoordinateCreateRequestModel;
 import source.controller.coordinates.curd.request.CoordinateUpdateRequestModel;
@@ -14,7 +13,6 @@ import source.domain.presenter.ICoordinatePresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.CoordinatesRepository;
 import source.domain.repository.db.ImagesRepository;
-import source.domain.repository.db.specification.CoordinatesSpecification;
 import source.usecases.app.ICoordinateCrudUsecase;
 
 import javax.transaction.Transactional;
@@ -40,10 +38,10 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
     @Override
     public CoordinateResponseViewModel create(final Long userId, final CoordinateCreateRequestModel inputData) {
         final Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
-                .map(path -> this.imagesRepository.save(Images.builder().path(path).build()))
+                .map(path -> imagesRepository.save(Images.builder().path(path).build()))
                 .orElse(null);
 
-        final Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
+        final Set<Clothes> usedCoordinates = clothesRepository.findByIdIn(inputData.getClothingIds());
 
         final Coordinates coordinates = Coordinates.builder()
                 .userId(userId)
@@ -52,12 +50,12 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
                 .usedCoordinates(usedCoordinates)
                 .build();
 
-        return this.presenter.toCoordinateResponseViewModel(this.repository.save(coordinates));
+        return presenter.toCoordinateResponseViewModel(repository.save(coordinates));
     }
 
     @Override
     public void delete(final Long id) {
-        this.repository.delete(
+        repository.delete(
                 Coordinates
                         .builder()
                         .id(id)
@@ -67,18 +65,14 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
 
     @Override
     public CoordinateResponseViewModels search(final Long userId) {
-        final List<Coordinates> coordinates = this.repository.findAll(
-                Specifications
-                        .where(CoordinatesSpecification.userIdEqual(userId))
-        );
-
-        return this.presenter.toCoordinateResponseViewModels(coordinates);
+        final List<Coordinates> coordinates = repository.findByUserIdOrderByIdAndSeason(userId);
+        return presenter.toCoordinateResponseViewModels(coordinates);
     }
 
     @Override
     public CoordinateResponseViewModel searchById(final Long id) {
-        final Coordinates coordinate = this.repository.findOne(id);
-        return this.presenter.toCoordinateResponseViewModel(coordinate);
+        final Coordinates coordinate = repository.findOne(id);
+        return presenter.toCoordinateResponseViewModel(coordinate);
     }
 
     @Override
@@ -86,11 +80,11 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
         final Images coordinateImage = Optional.ofNullable(inputData.getImageLink())
                 .map(path -> {
                     Long imageId = Optional.ofNullable(inputData.getImageId()).orElse(null);
-                    return this.imagesRepository.save(Images.builder().id(imageId).path(path).build());
+                    return imagesRepository.save(Images.builder().id(imageId).path(path).build());
                 })
                 .orElse(null);
 
-        final Set<Clothes> usedCoordinates = this.clothesRepository.findByIdIn(inputData.getClothingIds());
+        final Set<Clothes> usedCoordinates = clothesRepository.findByIdIn(inputData.getClothingIds());
 
         final Coordinates coordinates = Coordinates.builder()
                 .id(id)
@@ -100,6 +94,6 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
                 .usedCoordinates(usedCoordinates)
                 .build();
 
-        this.repository.save(coordinates);
+        repository.save(coordinates);
     }
 }

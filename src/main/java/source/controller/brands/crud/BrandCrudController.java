@@ -24,33 +24,33 @@ public class BrandCrudController extends BrandsController {
     @ResponseStatus(HttpStatus.CREATED)
     public BrandResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody BrandCreateRequestModel requestData) throws JsonProcessingException {
         log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
-        return this.usecase.create(userId, requestData);
+        return usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("delete -> user: {}, id: {}", userId, id);
-        this.usecase.delete(id);
+        usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("restoration -> user: {}, id: {}", userId, id);
-        this.usecase.restoration(id);
+        usecase.restoration(id);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public BrandResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
-        return this.usecase.search(userId);
+        return usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BrandResponseViewModel handleSearchById(@PathVariable("id") Long id) {
-        return this.usecase.searchById(id);
+        return usecase.searchById(id);
     }
 
     @PutMapping(value = "/{id}")
@@ -61,6 +61,6 @@ public class BrandCrudController extends BrandsController {
             @RequestBody BrandUpdateRequestModel requestData
     ) throws JsonProcessingException {
         log.info("update -> user: {}, id: {}, data: {}", userId, id, MAPPER.writeValueAsString(requestData));
-        this.usecase.update(userId, id, requestData);
+        usecase.update(userId, id, requestData);
     }
 }

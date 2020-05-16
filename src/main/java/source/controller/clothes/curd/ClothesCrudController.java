@@ -24,39 +24,39 @@ public class ClothesCrudController extends ClothesController {
     @ResponseStatus(HttpStatus.CREATED)
     public ClothesResponseViewModel handleCreate(@PathVariable("userId") Long userId, @RequestBody ClothesCreateRequestModel inputData) throws JsonProcessingException {
         log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(inputData));
-        return this.usecase.create(userId, inputData);
+        return usecase.create(userId, inputData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("delete -> user: {}, id: {}", userId, id);
-        this.usecase.delete(id);
+        usecase.delete(id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
         log.info("restoration -> user: {}, id: {}", userId, id);
-        this.usecase.restoration(id);
+        usecase.restoration(id);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public ClothesResponseViewModels handleSearch(@PathVariable("userId") Long userId) {
-        return this.usecase.search(userId);
+        return usecase.search(userId);
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClothesResponseViewModel handleSearchById(@PathVariable("id") Long id) {
-        return this.usecase.searchById(id);
+        return usecase.searchById(id);
     }
 
     @GetMapping(value = "/total-price")
     @ResponseStatus(HttpStatus.OK)
     public long handleTotalPrice(@PathVariable("userId") Long userId) {
-        return this.usecase.getTotalPriceByUserId(userId);
+        return usecase.getTotalPriceByUserId(userId);
     }
 
     @PutMapping(value = "/{id}")
@@ -67,6 +67,6 @@ public class ClothesCrudController extends ClothesController {
             @RequestBody ClothesUpdateRequestModel inputData
     ) throws JsonProcessingException {
         log.info("update -> user: {}, id: {}, data: {}", userId, id, MAPPER.writeValueAsString(inputData));
-        this.usecase.update(userId, id, inputData);
+        usecase.update(userId, id, inputData);
     }
 }
