@@ -8,11 +8,14 @@ import org.springframework.stereotype.Repository;
 import source.domain.entity.db.Shops;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ShopsRepository extends JpaRepository<Shops, Long>, JpaSpecificationExecutor<Shops> {
-    Optional<List<Shops>> findByIsDeletedOrderByUserId(final boolean isDeleted);
+    List<Shops> findByIsDeletedOrderByUserId(final boolean isDeleted);
+
+    List<Shops> findByUserIdOrderByName(final Long userId);
+
+    List<Shops> findByUserIdAndIsDeletedOrderByName(final Long userId, final boolean isDeleted);
 
     @Query(value = "UPDATE shops SET is_deleted = true, delete_date_time = now() WHERE id = :id RETURNING *", nativeQuery = true)
     Shops deleteById(@Param("id") final Long id);

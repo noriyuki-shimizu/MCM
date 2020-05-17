@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import source.domain.entity.db.Genres;
 
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -15,4 +16,6 @@ public interface GenresRepository extends JpaRepository<Genres, Long>, JpaSpecif
     Genres deleteById(@Param("id") final Long id);
 
     Set<Genres> findByIdIn(final Set<Long> ids);
+
+    List<Genres> findByUserIdOrderByName(final Long userId);
 }

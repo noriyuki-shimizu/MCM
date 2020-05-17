@@ -65,7 +65,7 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
 
     @Override
     public CoordinateResponseViewModels search(final Long userId) {
-        final List<Coordinates> coordinates = repository.findByUserIdOrderByIdAndSeason(userId);
+        final List<Coordinates> coordinates = repository.findByUserIdOrderByIdAscSeasonAsc(userId);
         return presenter.toCoordinateResponseViewModels(coordinates);
     }
 

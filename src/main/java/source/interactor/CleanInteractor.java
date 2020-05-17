@@ -49,8 +49,9 @@ public class CleanInteractor implements ICleanUsecase {
     }
 
     private void cleanBrandTable() {
-        final Optional<List<Brands>> deletedBrandsOpt = brandsRepository.findByIsDeletedOrderByUserId(true);
-        deletedBrandsOpt.ifPresent(deletedBrands -> {
+        final List<Brands> deletedBrands = brandsRepository.findByIsDeletedOrderByUserId(true);
+
+        if (!deletedBrands.isEmpty()) {
             BrandLogging.deleteLogging(deletedBrands);
             brandsRepository.delete(deletedBrands);
             imagesRepository.delete(
@@ -59,12 +60,13 @@ public class CleanInteractor implements ICleanUsecase {
                             .map(Brands::getImage)
                             .collect(Collectors.toList())
             );
-        });
+        }
     }
 
     private void cleanClothesTable() {
-        final Optional<List<Clothes>> deletedClothesOpt = clothesRepository.findByIsDeletedOrderByUserId(true);
-        deletedClothesOpt.ifPresent(deletedClothes -> {
+        final List<Clothes> deletedClothes = clothesRepository.findByIsDeletedOrderByUserId(true);
+
+        if (!deletedClothes.isEmpty()) {
             ClothesLogging.deleteLogging(deletedClothes);
 
             clothesRepository.delete(
@@ -81,12 +83,13 @@ public class CleanInteractor implements ICleanUsecase {
                             .map(Clothes::getImage)
                             .collect(Collectors.toList())
             );
-        });
+        }
     }
 
     private void cleanShopTable() {
-        final Optional<List<Shops>> deletedShopsOpt = shopsRepository.findByIsDeletedOrderByUserId(true);
-        deletedShopsOpt.ifPresent(deletedShops -> {
+        final List<Shops> deletedShops = shopsRepository.findByIsDeletedOrderByUserId(true);
+
+        if (!deletedShops.isEmpty()) {
             ShopLogging.deleteLogging(deletedShops);
             shopsRepository.delete(deletedShops);
             imagesRepository.delete(
@@ -95,6 +98,6 @@ public class CleanInteractor implements ICleanUsecase {
                             .map(Shops::getImage)
                             .collect(Collectors.toList())
             );
-        });
+        }
     }
 }

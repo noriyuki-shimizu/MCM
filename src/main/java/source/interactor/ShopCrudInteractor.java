@@ -17,7 +17,6 @@ import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.domain.repository.db.specification.ShopsSpecification;
 import source.usecases.app.IShopCrudUsecase;
 
 import javax.transaction.Transactional;
@@ -42,11 +41,7 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
 
     @Override
     public ShopAssistResponseViewModels acceptKeyValues(final Long userId) {
-        final List<Shops> shops = repository.findAll(
-                Specifications
-                        .where(ShopsSpecification.userIdEqual(userId))
-                        .and(ShopsSpecification.isDeleted(false))
-        );
+        final List<Shops> shops = repository.findByUserIdAndIsDeletedOrderByName(userId, false);
 
         return presenter.toShopAssistResponseViewModels(shops);
     }
@@ -90,10 +85,8 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
 
     @Override
     public ShopResponseViewModels search(final Long userId) {
-        final List<Shops> shops = repository.findAll(
-                Specifications
-                        .where(ShopsSpecification.userIdEqual(userId))
-        );
+        final List<Shops> shops = repository.findByUserIdOrderByName(userId);
+
         return presenter.toShopResponseViewModels(shops);
     }
 

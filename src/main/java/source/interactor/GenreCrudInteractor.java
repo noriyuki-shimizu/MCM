@@ -18,7 +18,6 @@ import source.domain.presenter.IGenrePresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.GenresRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.domain.repository.db.specification.GenreSpecification;
 import source.usecases.app.IGenreCrudUsecase;
 
 import javax.transaction.Transactional;
@@ -41,20 +40,15 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
     @Override
     public GenreKeyValueResponseViewModels acceptKeyValues(final Long userId) {
-        final List<Genres> genres = repository.findAll(
-                Specifications
-                        .where(GenreSpecification.userIdEqual(userId))
-        );
+        final List<Genres> genres = repository.findByUserIdOrderByName(userId);
 
         return presenter.toGenreKeyValueResponseViewModels(genres);
     }
 
     @Override
     public GenreColorResponseViewModels acceptCanSelectedColors(final Long userId, final Optional<Long> id) {
-        final List<Genres> genres = repository.findAll(
-                Specifications
-                        .where(GenreSpecification.userIdEqual(userId))
-        );
+        final List<Genres> genres = repository.findByUserIdOrderByName(userId);
+
         final List<String> selectedColors = id
                 .map(i ->
                         genres
@@ -109,10 +103,7 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
     @Override
     public GenreResponseViewModels search(final Long userId) {
-        final List<Genres> genres = repository.findAll(
-                Specifications
-                        .where(GenreSpecification.userIdEqual(userId))
-        );
+        final List<Genres> genres = repository.findByUserIdOrderByName(userId);
 
         return presenter.toGenreResponseViewModels(genres);
     }
@@ -137,10 +128,8 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
     @Override
     public TotalPricePerGenreViewModels acceptTotalPricePerGenre(final Long userId) {
-        final List<Genres> genres = repository.findAll(
-                Specifications
-                        .where(GenreSpecification.userIdEqual(userId))
-        );
+        final List<Genres> genres = repository.findByUserIdOrderByName(userId);
+
         return presenter.toTotalPricePerGenreViewModels(genres);
     }
 }

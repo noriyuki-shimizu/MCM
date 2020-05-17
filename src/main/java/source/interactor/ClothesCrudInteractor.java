@@ -12,7 +12,6 @@ import source.controller.clothes.curd.response.ClothesResponseViewModels;
 import source.domain.entity.db.*;
 import source.domain.presenter.IClothesPresenter;
 import source.domain.repository.db.*;
-import source.domain.repository.db.specification.ClothesSpecification;
 import source.domain.repository.db.specification.CoordinatesSpecification;
 import source.usecases.app.IClothesCrudUsecase;
 import source.usecases.converter.BuyDate;
@@ -49,7 +48,7 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
 
     @Override
     public ClothesAssistResponseViewModels acceptKeyValues(final Long userId) {
-        final List<Clothes> clothes = repository.findByUserIdAndIsDeleted(userId, false);
+        final List<Clothes> clothes = repository.findByUserIdAndIsDeletedOrderByBrandIdAscShopIdAsc(userId, false);
         return presenter.toClothesAssistResponseViewModels(clothes);
     }
 
@@ -107,10 +106,8 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
 
     @Override
     public ClothesResponseViewModels search(final Long userId) {
-        final List<Clothes> clothes = repository.findAll(
-                Specifications
-                        .where(ClothesSpecification.userIdEqual(userId))
-        );
+        final List<Clothes> clothes = repository.findByUserIdOrderByBrandIdAscShopIdAsc(userId);
+
         return presenter.toClothesResponseViewModels(clothes);
     }
 
