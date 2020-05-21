@@ -1,5 +1,6 @@
 package source;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
+@Slf4j
 public class Interceptor implements HandlerInterceptor {
 
     @Autowired
@@ -33,7 +35,11 @@ public class Interceptor implements HandlerInterceptor {
         }
 
         HandlerMethod hm = (HandlerMethod) handler;
+        Class<?> beanType = hm.getBeanType();
         Method method = hm.getMethod();
+
+        log.info("[API ACTION] - {}#{}", beanType.getName(), method.getName());
+
         Optional<NonAuth> annotation = Optional.ofNullable(
                 AnnotationUtils.findAnnotation(method, NonAuth.class)
         );

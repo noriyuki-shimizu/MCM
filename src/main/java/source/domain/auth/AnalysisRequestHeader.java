@@ -1,6 +1,7 @@
 package source.domain.auth;
 
 import lombok.Value;
+import source.RequestHeaderNames;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -15,7 +16,8 @@ public class AnalysisRequestHeader {
      * return {Long} userId
      */
     public Long getUserId() {
-        final Optional<String> userId = Optional.ofNullable(request.getHeader("UserId"));
+        final String userIdKey = RequestHeaderNames.USER_ID.getKey();
+        final Optional<String> userId = Optional.ofNullable(request.getHeader(userIdKey));
 
         return userId
                 .map(Long::parseLong)
@@ -27,8 +29,9 @@ public class AnalysisRequestHeader {
      * @return token
      */
     public String getToken() {
+        final String authorizationKey = RequestHeaderNames.AUTHORIZATION.getKey();
         final Optional<String> authorization = Optional
-                .ofNullable(request.getHeader("Authorization"));
+                .ofNullable(request.getHeader(authorizationKey));
 
         return authorization
                 .filter(token -> token.startsWith("Bearer "))
