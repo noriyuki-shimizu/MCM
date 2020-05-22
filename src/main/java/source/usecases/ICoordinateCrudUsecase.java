@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 import source.controller.coordinates.curd.request.CoordinateCreateRequestModel;
 import source.controller.coordinates.curd.request.CoordinateUpdateRequestModel;
@@ -23,7 +23,7 @@ public interface ICoordinateCrudUsecase {
      *
      * @param id primary key
      */
-    void delete(final Long id);
+    void delete(final Long userId, final Long id);
 
     /**
      * 検索を行います.

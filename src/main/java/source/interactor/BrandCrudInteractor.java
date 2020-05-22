@@ -12,12 +12,14 @@ import source.controller.brands.crud.response.BrandResponseViewModels;
 import source.domain.entity.db.Brands;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Images;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.presenter.IBrandPresenter;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.usecases.app.IBrandCrudUsecase;
+import source.usecases.IBrandCrudUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -62,11 +64,13 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
 
         final Brands result = repository.save(brand);
 
+        CrudLogging.logging(LoggingHead.BRAND_CREATE, userId, result);
+
         return presenter.toBrandResponseViewModel(result);
     }
 
     @Override
-    public void delete(final Long id) {
+    public void delete(final Long userId, final Long id) {
         final List<Clothes> clothes = clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.brandIdContains(id))
@@ -77,11 +81,14 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
+        CrudLogging.logging(LoggingHead.BRAND_DELETE, userId, id);
+
         repository.deleteById(id);
     }
 
     @Override
-    public void restoration(final Long id) {
+    public void restoration(final Long userId, final Long id) {
+        CrudLogging.logging(LoggingHead.BRAND_RESTORATION, userId, id);
         repository.restorationById(id);
     }
 
@@ -118,5 +125,7 @@ public class BrandCrudInteractor implements IBrandCrudUsecase {
                 .build();
 
         repository.save(brand);
+
+        CrudLogging.logging(LoggingHead.BRAND_UPDATE, userId, brand);
     }
 }

@@ -8,18 +8,16 @@ import source.domain.entity.db.Brands;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Genres;
 import source.domain.entity.db.Shops;
-import source.domain.logging.BrandLogging;
-import source.domain.logging.ClothesLogging;
-import source.domain.logging.ShopLogging;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.repository.db.BrandsRepository;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.ShopsRepository;
-import source.usecases.app.ICleanUsecase;
+import source.usecases.ICleanUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,7 +50,7 @@ public class CleanInteractor implements ICleanUsecase {
         final List<Brands> deletedBrands = brandsRepository.findByIsDeletedOrderByUserId(true);
 
         if (!deletedBrands.isEmpty()) {
-            BrandLogging.deleteLogging(deletedBrands);
+            CrudLogging.logging(LoggingHead.BRAND_DELETE, deletedBrands);
             brandsRepository.delete(deletedBrands);
             imagesRepository.delete(
                     deletedBrands.stream()
@@ -67,7 +65,7 @@ public class CleanInteractor implements ICleanUsecase {
         final List<Clothes> deletedClothes = clothesRepository.findByIsDeletedOrderByUserId(true);
 
         if (!deletedClothes.isEmpty()) {
-            ClothesLogging.deleteLogging(deletedClothes);
+            CrudLogging.logging(LoggingHead.CLOTHES_DELETE, deletedClothes);
 
             clothesRepository.delete(
                     deletedClothes.stream()
@@ -90,7 +88,7 @@ public class CleanInteractor implements ICleanUsecase {
         final List<Shops> deletedShops = shopsRepository.findByIsDeletedOrderByUserId(true);
 
         if (!deletedShops.isEmpty()) {
-            ShopLogging.deleteLogging(deletedShops);
+            CrudLogging.logging(LoggingHead.SHOP_DELETE, deletedShops);
             shopsRepository.delete(deletedShops);
             imagesRepository.delete(
                     deletedShops.stream()

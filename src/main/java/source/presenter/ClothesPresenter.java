@@ -12,7 +12,7 @@ import source.controller.genres.assist.response.GenreKeyValueResponseModel;
 import source.controller.shops.assist.response.ShopAssistResponseModel;
 import source.domain.entity.db.Clothes;
 import source.domain.presenter.IClothesPresenter;
-import source.usecases.converter.BuyDate;
+import source.converter.BuyDate;
 
 import java.util.List;
 import java.util.Set;

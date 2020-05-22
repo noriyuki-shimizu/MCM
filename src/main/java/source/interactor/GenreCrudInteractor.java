@@ -14,11 +14,13 @@ import source.controller.genres.crud.response.TotalPricePerGenreViewModels;
 import source.domain.GenreColor;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Genres;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.presenter.IGenrePresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.GenresRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.usecases.app.IGenreCrudUsecase;
+import source.usecases.IGenreCrudUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -79,11 +81,13 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
 
         final Genres result = repository.save(genres);
 
+        CrudLogging.logging(LoggingHead.GENRE_CREATE, userId, result);
+
         return presenter.toGenreResponseViewModel(result);
     }
 
     @Override
-    public void delete(final Long id) {
+    public void delete(final Long userId, final Long id) {
         final List<Clothes> clothes = clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.hasGenres(id))
@@ -99,6 +103,8 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                         .id(id)
                         .build()
         );
+
+        CrudLogging.logging(LoggingHead.GENRE_DELETE, userId, id);
     }
 
     @Override
@@ -124,6 +130,8 @@ public class GenreCrudInteractor implements IGenreCrudUsecase {
                 .build();
 
         repository.save(genres);
+
+        CrudLogging.logging(LoggingHead.GENRE_UPDATE, userId, genres);
     }
 
     @Override

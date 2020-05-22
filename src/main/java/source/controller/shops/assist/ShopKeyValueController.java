@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.shops.ShopsController;
-import source.usecases.app.IShopCrudUsecase;
+import source.usecases.IShopCrudUsecase;
 import source.controller.shops.assist.response.ShopAssistResponseViewModels;
 
 @RestController

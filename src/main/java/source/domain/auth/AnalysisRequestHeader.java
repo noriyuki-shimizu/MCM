@@ -1,7 +1,7 @@
 package source.domain.auth;
 
 import lombok.Value;
-import source.RequestHeaderNames;
+import org.apache.commons.lang.math.NumberUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -9,19 +9,26 @@ import java.util.Optional;
 @Value(staticConstructor = "of")
 public class AnalysisRequestHeader {
 
-    private HttpServletRequest request;
+    HttpServletRequest request;
 
     /**
      * ユーザ ID を取得します.
-     * return {Long} userId
+     * return {Long} userId
      */
     public Long getUserId() {
         final String userIdKey = RequestHeaderNames.USER_ID.getKey();
-        final Optional<String> userId = Optional.ofNullable(request.getHeader(userIdKey));
+        final Optional<String> userIdOpt = Optional.ofNullable(request.getHeader(userIdKey));
 
-        return userId
-                .map(Long::parseLong)
-                .orElse(null);
+        if (userIdOpt.isEmpty()) {
+            return null;
+        }
+
+        String userId = userIdOpt.get();
+        if (!NumberUtils.isDigits(userId)) {
+            return null;
+        }
+
+        return Long.parseLong(userId);
     }
 
     /**

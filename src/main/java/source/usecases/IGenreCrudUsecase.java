@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 import source.controller.genres.assist.response.GenreColorResponseViewModels;
 import source.controller.genres.assist.response.GenreKeyValueResponseViewModels;
@@ -48,7 +48,7 @@ public interface IGenreCrudUsecase {
      *
      * @param id primary key
      */
-    void delete(final Long id);
+    void delete(final Long userId, final Long id);
 
     /**
      * 検索を行います.

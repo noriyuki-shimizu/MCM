@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 import source.controller.brands.crud.request.BrandCreateRequestModel;
 import source.controller.brands.crud.request.BrandUpdateRequestModel;
@@ -32,14 +32,14 @@ public interface IBrandCrudUsecase {
      *
      * @param id primary key
      */
-    void delete(final Long id);
+    void delete(final Long userId, final Long id);
 
     /**
      * 復元を行います.
      *
      * @param id primary key
      */
-    void restoration(final Long id);
+    void restoration(final Long userId, final Long id);
 
     /**
      * 検索を行います.

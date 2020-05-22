@@ -44,64 +44,9 @@
         </encoder>
     </appender>
 
-    <appender name="CLOTHES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="CRUD" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/clothes/clothes-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>100</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%-40(%d{HH:mm:ss.SSS} [%thread]) %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="BRAND" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/brand/brand-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>100</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%-40(%d{HH:mm:ss.SSS} [%thread]) %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="SHOP" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/shop/shop-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>100</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%-40(%d{HH:mm:ss.SSS} [%thread]) %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="GENRE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/genre/genre-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>100</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%-40(%d{HH:mm:ss.SSS} [%thread]) %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="COORDINATE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/coordinate/coordinate-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>100</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>UTF-8</charset>
-            <pattern>%-40(%d{HH:mm:ss.SSS} [%thread]) %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="CLEAN_TABLES" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/clean/tables-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/crud/crud-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -125,34 +70,9 @@
         <appender-ref ref="ROUTING" />
     </logger>
 
-    <logger name="source.controller.clothes.crud">
+    <logger name="source.crud">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="CLOTHES" />
-    </logger>
-
-    <logger name="source.controller.brands.crud">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="BRAND" />
-    </logger>
-
-    <logger name="source.controller.shops.crud">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="SHOP" />
-    </logger>
-
-    <logger name="source.controller.genres.crud">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="GENRE" />
-    </logger>
-
-    <logger name="source.controller.coordinates.crud">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="COORDINATE" />
-    </logger>
-
-    <logger name="source.domain.logging">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="CLEAN_TABLES" />
+        <appender-ref ref="CRUD" />
     </logger>
 
     <root level="INFO">

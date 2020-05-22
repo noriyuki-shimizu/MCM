@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import source.controller.genres.GenresController;
-import source.usecases.app.IGenreCrudUsecase;
+import source.usecases.IGenreCrudUsecase;
 import source.controller.genres.assist.response.GenreKeyValueResponseViewModels;
 
 @RestController

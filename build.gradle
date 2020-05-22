@@ -90,4 +90,6 @@ dependencies {
 
     // flyway
     compile group: 'org.flywaydb', name: 'flyway-core'
+
+    compile 'commons-lang:commons-lang:2.6'
 }

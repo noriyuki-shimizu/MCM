@@ -1,4 +1,4 @@
-package source.usecases.converter;
+package source.converter;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

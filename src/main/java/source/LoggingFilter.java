@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 import source.domain.auth.AnalysisRequestHeader;
+import source.domain.logging.LoggingHead;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -26,22 +27,22 @@ public class LoggingFilter implements Filter {
         final long start = System.currentTimeMillis();
 
         AnalysisRequestHeader analysisRequestHeader = AnalysisRequestHeader.of((HttpServletRequest) request);
-        log.info("[API START] [userId = {}] api called.", analysisRequestHeader.getUserId());
+        log.info("{} [userId = {}] api called.", LoggingHead.START.getKey(), analysisRequestHeader.getUserId());
 
         final HttpServletRequest requestCacheWrapperObject = new ContentCachingRequestWrapper((HttpServletRequest) request);
         final String requestURI = requestCacheWrapperObject.getRequestURI();
         final String method = requestCacheWrapperObject.getMethod();
-        log.info("[API RESOURCE] {}#{}", method, requestURI);
+        log.info("{} {}#{}", LoggingHead.RESOURCES.getKey(), method, requestURI);
 
         Map<String, String[]> parameterMap = requestCacheWrapperObject.getParameterMap();
-        parameterMap.forEach((key, value) -> log.info("[API INPUT PARAM] {} = {}", key, Arrays.toString(value)));
+        parameterMap.forEach((key, value) -> log.info("{} {} = {}", LoggingHead.INPUT.getKey(), key, Arrays.toString(value)));
 
         chain.doFilter(request, response);
 
         ContentCachingResponseWrapper contentCachingResponseWrapper = new ContentCachingResponseWrapper((HttpServletResponse) response);
 
-        log.info("[API RESPONSE] httpStatus = {}", contentCachingResponseWrapper.getStatusCode());
-        log.info("[API END] in {} ms", System.currentTimeMillis() - start);
+        log.info("{} httpStatus = {}", LoggingHead.RESOURCES.getKey(), contentCachingResponseWrapper.getStatusCode());
+        log.info("{} in {} ms", LoggingHead.END.getKey(), System.currentTimeMillis() - start);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 import source.domain.entity.firebase.FirebaseVerifiedToken;
 

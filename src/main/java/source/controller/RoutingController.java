@@ -3,6 +3,7 @@ package source.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import source.domain.logging.LoggingHead;
 
 @RestController
 @Slf4j
@@ -14,6 +15,6 @@ public class RoutingController {
             @PathVariable("userId") Long userId,
             @RequestBody String resource
     ) {
-        log.info(String.format("userId: %4d, resource: %s", userId, resource));
+        log.info("{} userId = {}, resource = '{}'", LoggingHead.ROUTING.getKey(), userId, resource);
     }
 }

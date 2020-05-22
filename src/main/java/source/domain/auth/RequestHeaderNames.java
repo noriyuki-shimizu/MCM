@@ -1,4 +1,4 @@
-package source;
+package source.domain.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

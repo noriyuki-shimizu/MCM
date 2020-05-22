@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import source.annotation.NonAuth;
 import source.domain.entity.firebase.FirebaseVerifiedToken;
+import source.domain.logging.LoggingHead;
 import source.infrastructure.firebase.Firebase;
-import source.usecases.app.IPreLoginUsecase;
+import source.usecases.IPreLoginUsecase;
 
 @RestController
 @Slf4j
@@ -34,7 +35,7 @@ public class PreLoginController {
 
         long loginUserId = usecase.getUserIdAndSetIfNotExistUser(firebaseVerifiedToken);
 
-        log.info(String.format("userId: %4d, userAgent: %s", loginUserId, userAgent));
+        log.info("{} userId = {}, userAgent = {}", LoggingHead.LOGIN.getKey(), loginUserId, userAgent);
 
         return loginUserId;
     }

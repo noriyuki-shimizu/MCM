@@ -10,6 +10,7 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import source.annotation.NonAuth;
 import source.domain.auth.AnalysisRequestHeader;
 import source.domain.entity.db.Users;
+import source.domain.logging.LoggingHead;
 import source.domain.repository.db.UsersRepository;
 import source.infrastructure.firebase.Firebase;
 import source.domain.entity.firebase.FirebaseVerifiedToken;
@@ -38,7 +39,7 @@ public class Interceptor implements HandlerInterceptor {
         Class<?> beanType = hm.getBeanType();
         Method method = hm.getMethod();
 
-        log.info("[API ACTION] - {}#{}", beanType.getName(), method.getName());
+        log.info("{} - {}#{}", LoggingHead.ACTION.getKey(), beanType.getName(), method.getName());
 
         Optional<NonAuth> annotation = Optional.ofNullable(
                 AnnotationUtils.findAnnotation(method, NonAuth.class)

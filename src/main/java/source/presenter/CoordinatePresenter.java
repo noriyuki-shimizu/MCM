@@ -9,7 +9,7 @@ import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
 import source.domain.entity.db.Coordinates;
 import source.domain.entity.db.Images;
 import source.domain.presenter.ICoordinatePresenter;
-import source.usecases.converter.BuyDate;
+import source.converter.BuyDate;
 
 import java.util.List;
 import java.util.Optional;

@@ -9,11 +9,13 @@ import source.controller.coordinates.curd.response.CoordinateResponseViewModels;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Coordinates;
 import source.domain.entity.db.Images;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.presenter.ICoordinatePresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.CoordinatesRepository;
 import source.domain.repository.db.ImagesRepository;
-import source.usecases.app.ICoordinateCrudUsecase;
+import source.usecases.ICoordinateCrudUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -50,17 +52,20 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
                 .usedCoordinates(usedCoordinates)
                 .build();
 
+        CrudLogging.logging(LoggingHead.COORDINATE_CREATE, userId, coordinates);
+
         return presenter.toCoordinateResponseViewModel(repository.save(coordinates));
     }
 
     @Override
-    public void delete(final Long id) {
+    public void delete(final Long userId, final Long id) {
         repository.delete(
                 Coordinates
                         .builder()
                         .id(id)
                         .build()
         );
+        CrudLogging.logging(LoggingHead.COORDINATE_DELETE, userId, id);
     }
 
     @Override
@@ -95,5 +100,7 @@ public class CoordinateCrudInteractor implements ICoordinateCrudUsecase {
                 .build();
 
         repository.save(coordinates);
+
+        CrudLogging.logging(LoggingHead.COORDINATE_UPDATE, userId, coordinates);
     }
 }

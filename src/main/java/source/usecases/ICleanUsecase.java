@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 /**
  * Clean に関するユースケースです.

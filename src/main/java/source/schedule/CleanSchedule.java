@@ -3,7 +3,7 @@ package source.schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import source.usecases.app.ICleanUsecase;
+import source.usecases.ICleanUsecase;
 
 @Component
 public class CleanSchedule {

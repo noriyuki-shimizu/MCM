@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import source.domain.entity.db.Users;
 import source.domain.repository.db.UsersRepository;
 import source.domain.entity.firebase.FirebaseVerifiedToken;
-import source.usecases.app.IPreLoginUsecase;
+import source.usecases.IPreLoginUsecase;
 
 import javax.transaction.Transactional;
 import java.util.Optional;

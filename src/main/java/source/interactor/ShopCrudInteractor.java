@@ -12,12 +12,14 @@ import source.controller.shops.crud.response.ShopResponseViewModels;
 import source.domain.entity.db.Clothes;
 import source.domain.entity.db.Images;
 import source.domain.entity.db.Shops;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.presenter.IShopPresenter;
 import source.domain.repository.db.ClothesRepository;
 import source.domain.repository.db.ImagesRepository;
 import source.domain.repository.db.ShopsRepository;
 import source.domain.repository.db.specification.ClothesSpecification;
-import source.usecases.app.IShopCrudUsecase;
+import source.usecases.IShopCrudUsecase;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -65,11 +67,13 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
 
         final Shops result = repository.save(shop);
 
+        CrudLogging.logging(LoggingHead.SHOP_CREATE, userId, result);
+
         return presenter.toShopResponseViewModel(result);
     }
 
     @Override
-    public void delete(final Long id) {
+    public void delete(final Long userId, final Long id) {
         final List<Clothes> clothes = clothesRepository.findAll(
                 Specifications
                         .where(ClothesSpecification.shopIdEqual(id))
@@ -81,6 +85,8 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
         }
 
         repository.deleteById(id);
+
+        CrudLogging.logging(LoggingHead.SHOP_DELETE, userId, id);
     }
 
     @Override
@@ -118,10 +124,13 @@ public class ShopCrudInteractor implements IShopCrudUsecase {
                 .build();
 
         repository.save(shop);
+
+        CrudLogging.logging(LoggingHead.SHOP_UPDATE, userId, shop);
     }
 
     @Override
-    public void restoration(final Long id) {
+    public void restoration(final Long userId, final Long id) {
+        CrudLogging.logging(LoggingHead.SHOP_RESTORATION, userId, id);
         repository.restorationById(id);
     }
 }

@@ -1,4 +1,4 @@
-package source.usecases.app;
+package source.usecases;
 
 import source.controller.shops.crud.request.ShopCreateRequestModel;
 import source.controller.shops.crud.request.ShopUpdateRequestModel;
@@ -32,7 +32,7 @@ public interface IShopCrudUsecase {
      *
      * @param id primary key
      */
-    void delete(final Long id);
+    void delete(final Long userId, final Long id);
 
     /**
      * 検索を行います.
@@ -64,5 +64,5 @@ public interface IShopCrudUsecase {
      *
      * @param id primary key
      */
-    void restoration(final Long id);
+    void restoration(final Long userId, final Long id);
 }

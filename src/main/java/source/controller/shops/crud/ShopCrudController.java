@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import source.controller.shops.ShopsController;
-import source.usecases.app.IShopCrudUsecase;
+import source.usecases.IShopCrudUsecase;
 import source.controller.shops.crud.request.ShopCreateRequestModel;
 import source.controller.shops.crud.request.ShopUpdateRequestModel;
 import source.controller.shops.crud.response.ShopResponseViewModel;
 import source.controller.shops.crud.response.ShopResponseViewModels;
 
-@Slf4j(topic = "source.controller.shops.crud")
 @RestController
 @RequiredArgsConstructor
 public class ShopCrudController extends ShopsController {
@@ -25,23 +24,20 @@ public class ShopCrudController extends ShopsController {
     public ShopResponseViewModel handleCreate(
             @PathVariable("userId") Long userId,
             @RequestBody ShopCreateRequestModel requestData
-    ) throws JsonProcessingException {
-        log.info("create -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
+    ) {
         return usecase.create(userId, requestData);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleDelete(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
-        log.info("delete -> user: {}, id: {}", userId, id);
-        usecase.delete(id);
+        usecase.delete(userId, id);
     }
 
     @PutMapping(value = "/{id}/restoration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void handleRestoration(@PathVariable("userId") Long userId, @PathVariable("id") Long id) {
-        log.info("restoration -> user: {}, id: {}", userId, id);
-        usecase.restoration(id);
+        usecase.restoration(userId, id);
     }
 
     @GetMapping()
@@ -62,8 +58,7 @@ public class ShopCrudController extends ShopsController {
             @PathVariable("userId") Long userId,
             @PathVariable("id") Long id,
             @RequestBody ShopUpdateRequestModel requestData
-    ) throws JsonProcessingException {
-        log.info("update -> user: {}, data: {}", userId, MAPPER.writeValueAsString(requestData));
+    ) {
         usecase.update(userId, id, requestData);
     }
 }

@@ -10,11 +10,13 @@ import source.controller.clothes.curd.request.ClothesUpdateRequestModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModel;
 import source.controller.clothes.curd.response.ClothesResponseViewModels;
 import source.domain.entity.db.*;
+import source.domain.logging.CrudLogging;
+import source.domain.logging.LoggingHead;
 import source.domain.presenter.IClothesPresenter;
 import source.domain.repository.db.*;
 import source.domain.repository.db.specification.CoordinatesSpecification;
-import source.usecases.app.IClothesCrudUsecase;
-import source.usecases.converter.BuyDate;
+import source.usecases.IClothesCrudUsecase;
+import source.converter.BuyDate;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -81,11 +83,13 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                         .build()
         );
 
+        CrudLogging.logging(LoggingHead.CLOTHES_CREATE, userId, result);
+
         return presenter.toClothesResponseViewModel(result);
     }
 
     @Override
-    public void delete(final Long id) {
+    public void delete(final Long userId, final Long id) {
         final List<Coordinates> coordinates = coordinatesRepository.findAll(
                 Specifications
                         .where(CoordinatesSpecification.hasClothes(id))
@@ -96,11 +100,14 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
             throw new IllegalArgumentException(errorMessage);
         }
 
+        CrudLogging.logging(LoggingHead.CLOTHES_DELETE, userId, id);
+
         repository.deleteById(id);
     }
 
     @Override
-    public void restoration(final Long id) {
+    public void restoration(final Long userId, final Long id) {
+        CrudLogging.logging(LoggingHead.CLOTHES_RESTORATION, userId, id);
         repository.restorationById(id);
     }
 
@@ -140,19 +147,21 @@ public class ClothesCrudInteractor implements IClothesCrudUsecase {
                 inputData.getGenreIds()
         );
 
-        repository.save(
-                Clothes.builder()
-                        .id(id)
-                        .userId(userId)
-                        .image(clothesImage)
-                        .genres(genres)
-                        .brand(brand)
-                        .shop(shop)
-                        .price(inputData.getPrice())
-                        .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
-                        .comment(inputData.getComment())
-                        .satisfaction(inputData.getSatisfaction())
-                        .build()
-        );
+        Clothes clothes = Clothes.builder()
+                .id(id)
+                .userId(userId)
+                .image(clothesImage)
+                .genres(genres)
+                .brand(brand)
+                .shop(shop)
+                .price(inputData.getPrice())
+                .buyDate(BuyDate.toSqlDate(inputData.getBuyDate()))
+                .comment(inputData.getComment())
+                .satisfaction(inputData.getSatisfaction())
+                .build();
+
+        repository.save(clothes);
+
+        CrudLogging.logging(LoggingHead.CLOTHES_UPDATE, userId, clothes);
     }
 }
